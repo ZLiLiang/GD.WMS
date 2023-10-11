@@ -5,7 +5,10 @@
             <el-header>
                 <navbar/>
             </el-header>
-            <el-main class="app-main">Main</el-main>
+            <el-main class="app-main">
+                <svg-icon :name="name" />
+                <el-icon><setting /></el-icon>
+            </el-main>
             <el-footer>Footer</el-footer>
         </el-container>
     </el-container>
@@ -15,6 +18,8 @@
 <script setup lang="ts">
 import sidebar from './components/Sidebar/index.vue'
 import navbar from './components/Navbar.vue'
+
+const name="setting"
 
 </script>
 

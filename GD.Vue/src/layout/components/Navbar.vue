@@ -1,18 +1,59 @@
 <template>
-    <div class="navbar">
-        <hamburger id="hamburger-container" :is-active="appStore.sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar"/>
+    <div class="navbar desktop">
+        <hamburger id="hamburger-container" :is-active="appStore.sidebar.opened" class="hamburger-container"
+            @toggleClick="toggleSideBar" />
+        <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
+
+        <div class="right-menu">
+            <screenfull title="全屏" class="right-menu-item" />
+            <el-dropdown class="right-menu-item avatar-container" trigger="hover">
+                <span class="avatar-wrapper">
+                    <el-avatar :size="25" shape="circle" class="user-avatar" :src="userStore.avatar" />
+                    <span class="name">{{ userStore.name }}</span>
+                    <el-icon>
+                        <ArrowDown />
+                    </el-icon>
+                </span>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <router-link to="/user/profile">
+                            <el-dropdown-item>个人中心</el-dropdown-item>
+                        </router-link>
+                        <el-dropdown-item @click="logout">
+                            <span>退出登陆</span>
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
+        </div>
+
     </div>
 </template>
 
 <script setup lang="ts">
 import hamburger from '@/components/Hamburger/index.vue'
-
+import breadcrumb from '@/components/Breadcrumb/index.vue'
 import useAppStore from '@/store/modules/app'
+import useUserStore from '@/store/modules/user'
+import { ComponentInternalInstance } from 'vue';
 
+const { proxy } = getCurrentInstance() as ComponentInternalInstance
 const appStore = useAppStore()
+const userStore = useUserStore()
 
 function toggleSideBar() {
-  appStore.toggleSideBar()
+    appStore.toggleSideBar()
+}
+
+function logout() {
+    proxy.$modal
+        .confirm("你確定要退出当前登录吗？")
+        .then(() => {
+            //   userStore.logOut().then(() => {
+            //     location.href = import.meta.env.VITE_APP_ROUTER_PREFIX + 'index'
+            //   })
+        })
+        .catch(() => { })
 }
 </script>
 
@@ -101,4 +142,5 @@ function toggleSideBar() {
             }
         }
     }
-}</style>
+}
+</style>

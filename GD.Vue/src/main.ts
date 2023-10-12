@@ -2,6 +2,8 @@ import pinia from './store/index'
 import App from './App.vue'
 import router from './router'
 
+import plugins from './plugins/index' // plugins
+
 // svg图标
 import '@/assets/iconfont/iconfont.js' //iconfont
 import 'virtual:svg-icons-register'
@@ -17,5 +19,6 @@ app.component('svg-icon', SvgIcon)
 
 app.use(pinia)
 app.use(router)
+app.use(plugins)
 app.use(elementIcons)
 app.mount('#app')

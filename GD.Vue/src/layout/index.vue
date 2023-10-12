@@ -1,14 +1,19 @@
 <template>
     <el-container :class="classObj" class="app-layout" :style="{ '--current-color': theme }">
-        <sidebar/>
-        <el-container class="main-container flex-center">
-            <el-header>
-                <navbar/>
+        <sidebar />
+        <el-container class="main-container flex-center" :class="{ sidebarHide: sidebarAttr.hide }">
+            <el-header :class="{ 'fixed-header': fixedHeader }">
+                <navbar @setLayout="setLayout" />
             </el-header>
             <el-main class="app-main">
-
+                <router-view v-slot="{ Component, route }">
+                    <transition name="fade-transform" mode="out-in">
+                        <keep-alive>
+                            <component v-if="!route.meta.link" :is="Component" :key="route.path" />
+                        </keep-alive>
+                    </transition>
+                </router-view>
             </el-main>
-            <el-footer>Footer</el-footer>
         </el-container>
     </el-container>
 </template>
@@ -23,11 +28,17 @@ import useSettingsStore from '@/store/modules/settings'
 const settingsStore = useSettingsStore()
 const theme = computed(() => settingsStore.theme)
 const sidebarAttr = computed(() => useAppStore().sidebar)
+const fixedHeader = computed(() => settingsStore.fixedHeader)
 
 const classObj = computed(() => ({
-  hideSidebar: !sidebarAttr.value.opened,
-  openSidebar: sidebarAttr.value.opened
+    hideSidebar: !sidebarAttr.value.opened,
+    openSidebar: sidebarAttr.value.opened
 }))
+
+const settingRef = ref<any>(null)
+function setLayout() {
+    settingRef.value.openSetting()
+}
 
 </script>
 
@@ -103,4 +114,5 @@ const classObj = computed(() => ({
     .el-header {
         --el-header-height: var(--el-header-height) + var(--el-tags-height) !important;
     }
-}</style>
+}
+</style>

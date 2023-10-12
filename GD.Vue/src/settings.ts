@@ -21,4 +21,8 @@ export default {
      * 默认大小
      */
     defaultSize: 'default',
+    /**
+     * 左侧菜单是否显示New标记
+     */
+    menuShowNew: false,
 }

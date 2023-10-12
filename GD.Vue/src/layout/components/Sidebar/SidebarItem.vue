@@ -2,13 +2,17 @@
     <template v-if="!item.hidden">
         <template
             v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.alwaysShow">
-            <router-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path, onlyOneChild.query)">
+            <appLink v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path, onlyOneChild.query)">
                 <el-menu-item :index="resolvePath(onlyOneChild.path)">
                     <svg-icon :name="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
                     <span v-if="props.isCollapse && !onlyOneChild.meta.icon">{{ hasTitle2(onlyOneChild.meta.title) }}</span>
-                    <span v-if="onlyOneChild.meta.title">{{ onlyOneChild.meta.title }}</span>
+                    <template #title>
+                        <span v-if="onlyOneChild.meta.title">{{ onlyOneChild.meta.title }}</span>
+                        <svg-icon name="new" color="#fff" style="width: 50px; height: 25px"
+                            v-if="onlyOneChild.meta.title && onlyOneChild.meta.isNew == 1 && defaultSettings.menuShowNew" />
+                    </template>
                 </el-menu-item>
-            </router-link>
+            </appLink>
         </template>
 
         <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)">
@@ -16,9 +20,8 @@
                 <svg-icon :name="item.meta && item.meta.icon" />
                 <span v-if="item.meta && item.meta.title">{{ item.meta.title }}</span>
                 <svg-icon name="new" color="#fff" style="width: 50px; height: 25px"
-                    v-if="item.meta.title && item.meta.isNew == 1" />
+                    v-if="item.meta.title && item.meta.isNew == 1&& defaultSettings.menuShowNew" />
             </template>
-
             <sidebar-item v-for="child in item.children" :key="child.path" :is-nest="true" :item="child"
                 :base-path="resolvePath(child.path)" />
         </el-sub-menu>
@@ -27,6 +30,8 @@
 
 <script setup lang="ts">
 import { getNormalPath } from '@/utils/ruoyi'
+import appLink from './Link.vue'
+import defaultSettings from '@/settings'
 const props = defineProps({
     // route object
     item: {
@@ -89,6 +94,7 @@ function resolvePath(routePath: string, routeQuery?: string) {
 }
 
 function hasTitle2(title: string) {
+    console.log(title)
     if (title.length >= 1) {
         return title.charAt(0) + '...'
     } else {

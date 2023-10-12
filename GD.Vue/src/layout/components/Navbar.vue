@@ -1,12 +1,19 @@
 <template>
     <div class="navbar">
-        <hamburger/>
+        <hamburger id="hamburger-container" :is-active="appStore.sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar"/>
     </div>
 </template>
 
 <script setup lang="ts">
 import hamburger from '@/components/Hamburger/index.vue'
 
+import useAppStore from '@/store/modules/app'
+
+const appStore = useAppStore()
+
+function toggleSideBar() {
+  appStore.toggleSideBar()
+}
 </script>
 
 <style lang="scss" scoped>

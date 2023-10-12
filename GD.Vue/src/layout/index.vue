@@ -1,13 +1,12 @@
 <template>
-    <el-container class="app-layout">
+    <el-container :class="classObj" class="app-layout" :style="{ '--current-color': theme }">
         <sidebar/>
         <el-container class="main-container flex-center">
             <el-header>
                 <navbar/>
             </el-header>
             <el-main class="app-main">
-                <svg-icon :name="name" />
-                <el-icon><setting /></el-icon>
+
             </el-main>
             <el-footer>Footer</el-footer>
         </el-container>
@@ -18,8 +17,17 @@
 <script setup lang="ts">
 import sidebar from './components/Sidebar/index.vue'
 import navbar from './components/Navbar.vue'
+import useAppStore from '@/store/modules/app'
+import useSettingsStore from '@/store/modules/settings'
 
-const name="setting"
+const settingsStore = useSettingsStore()
+const theme = computed(() => settingsStore.theme)
+const sidebarAttr = computed(() => useAppStore().sidebar)
+
+const classObj = computed(() => ({
+  hideSidebar: !sidebarAttr.value.opened,
+  openSidebar: sidebarAttr.value.opened
+}))
 
 </script>
 

@@ -23,69 +23,80 @@ const appStore = useAppStore()
 const settingsStore = useSettingsStore()
 const permissionStore = [
     {
-        path:'/s',
-        name:'system',
-        meta:{
-            icon: "system",
-            isNew: 1,
-            link: "",
-            noCache: false,
-            title: "系统管理"
-        },
-        // children:[
-        //     {
-        //         name:'user',
-        //         path:'',
-        //         meta:{
-        //             icon: "user",
-        //             isNew: 1,
-        //             link: "",
-        //             noCache: false,
-        //             title: "用户管理"
-        //         }
-        //     },{
-        //         name:'user',
-        //         path:'',
-        //         meta:{
-        //             icon: "user",
-        //             isNew: 1,
-        //             link: "",
-        //             noCache: false,
-        //             title: "测试管理"
-        //         }
-        //     }
-        // ]
-    },{
-        path:'/a',
-        name:'system',
-        meta:{
-            icon: "system",
-            isNew: 1,
-            link: "",
-            noCache: false,
-            title: "系统管理"
-        },
-        children:[
+        path: "",
+        component: "Index",
+        children: [
             {
-                name:'user',
-                path:'',
-                meta:{
-                    icon: "user",
+                component: "",
+                name: "Index",
+                path: "/index",
+                meta: {
+                    icon: "index",
+                    title: "首页"
+                }
+            }
+        ]
+    },
+    {
+        alwaysShow: false,
+        hidden: false,
+        name: "",
+        path: "",
+        meta: null,
+        children: [
+            {
+                alwaysShow: false,
+                hidden: false,
+                name: "dashboard",
+                path: "dashboard",
+                meta: {
+                    icon: "dashboard",
+                    title: "控制台",
                     isNew: 1,
                     link: "",
-                    noCache: false,
-                    title: "用户管理"
-                }
-            },{
-                name:'user',
-                path:'',
-                meta:{
+                    noCache: false
+                },
+            }
+        ]
+    },
+    {
+        alwaysShow: true,
+        hidden: false,
+        name: "system",
+        path: "/system",
+        meta: {
+            icon: "system",
+            title: "系统管理",
+            isNew: 1,
+            link: "",
+            noCache: false
+        },
+        children: [
+            {
+                alwaysShow: false,
+                hidden: false,
+                name: "user",
+                path: "user",
+                meta: {
                     icon: "user",
+                    title: "用户管理",
                     isNew: 1,
                     link: "",
-                    noCache: false,
-                    title: "测试管理"
-                }
+                    noCache: false
+                },
+            },
+            {
+                alwaysShow: false,
+                hidden: false,
+                name: "role",
+                path: "role",
+                meta: {
+                    icon: "peoples",
+                    title: "角色管理",
+                    isNew: 1,
+                    link: "",
+                    noCache: false
+                },
             }
         ]
     }
@@ -100,7 +111,7 @@ const activeMenu = computed(() => {
     const { meta, path } = route
     // if set path, the sidebar will highlight the path you set
     if (meta.activeMenu) {
-        return meta.activeMenu
+        return meta.activeMenu as string
     }
     return path
 })

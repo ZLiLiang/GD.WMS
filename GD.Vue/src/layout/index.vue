@@ -7,7 +7,7 @@
             </el-header>
             <el-main class="app-main">
                 <router-view v-slot="{ Component, route }">
-                    <transition name="fade-transform" mode="out-in">
+                    <transition name="fade-transform">
                         <keep-alive>
                             <component v-if="!route.meta.link" :is="Component" :key="route.path" />
                         </keep-alive>

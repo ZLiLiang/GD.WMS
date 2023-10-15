@@ -15,6 +15,20 @@ export const constantRoutes = [
                 meta: { title: '首页', icon: 'index', affix: true, titleKey: 'menu.home' }
             }
         ]
+    },
+    {
+        path: '/user',
+        component: Layout,
+        hidden: true,
+        redirect: 'noredirect',
+        children: [
+            {
+                path: 'profile',
+                component: () => import('@/views/system/profile/index'),
+                name: 'Profile',
+                meta: { title: '个人中心', icon: 'user', titleKey: 'menu.personalCenter' }
+            }
+        ]
     }
 ]
 

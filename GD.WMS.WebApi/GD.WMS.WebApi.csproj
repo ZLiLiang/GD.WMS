@@ -19,10 +19,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GD.Infrastructure\GD.Infrastructure.csproj" />
+    <ProjectReference Include="..\GD.Service\GD.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\System\" />
+    <None Update="DataProtection\key-1d8ecec8-0303-42ed-a2e2-3a7144c8b655.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

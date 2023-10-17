@@ -18,10 +18,6 @@ namespace GD.Infrastructure.CustomException
         /// 记录到日志的详细内容
         /// </summary>
         public string LogMsg { get; set; }
-        /// <summary>
-        /// 是否通知
-        /// </summary>
-        public bool Notice { get; set; } = true;
 
         public CustomException(string msg) : base(msg)
         {
@@ -32,10 +28,9 @@ namespace GD.Infrastructure.CustomException
             Msg = msg;
         }
 
-        public CustomException(ResultCode resultCode, string msg, bool notice = true) : base(msg)
+        public CustomException(ResultCode resultCode, string msg) : base(msg)
         {
             Code = (int)resultCode;
-            Notice = notice;
         }
 
         /// <summary>

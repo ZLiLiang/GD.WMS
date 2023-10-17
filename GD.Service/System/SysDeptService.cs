@@ -5,7 +5,6 @@ using GD.Model.Dto;
 using GD.Model.System;
 using GD.Model.Vo;
 using GD.Model;
-using GD.Service.IService;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -13,8 +12,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GD.Infrastructure.Extensions;
+using GD.Service.Interface.System;
 
-namespace GD.Service.Service
+namespace GD.Service.System
 {
     /// <summary>
     /// 部门管理

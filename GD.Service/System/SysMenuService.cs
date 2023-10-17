@@ -6,7 +6,6 @@ using GD.Model.Generate;
 using GD.Model.System;
 using GD.Model.Vo;
 using GD.Model;
-using GD.Service.IService;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -14,8 +13,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GD.Common;
+using GD.Service.Interface.System;
 
-namespace GD.Service.Service
+namespace GD.Service.System
 {
     /// <summary>
     /// 菜单

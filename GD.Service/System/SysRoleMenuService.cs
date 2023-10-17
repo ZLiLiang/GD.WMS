@@ -1,8 +1,8 @@
 ﻿using GD.Infrastructure.Attribute;
 using GD.Model.System;
-using GD.Service.IService;
+using GD.Service.Interface.System;
 
-namespace GD.Service.Service
+namespace GD.Service.System
 {
     /// <summary>
     /// 角色菜单

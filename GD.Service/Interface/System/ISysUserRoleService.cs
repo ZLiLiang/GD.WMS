@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GD.Model.Dto;
 
-namespace GD.Service.IService
+namespace GD.Service.Interface.System
 {
     public interface ISysUserRoleService : IBaseService<SysUserRole>
     {

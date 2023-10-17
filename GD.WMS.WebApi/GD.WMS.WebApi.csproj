@@ -21,4 +21,8 @@
     <ProjectReference Include="..\GD.Infrastructure\GD.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\System\" />
+  </ItemGroup>
+
 </Project>

@@ -1,15 +1,9 @@
 ﻿using GD.Infrastructure;
 using GD.Infrastructure.Extensions;
 using IPTools.Core;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
 using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using UAParser;
 
 namespace GD.WMS.WebApi.Extensions

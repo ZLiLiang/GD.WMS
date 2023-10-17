@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GD.Service.IService
+namespace GD.Service.Interface.System
 {
     public interface ISysMenuService : IBaseService<SysMenu>
     {

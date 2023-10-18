@@ -1,11 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GD.Infrastructure.Cache
 {
@@ -133,11 +128,11 @@ namespace GD.Infrastructure.Cache
         public static List<string> GetCacheKeys()
         {
             const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-            //var entries = Cache.GetType().GetField("_entries", flags).GetValue(Cache);
+            var entries = Cache.GetType().GetField("_entries", flags).GetValue(Cache);
 
             //.net7需要这样写 
-            var coherentState = Cache.GetType().GetField("_coherentState", flags).GetValue(Cache);
-            var entries = coherentState.GetType().GetField("_entries", flags).GetValue(coherentState);
+            //var coherentState = Cache.GetType().GetField("_coherentState", flags).GetValue(Cache);
+            //var entries = coherentState.GetType().GetField("_entries", flags).GetValue(coherentState);
 
             var keys = new List<string>();
             if (entries is not IDictionary cacheItems) return keys;

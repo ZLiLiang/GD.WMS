@@ -26,7 +26,6 @@ namespace GD.WMS.WebApi.Controllers.System
     public class SysLoginController : BaseController
     {
         //static readonly NLog.Logger logger = NLog.LogManager.GetLogger("LoginController");
-        private readonly IHttpContextAccessor httpContextAccessor;
         private readonly ISysUserService sysUserService;
         private readonly ISysMenuService sysMenuService;
         private readonly ISysLoginService sysLoginService;
@@ -34,10 +33,8 @@ namespace GD.WMS.WebApi.Controllers.System
         private readonly ICaptcha SecurityCodeHelper;
         private readonly ISysConfigService sysConfigService;
         private readonly ISysRoleService roleService;
-        private readonly OptionsSetting optionSettings;
 
         public SysLoginController(
-            IHttpContextAccessor contextAccessor,
             ISysMenuService sysMenuService,
             ISysUserService sysUserService,
             ISysLoginService sysLoginService,
@@ -47,7 +44,6 @@ namespace GD.WMS.WebApi.Controllers.System
             ICaptcha captcha,
             IOptions<OptionsSetting> optionSettings)
         {
-            httpContextAccessor = contextAccessor;
             SecurityCodeHelper = captcha;
             this.sysMenuService = sysMenuService;
             this.sysUserService = sysUserService;
@@ -55,7 +51,6 @@ namespace GD.WMS.WebApi.Controllers.System
             this.permissionService = permissionService;
             this.sysConfigService = configService;
             roleService = sysRoleService;
-            this.optionSettings = optionSettings.Value;
         }
 
 

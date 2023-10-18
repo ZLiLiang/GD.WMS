@@ -1,5 +1,5 @@
 ﻿using GD.Infrastructure.Attribute;
-using GD.Model.Dto;
+using GD.Infrastructure.Extensions;
 using GD.Model.Enums;
 using GD.Model.System;
 using GD.Model;
@@ -8,6 +8,7 @@ using GD.WMS.WebApi.Extensions;
 using GD.WMS.WebApi.Filters;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using GD.Model.Dto.System;
 
 namespace GD.WMS.WebApi.Controllers.System
 {

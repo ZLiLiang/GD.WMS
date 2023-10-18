@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GD.Model.Dto;
+using GD.Model.Dto.System;
 
 namespace GD.Service.Interface.System
 {

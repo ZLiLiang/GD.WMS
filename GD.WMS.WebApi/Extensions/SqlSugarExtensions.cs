@@ -42,13 +42,6 @@ namespace GD.WMS.WebApi.Extensions
             ICacheService cache = new SqlSugarCache();
             SugarIocServices.ConfigurationSugar(db =>
             {
-                var u = App.User;
-                if (u != null)
-                {
-                    DataPermi.FilterData(0);
-                    //ConfigId = 1的数据权限过滤
-                    //DataPermi.FilterData1(1);
-                }
 
                 iocList.ForEach(iocConfig =>
                 {
@@ -189,10 +182,6 @@ namespace GD.WMS.WebApi.Extensions
                             else if (p.EntityName == nameof(SysRole))
                             {
                                 p.OracleSequenceName = "SEQ_SYS_ROLE_ROLEID";
-                            }
-                            else if (p.EntityName == nameof(SysDept))
-                            {
-                                p.OracleSequenceName = "SEQ_SYS_DEPT_DEPTID";
                             }
                             else if (p.EntityName == nameof(SysMenu))
                             {

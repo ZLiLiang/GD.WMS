@@ -25,28 +25,15 @@ namespace GD.WMS.WebApi.SqlSugar
             //24个表,建议先使用下面方法初始化表，方便排查问题
             db.CodeFirst.InitTables(typeof(SysUser));
             db.CodeFirst.InitTables(typeof(SysRole));
-            db.CodeFirst.InitTables(typeof(SysDept));
-            //db.CodeFirst.InitTables(typeof(SysPost));
-            //db.CodeFirst.InitTables(typeof(SysFile));
-            //db.CodeFirst.InitTables(typeof(SysConfig));
-            //db.CodeFirst.InitTables(typeof(SysNotice));
+            db.CodeFirst.InitTables(typeof(SysConfig));
             db.CodeFirst.InitTables(typeof(SysLogininfor));
-            //db.CodeFirst.InitTables(typeof(SysOperLog));
+            db.CodeFirst.InitTables(typeof(SysOperLog));
             db.CodeFirst.InitTables(typeof(SysMenu));
             db.CodeFirst.InitTables(typeof(SysRoleMenu));
-            db.CodeFirst.InitTables(typeof(SysRoleDept));
             db.CodeFirst.InitTables(typeof(SysUserRole));
-            //db.CodeFirst.InitTables(typeof(SysUserPost));
-            //db.CodeFirst.InitTables(typeof(SysTasks));
-            //db.CodeFirst.InitTables(typeof(SysTasksLog));
-            //db.CodeFirst.InitTables(typeof(CommonLang));
             db.CodeFirst.InitTables(typeof(GenTable));
             db.CodeFirst.InitTables(typeof(GenTableColumn));
-            //db.CodeFirst.InitTables(typeof(Article));
-            //db.CodeFirst.InitTables(typeof(ArticleCategory));
-            //db.CodeFirst.InitTables(typeof(SysDictData));
-            //db.CodeFirst.InitTables(typeof(SysDictType));
-            //db.CodeFirst.InitTables(typeof(SqlDiffLog));
+            db.CodeFirst.InitTables(typeof(SqlDiffLog));
         }
 
     }

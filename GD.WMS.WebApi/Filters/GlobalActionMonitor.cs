@@ -3,12 +3,12 @@ using GD.Model.Enums;
 using GD.Model.System;
 using GD.Model;
 using GD.Service.Interface.System;
-using GD.WMS.WebApi.Extensions;
 using IPTools.Core;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
+using GD.Infrastructure.Extensions;
 
 namespace GD.WMS.WebApi.Filters
 {

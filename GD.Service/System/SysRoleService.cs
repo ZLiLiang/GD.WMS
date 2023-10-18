@@ -1,18 +1,13 @@
-﻿using GD.Infrastructure.Attribute;
+﻿using GD.Infrastructure;
+using GD.Infrastructure.Attribute;
 using GD.Infrastructure.CustomException;
-using GD.Infrastructure;
-using GD.Model.Dto;
-using GD.Model.System;
 using GD.Model;
-using SqlSugar;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GD.Model.Dto.System;
+using GD.Model.System;
 using GD.Repository;
 using GD.Service.Interface.System;
+using SqlSugar;
+using System.Collections;
 
 namespace GD.Service.System
 {
@@ -23,15 +18,12 @@ namespace GD.Service.System
     public class SysRoleService : BaseService<SysRole>, ISysRoleService
     {
         private ISysUserRoleService SysUserRoleService;
-        private ISysDeptService DeptService;
         private ISysRoleMenuService RoleMenuService;
         public SysRoleService(
             ISysUserRoleService sysUserRoleService,
-            ISysDeptService deptService,
             ISysRoleMenuService roleMenuService)
         {
             SysUserRoleService = sysUserRoleService;
-            DeptService = deptService;
             RoleMenuService = roleMenuService;
         }
 
@@ -162,8 +154,6 @@ namespace GD.Service.System
         {
             sysRole.Create_time = DateTime.Now;
             sysRole.RoleId = InsertReturnBigIdentity(sysRole);
-            //插入角色部门数据
-            DeptService.InsertRoleDepts(sysRole);
 
             return sysRole.RoleId;
         }
@@ -350,10 +340,6 @@ namespace GD.Service.System
             {
                 //修改角色信息
                 UpdateSysRole(sysRole);
-                //删除角色与部门管理
-                DeptService.DeleteRoleDeptByRoleId(sysRole.RoleId);
-                //插入角色部门数据
-                DeptService.InsertRoleDepts(sysRole);
             });
 
             return result.IsSuccess ? 1 : 0;
@@ -371,7 +357,6 @@ namespace GD.Service.System
 
             return db.Updateable<SysRole>()
             .SetColumns(it => it.Update_time == sysRole.Update_time)
-            .SetColumns(it => it.DataScope == sysRole.DataScope)
             .SetColumns(it => it.Remark == sysRole.Remark)
             .SetColumns(it => it.Update_by == sysRole.Update_by)
             //.SetColumns(it => it.MenuCheckStrictly == sysRole.MenuCheckStrictly)

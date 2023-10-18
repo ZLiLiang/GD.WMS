@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Lazy.Captcha.Core" Version="2.0.6" />
+    <PackageReference Include="NETCore.Encrypt" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GD.Common\GD.Common.csproj" />
     <ProjectReference Include="..\GD.Repository\GD.Repository.csproj" />
   </ItemGroup>

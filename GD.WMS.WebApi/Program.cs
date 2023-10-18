@@ -29,7 +29,7 @@ builder.Services.AddCors(builder.Configuration);
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + "DataProtection"));
 //∆’Õ®—È÷§¬Î
-//builder.Services.AddCaptcha(builder.Configuration);
+builder.Services.AddCaptcha(builder.Configuration);
 //IPRatelimit
 //builder.Services.AddIPRate(builder.Configuration);
 //builder.Services.AddSession();

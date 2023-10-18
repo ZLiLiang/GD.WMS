@@ -42,21 +42,6 @@ namespace GD.Model.Vo
             Children = child;
         }
 
-        public TreeSelectVo(SysDept dept)
-        {
-            Id = dept.DeptId;
-            Label = dept.DeptName;
-
-            //menu.getChildren().stream().map(TreeSelect::new).collect(Collectors.toList()); java写法
-            List<TreeSelectVo> child = new List<TreeSelectVo>();
-            foreach (var item in dept.children)
-            {
-                child.Add(new TreeSelectVo(item));
-            }
-
-            Children = child;
-        }
-
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<TreeSelectVo> Children { get; set; }
     }

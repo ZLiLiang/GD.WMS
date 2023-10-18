@@ -1,5 +1,5 @@
 ﻿using GD.Model;
-using GD.Model.Dto;
+using GD.Model.Dto.System;
 using GD.Model.System;
 
 namespace GD.Service.Interface.System

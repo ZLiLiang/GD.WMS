@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GD.Infrastructure.Extensions;
 using System.Reflection;
 
 namespace GD.WMS.WebApi.Extensions

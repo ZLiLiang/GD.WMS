@@ -1,6 +1,5 @@
 ﻿using GD.Infrastructure.Attribute;
 using GD.Infrastructure.Extensions;
-using GD.Model.Dto;
 using GD.Model.Enums;
 using GD.Model.Generate;
 using GD.Model.System;
@@ -14,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GD.Common;
 using GD.Service.Interface.System;
+using GD.Model.Dto.System;
 
 namespace GD.Service.System
 {

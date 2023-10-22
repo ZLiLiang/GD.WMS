@@ -2,11 +2,7 @@
     <starBackground></starBackground>
     <div class="login-wrap">
         <div class="login">
-            <h3 class="title">{{ defaultSettings.title }}</h3>
-
-            <div style="padding: 0 25px 5px 25px;text-align: center;">
-                账号登陆
-            </div>
+            <h3 class="title">账号登陆</h3>
 
             <el-form ref="loginRef" :model="loginForm" :rules="loginRules" class="login-form" v-show="loginType == 1">
                 <el-form-item prop="username">
@@ -125,7 +121,7 @@ function handleLogin() {
             userStore
                 .login(loginForm.value)
                 .then(() => {
-                    proxy.$modal.msgSuccess(proxy.$t('login.loginSuccess'))
+                    proxy.$modal.msgSuccess('登录成功')
                     router.push({ path: redirect.value || '/' })
                 })
                 .catch((error) => {
@@ -163,28 +159,6 @@ function handleForgetPwd() {
     proxy.$modal.msg('请联系管理员')
 }
 
-const interval = ref(null)
-function handleShowQrLogin() {
-    nextTick(() => {
-        generateCode()
-    })
-}
-
-function getUuid() {
-    var temp_url = URL.createObjectURL(new Blob())
-    var uuid = temp_url.toString().replace('-', '') // blob:https://xxx.com/b250d159-e1b6-4a87-9002-885d90033be3
-    URL.revokeObjectURL(temp_url)
-    return uuid.substr(uuid.lastIndexOf('/') + 1)
-}
-function handleLoginType(t) {
-    const val = t.paneName
-
-    if (val == 3) {
-        handleShowQrLogin()
-    } else {
-        clearQr()
-    }
-}
 getCode()
 getCookie()
 </script>

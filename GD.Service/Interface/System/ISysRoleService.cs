@@ -54,19 +54,6 @@ namespace GD.Service.Interface.System
         public int UpdateRoleStatus(SysRole roleDto);
 
         /// <summary>
-        /// 校验角色权限是否唯一
-        /// </summary>
-        /// <param name="sysRole">角色信息</param>
-        /// <returns></returns>
-        public string CheckRoleKeyUnique(SysRole sysRole);
-
-        /// <summary>
-        /// 校验角色是否允许操作
-        /// </summary>
-        /// <param name="role"></param>
-        public void CheckRoleAllowed(SysRole role);
-
-        /// <summary>
         /// 新增保存角色信息
         /// </summary>
         /// <param name="sysRole">角色信息</param>
@@ -80,12 +67,6 @@ namespace GD.Service.Interface.System
         /// <returns></returns>
         public int DeleteRoleMenuByRoleId(long roleId);
 
-        /// <summary>
-        /// 授权数据范围
-        /// </summary>
-        /// <param name="role"></param>
-        /// <returns></returns>
-        bool AuthDataScope(SysRoleDto role);
         #region Service
 
 
@@ -95,13 +76,6 @@ namespace GD.Service.Interface.System
         /// <param name="sysRoleDto"></param>
         /// <returns></returns>
         public int InsertRoleMenu(SysRoleDto sysRoleDto);
-
-        /// <summary>
-        /// 判断是否是管理员
-        /// </summary>
-        /// <param name="userid"></param>
-        /// <returns></returns>
-        public bool IsAdmin(long userid);
 
         /// <summary>
         /// 获取角色菜单id集合
@@ -123,13 +97,6 @@ namespace GD.Service.Interface.System
         /// <param name="userId"></param>
         /// <returns></returns>
         public List<long> SelectUserRoles(long userId);
-
-        /// <summary>
-        /// 获取用户权限字符串集合
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public List<string> SelectUserRoleKeys(long userId);
 
         public List<string> SelectUserRoleNames(long userId);
 

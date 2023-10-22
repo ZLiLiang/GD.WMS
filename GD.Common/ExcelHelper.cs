@@ -55,5 +55,44 @@ namespace GD.Common
             MiniExcel.SaveAs(fullPath, sheets);
             return (sFileName, fullPath);
         }
+
+        /// <summary>
+        /// 下载导入模板
+        /// </summary>
+        /// <typeparam name="T">数据类型</typeparam>
+        /// <param name="list">空数据类型集合</param>
+        /// <param name="fileName">下载文件名</param>
+        /// <returns></returns>
+        public static (string, string) DownloadImportTemplate<T>(List<T> list, string fileName)
+        {
+            IWebHostEnvironment webHostEnvironment = App.WebHostEnvironment;
+            string sFileName = $"{fileName}.xlsx";
+            string fullPath = Path.Combine(webHostEnvironment.WebRootPath, "ImportTemplate", sFileName);
+
+            //不存在模板创建模板
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+            }
+            if (!File.Exists(fullPath))
+            {
+                MiniExcel.SaveAs(fullPath, list, overwriteFile: true);
+            }
+            return (sFileName, fullPath);
+        }
+
+        /// <summary>
+        /// 下载指定文件模板
+        /// </summary>
+        /// <param name="fileName">下载文件名</param>
+        /// <returns></returns>
+        public static (string, string) DownloadImportTemplate(string fileName)
+        {
+            IWebHostEnvironment webHostEnvironment = (IWebHostEnvironment)App.ServiceProvider.GetService(typeof(IWebHostEnvironment));
+            string sFileName = $"{fileName}.xlsx";
+            string fullPath = Path.Combine(webHostEnvironment.WebRootPath, "ImportTemplate", sFileName);
+
+            return (sFileName, fullPath);
+        }
     }
 }

@@ -29,16 +29,6 @@ namespace GD.Model.System
         public string Status { get; set; }
 
         /// <summary>
-        /// 登录IP地址
-        /// </summary>
-        public string Ipaddr { get; set; } = string.Empty;
-
-        /// <summary>
-        /// 登录地点
-        /// </summary>
-        public string LoginLocation { get; set; } = string.Empty;
-
-        /// <summary>
         /// 浏览器类型
         /// </summary>
         public string Browser { get; set; } = string.Empty;

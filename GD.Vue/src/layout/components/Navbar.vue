@@ -48,9 +48,9 @@ function logout() {
     proxy.$modal
         .confirm("你確定要退出当前登录吗？")
         .then(() => {
-            //   userStore.logOut().then(() => {
-            //     location.href = import.meta.env.VITE_APP_ROUTER_PREFIX + 'index'
-            //   })
+              userStore.logOut().then(() => {
+                location.href = '/index'
+              })
         })
         .catch(() => { })
 }

@@ -9,6 +9,9 @@
                         </div>
                     </template>
                     <div>
+                        <div class="text-center">
+                            <userAvatar />
+                        </div>
                         <ul class="list-group list-group-striped">
                             <li class="list-group-item">
                                 <svg-icon name="user" />用户名
@@ -21,10 +24,6 @@
                             <li class="list-group-item">
                                 <svg-icon name="email" />电子邮箱
                                 <div class="pull-right">{{ state.user.email }}</div>
-                            </li>
-                            <li class="list-group-item">
-                                <svg-icon name="tree" />部门
-                                <div class="pull-right">{{ state.user.deptName }} / {{ state.postGroup }}</div>
                             </li>
                             <li class="list-group-item">
                                 <svg-icon name="peoples" />角色
@@ -54,9 +53,6 @@
                         <el-tab-pane label="修改密码" name="resetPwd">
                             <resetPwd />
                         </el-tab-pane>
-                        <el-tab-pane label="操作日志" name="log">
-                            <operLog></operLog>
-                        </el-tab-pane>
                     </el-tabs>
                 </el-card>
             </el-col>
@@ -65,26 +61,24 @@
 </template>
 
 <script setup name="Profile">
+import userAvatar from './userAvatar'
 import userInfo from './userInfo'
 import resetPwd from './resetPwd'
-import operLog from './operLog.vue'
-// import { getUserProfile } from '@/api/system/user'
+import { getUserProfile } from '@/api/system/profile'
 
 const activeTab = ref('userinfo')
 const state = reactive({
     user: {},
     roles: [],
-    roleGroup: {},
-    postGroup: {}
+    roleGroup: {}
 })
 
 function getUser() {
-    //   getUserProfile().then((response) => {
-    //     state.user = response.data.user
-    //     state.roles = response.data.roles
-    //     state.roleGroup = response.data.roleGroup
-    //     state.postGroup = response.data.postGroup
-    //   })
+    getUserProfile().then((response) => {
+        state.user = response.data.user
+        state.roles = response.data.roles
+        state.roleGroup = response.data.roleGroup
+    })
 }
 
 getUser()

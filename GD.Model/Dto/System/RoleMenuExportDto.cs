@@ -20,8 +20,6 @@ namespace GD.Model.Dto.System
         public string Path { get; set; }
         [ExcelColumn(Name = "组件名", Width = 20)]
         public string Component { get; set; }
-        [ExcelColumn(Name = "权限字符", Width = 20)]
-        public string Perms { get; set; }
         [ExcelColumn(Name = "菜单类型")]
         public MenuType MenuType { get; set; }
         [ExcelColumn(Name = "菜单状态")]

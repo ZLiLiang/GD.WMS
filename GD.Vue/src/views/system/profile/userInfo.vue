@@ -23,7 +23,7 @@
 </template>
   
 <script setup>
-// import { updateUserProfile } from '@/api/system/user'
+import { updateUserProfile } from '@/api/system/profile'
 
 const props = defineProps({
   user: {
@@ -57,9 +57,9 @@ const rules = ref({
 function submit() {
   proxy.$refs.userRef.validate((valid) => {
     if (valid) {
-    //   updateUserProfile(props.user).then((response) => {
-    //     proxy.$modal.msgSuccess('修改成功')
-    //   })
+      updateUserProfile(props.user).then((response) => {
+        proxy.$modal.msgSuccess('修改成功')
+      })
     }
   })
 }

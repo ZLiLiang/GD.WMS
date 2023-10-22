@@ -68,12 +68,6 @@ namespace GD.Model.System
         public int DelFlag { get; set; }
 
         /// <summary>
-        /// 最后登录IP
-        /// </summary>
-        [SugarColumn(IsOnlyIgnoreInsert = true)]
-        public string LoginIP { get; set; }
-
-        /// <summary>
         /// 最后登录时间
         /// </summary>
         [SugarColumn(IsOnlyIgnoreInsert = true)]
@@ -84,7 +78,6 @@ namespace GD.Model.System
         /// 部门Id
         /// </summary>
         [SugarColumn(DefaultValue = "0")]
-        public long DeptId { get; set; }
         public string Province { get; set; }
         public string City { get; set; }
         #region 表额外字段
@@ -98,24 +91,11 @@ namespace GD.Model.System
         }
 
         /// <summary>
-        /// 拥有角色个数
-        /// </summary>
-        //[SugarColumn(IsIgnore = true)]
-        //public int RoleNum { get; set; }
-        [SugarColumn(IsIgnore = true)]
-        public string DeptName { get; set; }
-        /// <summary>
         /// 角色id集合
         /// </summary>
         [SugarColumn(IsIgnore = true)]
         [ExcelIgnore]
         public long[] RoleIds { get; set; }
-        /// <summary>
-        /// 岗位集合
-        /// </summary>
-        [SugarColumn(IsIgnore = true)]
-        [ExcelIgnore]
-        public int[] PostIds { get; set; }
 
         [SugarColumn(IsIgnore = true)]
         [ExcelIgnore]

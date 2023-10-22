@@ -27,12 +27,6 @@ namespace GD.Model.System
         public string RoleName { get; set; }
 
         /// <summary>
-        /// 角色权限
-        /// </summary>
-        [SugarColumn(Length = 100, ExtendedAttribute = 0)]
-        public string RoleKey { get; set; }
-
-        /// <summary>
         /// 角色排序
         /// </summary>
         [SugarColumn(ExtendedAttribute = 0)]
@@ -55,21 +49,13 @@ namespace GD.Model.System
         /// </summary>
         [SugarColumn(ColumnName = "menu_check_strictly")]
         public bool MenuCheckStrictly { get; set; } = true;
-        /// <summary>
-        /// 部门树选择项是否关联显示
-        /// </summary>
-        [SugarColumn(ColumnName = "dept_check_strictly")]
-        public bool DeptCheckStrictly { get; set; } = true;
+
         /// <summary>
         /// 菜单组
         /// </summary>
         [SugarColumn(IsIgnore = true)]
         public long[] MenuIds { get; set; }
-        /// <summary>
-        /// 部门组（数据权限）
-        /// </summary>
-        [SugarColumn(IsIgnore = true)]
-        public long[] DeptIds { get; set; }
+
         /// <summary>
         /// 用户个数
         /// </summary>

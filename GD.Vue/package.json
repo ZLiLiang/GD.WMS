@@ -16,11 +16,14 @@
     "dayjs": "^1.11.10",
     "echarts": "^5.4.3",
     "element-plus": "^2.4.0",
+    "file-saver": "^2.0.5",
     "js-cookie": "^3.0.5",
     "jsencrypt": "^3.3.2",
+    "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.0",
     "vue": "^3.3.4",
+    "vue-cropper": "^1.1.1",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {

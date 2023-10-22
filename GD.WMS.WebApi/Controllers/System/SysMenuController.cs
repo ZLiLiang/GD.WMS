@@ -38,7 +38,6 @@ namespace GD.WMS.WebApi.Controllers.System
         /// 获取菜单树列表
         /// </summary>
         /// <returns></returns>
-        [ActionPermissionFilter(Permission = "system:menu:list")]
         [HttpGet("treelist")]
         public IActionResult TreeMenuList([FromQuery] MenuQueryDto menu)
         {
@@ -50,7 +49,6 @@ namespace GD.WMS.WebApi.Controllers.System
         /// 获取菜单列表
         /// </summary>
         /// <returns></returns>
-        [ActionPermissionFilter(Permission = "system:menu:list")]
         [HttpGet("list")]
         public IActionResult MenuList([FromQuery] MenuQueryDto menu)
         {
@@ -64,7 +62,6 @@ namespace GD.WMS.WebApi.Controllers.System
         /// <param name="menuId"></param>
         /// <returns></returns>
         [HttpGet("{menuId}")]
-        [ActionPermissionFilter(Permission = "system:menu:query")]
         public IActionResult GetMenuInfo(int menuId = 0)
         {
             return SUCCESS(sysMenuService.GetMenuByMenuId(menuId), "yyyy-MM-dd HH:mm:ss");
@@ -76,7 +73,6 @@ namespace GD.WMS.WebApi.Controllers.System
         /// <param name="menuId"></param>
         /// <returns></returns>
         [HttpGet("list/{menuId}")]
-        [ActionPermissionFilter(Permission = "system:menu:query")]
         public IActionResult GetMenuList(int menuId = 0)
         {
             long userId = HttpContext.GetUId();
@@ -109,7 +105,6 @@ namespace GD.WMS.WebApi.Controllers.System
         /// <returns></returns>
         [HttpPost("edit")]
         [Log(Title = "菜单管理", BusinessType = BusinessType.UPDATE)]
-        [ActionPermissionFilter(Permission = "system:menu:edit")]
         public IActionResult MenuEdit([FromBody] MenuDto menuDto)
         {
             if (menuDto == null) { return ToResponse(ApiResult.Error(101, "请求参数错误")); }
@@ -144,7 +139,6 @@ namespace GD.WMS.WebApi.Controllers.System
         /// <returns></returns>
         [HttpPut("add")]
         [Log(Title = "菜单管理", BusinessType = BusinessType.INSERT)]
-        [ActionPermissionFilter(Permission = "system:menu:add")]
         public IActionResult MenuAdd([FromBody] MenuDto menuDto)
         {
             var config = new TypeAdapterConfig();
@@ -176,7 +170,6 @@ namespace GD.WMS.WebApi.Controllers.System
         /// <returns></returns>
         [HttpDelete("{menuId}")]
         [Log(Title = "菜单管理", BusinessType = BusinessType.DELETE)]
-        [ActionPermissionFilter(Permission = "system:menu:remove")]
         public IActionResult Remove(int menuId = 0)
         {
             if (sysMenuService.HasChildByMenuId(menuId))
@@ -198,7 +191,6 @@ namespace GD.WMS.WebApi.Controllers.System
         /// <param name="id"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        [ActionPermissionFilter(Permission = "system:menu:update")]
         [HttpGet("ChangeSort")]
         [Log(Title = "保存排序", BusinessType = BusinessType.UPDATE)]
         public IActionResult ChangeSort(int id = 0, int value = 0)

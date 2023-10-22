@@ -1,19 +1,14 @@
-﻿using GD.Infrastructure.Attribute;
+﻿using GD.Common;
+using GD.Infrastructure.Attribute;
 using GD.Infrastructure.Extensions;
+using GD.Model;
+using GD.Model.Dto.System;
 using GD.Model.Enums;
 using GD.Model.Generate;
 using GD.Model.System;
 using GD.Model.Vo;
-using GD.Model;
-using SqlSugar;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GD.Common;
 using GD.Service.Interface.System;
-using GD.Model.Dto.System;
+using SqlSugar;
 
 namespace GD.Service.System
 {
@@ -51,15 +46,8 @@ namespace GD.Service.System
         public List<SysMenu> SelectMenuList(MenuQueryDto menu, long userId)
         {
             List<SysMenu> menuList;
-            if (SysRoleService.IsAdmin(userId))
-            {
-                menuList = SelectMenuList(menu);
-            }
-            else
-            {
-                var userRoles = SysRoleService.SelectUserRoles(userId);
-                menuList = SelectMenuListByRoles(menu, userRoles);
-            }
+            var userRoles = SysRoleService.SelectUserRoles(userId);
+            menuList = SelectMenuListByRoles(menu, userRoles);
             return menuList;
         }
 
@@ -84,14 +72,13 @@ namespace GD.Service.System
             var menuExpression = Expressionable.Create<SysMenu>();
             menuExpression.And(c => c.ParentId == menuId);
 
-            if (!SysRoleService.IsAdmin(userId))
-            {
-                var userRoles = SysRoleService.SelectUserRoles(userId);
-                var roleMenus = Context.Queryable<SysRoleMenu>()
-                    .Where(r => userRoles.Contains(r.Role_id)).Select(s => s.Menu_id).ToList();
 
-                menuExpression.And(c => roleMenus.Contains(c.MenuId));
-            }
+            var userRoles = SysRoleService.SelectUserRoles(userId);
+            var roleMenus = Context.Queryable<SysRoleMenu>()
+                .Where(r => userRoles.Contains(r.Role_id)).Select(s => s.Menu_id).ToList();
+
+            menuExpression.And(c => roleMenus.Contains(c.MenuId));
+
             var list = GetList(menuExpression.ToExpression()).OrderBy(f => f.OrderNum).ToList();
             Context.ThenMapper(list, item =>
             {
@@ -181,35 +168,9 @@ namespace GD.Service.System
         public List<SysMenu> SelectMenuTreeByUserId(long userId)
         {
             MenuQueryDto dto = new() { Status = "0", MenuTypeIds = "M,C" };
-            if (SysRoleService.IsAdmin(userId))
-            {
-                return SelectTreeMenuList(dto);
-            }
-            else
-            {
-                List<long> roleIds = SysRoleService.SelectUserRoles(userId);
-                return SelectTreeMenuListByRoles(dto, roleIds);
-            }
-        }
 
-        /// <summary>
-        /// 查询精确到按钮的操作权限
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public List<string> SelectMenuPermsByUserId(long userId)
-        {
-            var menus = Context.Queryable<SysMenu, SysRoleMenu, SysUserRole, SysRole>((m, rm, ur, r) => new JoinQueryInfos(
-                JoinType.Left, m.MenuId == rm.Menu_id,
-                JoinType.Left, rm.Role_id == ur.RoleId,
-                JoinType.Left, ur.RoleId == r.RoleId
-                ))
-                .WithCache(60 * 10)
-                .Where((m, rm, ur, r) => m.Status == "0" && r.Status == 0 && ur.UserId == userId)
-                .Select((m, rm, ur, r) => m).ToList();
-            var menuList = menus.Where(f => !string.IsNullOrEmpty(f.Perms));
-
-            return menuList.Select(x => x.Perms).Distinct().ToList();
+            List<long> roleIds = SysRoleService.SelectUserRoles(userId);
+            return SelectTreeMenuListByRoles(dto, roleIds);
         }
 
         /// <summary>
@@ -256,7 +217,6 @@ namespace GD.Service.System
                     MenuName = $"{t1.MenuName}->{t2.MenuName}->{t3.MenuName}",
                     Path = t2.Path,
                     Component = t2.Component,
-                    Perms = t3.Perms,
                     MenuType = (MenuType)(object)t3.MenuType,
                     Status = (MenuStatus)(object)t3.Status
                 }).ToList();
@@ -596,7 +556,7 @@ namespace GD.Service.System
         #endregion
 
 
-        public void AddSysMenu(GenTable genTableInfo, string permPrefix, bool showEdit, bool showExport, bool showImport)
+        public void AddSysMenu(GenTable genTableInfo, bool showEdit, bool showExport, bool showImport)
         {
             var menu = GetFirst(f => f.MenuName == genTableInfo.FunctionName);
             if (menu is null)
@@ -608,7 +568,6 @@ namespace GD.Service.System
                     OrderNum = 0,
                     Path = genTableInfo.BusinessName,
                     Component = $"{genTableInfo.ModuleName.FirstLowerCase()}/{genTableInfo.BusinessName}",
-                    Perms = $"{permPrefix}:list",
                     IsCache = "1",
                     MenuType = "C",
                     Visible = "0",
@@ -626,7 +585,6 @@ namespace GD.Service.System
                 MenuName = "查询",
                 ParentId = menu.MenuId,
                 OrderNum = 1,
-                Perms = $"{permPrefix}:query",
                 MenuType = "F",
                 Visible = "0",
                 Status = "0",
@@ -637,7 +595,6 @@ namespace GD.Service.System
                 MenuName = "新增",
                 ParentId = menu.MenuId,
                 OrderNum = 2,
-                Perms = $"{permPrefix}:add",
                 MenuType = "F",
                 Visible = "0",
                 Status = "0",
@@ -648,7 +605,6 @@ namespace GD.Service.System
                 MenuName = "删除",
                 ParentId = menu.MenuId,
                 OrderNum = 3,
-                Perms = $"{permPrefix}:delete",
                 MenuType = "F",
                 Visible = "0",
                 Status = "0",
@@ -660,7 +616,6 @@ namespace GD.Service.System
                 MenuName = "修改",
                 ParentId = menu.MenuId,
                 OrderNum = 4,
-                Perms = $"{permPrefix}:edit",
                 MenuType = "F",
                 Visible = "0",
                 Status = "0",
@@ -672,7 +627,6 @@ namespace GD.Service.System
                 MenuName = "导出",
                 ParentId = menu.MenuId,
                 OrderNum = 5,
-                Perms = $"{permPrefix}:export",
                 MenuType = "F",
                 Visible = "0",
                 Status = "0",
@@ -684,7 +638,6 @@ namespace GD.Service.System
                 MenuName = "导入",
                 ParentId = menu.MenuId,
                 OrderNum = 5,
-                Perms = $"{permPrefix}:import",
                 MenuType = "F",
                 Visible = "0",
                 Status = "0",

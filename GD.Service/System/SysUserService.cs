@@ -135,10 +135,8 @@ namespace GD.Service.System
                 t.NickName,
                 t.Email,
                 t.Phonenumber,
-                t.DeptId,
                 t.Status,
                 t.Sex,
-                t.PostIds,
                 t.Remark,
                 t.Update_by,
                 t.Update_time
@@ -216,7 +214,6 @@ namespace GD.Service.System
                 NickName = dto.Username,
                 Password = password,
                 Status = 0,
-                DeptId = 0,
                 Remark = "用户注册",
                 Province = ip_info.Province,
                 City = ip_info.City
@@ -238,21 +235,6 @@ namespace GD.Service.System
             if (user.IsAdmin())
             {
                 throw new CustomException("不允许操作超级管理员角色");
-            }
-        }
-
-        /// <summary>
-        /// 校验用户是否有数据权限
-        /// </summary>
-        /// <param name="userid"></param>
-        /// <param name="loginUserId"></param>
-        public void CheckUserDataScope(long userid, long loginUserId)
-        {
-            if (!SysUser.IsAdmin(loginUserId))
-            {
-                SysUser user = new SysUser() { UserId = userid };
-
-                //TODO 判断用户是否有数据权限
             }
         }
 
@@ -321,7 +303,7 @@ namespace GD.Service.System
         /// <returns></returns>
         public void UpdateLoginInfo(LoginBodyDto user, long userId)
         {
-            Update(new SysUser() { LoginIP = user.LoginIP, LoginDate = DateTime.Now, UserId = userId }, it => new { it.LoginIP, it.LoginDate });
+            Update(new SysUser() { LoginDate = DateTime.Now, UserId = userId }, it => new { it.LoginDate });
         }
     }
 }

@@ -74,7 +74,6 @@ namespace GD.Service.Interface.System
         /// <returns></returns>
         SysUser Register(RegisterDto dto);
         void CheckUserAllowed(SysUser user);
-        void CheckUserDataScope(long userid, long loginUserId);
 
         /// <summary>
         /// 导入

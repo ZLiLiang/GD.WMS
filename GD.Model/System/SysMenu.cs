@@ -72,12 +72,6 @@ namespace GD.Model.System
         public string Status { get; set; }
 
         /// <summary>
-        /// 权限字符串
-        /// </summary>
-        [SugarColumn(Length = 100)]
-        public string Perms { get; set; }
-
-        /// <summary>
         /// 菜单图标
         /// </summary>
         [SugarColumn(DefaultValue = "#")]

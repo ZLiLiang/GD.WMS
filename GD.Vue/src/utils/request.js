@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { getToken } from '@/utils/auth'
+import errorCode from '@/utils/errorCode'
 import useUserStore from '@/store/modules/user'
-import { delEmptyQueryNodes } from '@/utils/ruoyi'
+import { blobValidate, delEmptyQueryNodes } from '@/utils/ruoyi'
+import { saveAs } from 'file-saver'
 
 let downloadLoadingInstance
 // 解决后端跨域获取不到cookie问题
@@ -167,6 +169,58 @@ export function postForm(url, data, config) {
                 reject(err)
             })
     })
+}
+
+/**
+ * 通用下载方法
+ * @param {*} url 请求地址
+ * @param {*} params 请求参数
+ * @param {*} config 配置
+ * @returns
+ */
+export async function downFile(url, params, config) {
+    downloadLoadingInstance = ElLoading.service({ text: '正在下载数据，请稍候', background: 'rgba(0, 0, 0, 0.7)' })
+
+    service
+        .get(url, {
+            params,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            responseType: 'blob',
+            ...config
+        })
+        .then(async (resp) => {
+            const { data } = resp
+
+            const isLogin = await blobValidate(data)
+            if (isLogin) {
+                var patt = new RegExp('filename=([^;]+\\.[^\\.;]+);*')
+                var contentDisposition = decodeURI(resp.headers['content-disposition'])
+                var result = patt.exec(contentDisposition)
+                var fileName = result[1]
+                fileName = fileName.replace(/\"/g, '')
+
+                const blob = new Blob([data])
+                saveAs(blob, fileName)
+            } else {
+                const resText = await data.text()
+                const rspObj = JSON.parse(resText)
+                const errMsg = errorCode[rspObj.code] || rspObj.msg || errorCode['default']
+
+                ElMessage({
+                    message: errMsg,
+                    type: 'error'
+                })
+            }
+        })
+        .catch(() => {
+            ElMessage({
+                message: '下载文件出现错误，请联系管理员！',
+                type: 'error'
+            })
+        })
+        .finally(() => {
+            downloadLoadingInstance.close()
+        })
 }
 
 export default service

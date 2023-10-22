@@ -46,43 +46,6 @@ const useUserStore = defineStore('user', {
                     })
             })
         },
-        /**
-         * 三方授权登录
-         * @param {*} data
-         * @param {*} param { authSource : ''}
-         * @returns
-         */
-        oauthLogin(data, param) {
-            return new Promise((resolve, reject) => {
-                oauthCallback(data, param)
-                    .then((res) => {
-                        const { code, data } = res
-                        if (code == 200) {
-                            setToken(data.token)
-                            this.token = data.token
-                            // Cookies.set('username', data.userName, { expires: 30 })
-                            // Cookies.set('password', encrypt(data.password), { expires: 30 })
-                            // Cookies.set('rememberMe', true, { expires: 30 })
-                            resolve(res) //then处理
-                        } else {
-                            console.log('login error ', res)
-                            reject(res) //catch处理
-                        }
-                    })
-                    .catch((err) => {
-                        reject(err)
-                    })
-            })
-        },
-        // 扫码登录
-        scanLogin(data) {
-            return new Promise((resolve, reject) => {
-                setToken(data.token)
-                this.token = data.token
-
-                resolve(data.token) //then处理
-            })
-        },
         // 获取用户信息
         getInfo() {
             return new Promise((resolve, reject) => {

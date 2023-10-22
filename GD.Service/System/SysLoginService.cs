@@ -45,7 +45,6 @@ namespace GD.Service.System
             logininfor.UserName = loginBody.Username;
             logininfor.Status = "1";
             logininfor.LoginTime = DateTime.Now;
-            logininfor.Ipaddr = loginBody.LoginIP;
 
             ClientInfo clientInfo = httpContextAccessor.HttpContext.GetClientInfo();
             logininfor.Browser = clientInfo.ToString();
@@ -86,7 +85,6 @@ namespace GD.Service.System
 
             exp.AndIF(logininfoDto.BeginTime == null, it => it.LoginTime >= DateTime.Now.ToShortDateString().ParseToDateTime());
             exp.AndIF(logininfoDto.BeginTime != null, it => it.LoginTime >= logininfoDto.BeginTime && it.LoginTime <= logininfoDto.EndTime);
-            exp.AndIF(logininfoDto.Ipaddr.IfNotEmpty(), f => f.Ipaddr == logininfoDto.Ipaddr);
             exp.AndIF(logininfoDto.UserName.IfNotEmpty(), f => f.UserName.Contains(logininfoDto.UserName));
             exp.AndIF(logininfoDto.Status.IfNotEmpty(), f => f.Status == logininfoDto.Status);
             var query = Queryable().Where(exp.ToExpression())

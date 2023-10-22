@@ -36,6 +36,5 @@ namespace GD.Model.Dto.System
         public DateTime? BeginTime { get; set; }
         public DateTime? EndTime { get; set; }
         public int Status { get; set; }
-        public long DeptId { get; set; }
     }
 }

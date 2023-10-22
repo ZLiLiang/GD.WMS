@@ -36,15 +36,13 @@ namespace GD.Service.Interface.System
 
         //List<SysMenu> SelectMenuPermsListByUserId(long userId);
 
-        List<string> SelectMenuPermsByUserId(long userId);
-
         //bool CheckMenuExistRole(long menuId);
 
         List<RouterVo> BuildMenus(List<SysMenu> menus);
 
         List<TreeSelectVo> BuildMenuTreeSelect(List<SysMenu> menus);
 
-        void AddSysMenu(GenTable genTableInfo, string permPrefix, bool showEdit, bool showExport, bool showImport);
+        void AddSysMenu(GenTable genTableInfo, bool showEdit, bool showExport, bool showImport);
         List<SysMenu> SelectTreeMenuListByRoles(MenuQueryDto menu, List<long> roles);
         List<RoleMenuExportDto> SelectRoleMenuListByRole(MenuQueryDto menu, int roleId);
     }

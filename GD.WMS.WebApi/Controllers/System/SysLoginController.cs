@@ -29,17 +29,13 @@ namespace GD.WMS.WebApi.Controllers.System
         private readonly ISysUserService sysUserService;
         private readonly ISysMenuService sysMenuService;
         private readonly ISysLoginService sysLoginService;
-        private readonly ISysPermissionService permissionService;
         private readonly ICaptcha SecurityCodeHelper;
-        private readonly ISysConfigService sysConfigService;
         private readonly ISysRoleService roleService;
 
         public SysLoginController(
             ISysMenuService sysMenuService,
             ISysUserService sysUserService,
             ISysLoginService sysLoginService,
-            ISysPermissionService permissionService,
-            ISysConfigService configService,
             ISysRoleService sysRoleService,
             ICaptcha captcha,
             IOptions<OptionsSetting> optionSettings)
@@ -48,8 +44,6 @@ namespace GD.WMS.WebApi.Controllers.System
             this.sysMenuService = sysMenuService;
             this.sysUserService = sysUserService;
             this.sysLoginService = sysLoginService;
-            this.permissionService = permissionService;
-            this.sysConfigService = configService;
             roleService = sysRoleService;
         }
 
@@ -65,23 +59,23 @@ namespace GD.WMS.WebApi.Controllers.System
         public IActionResult Login([FromBody] LoginBodyDto loginBody)
         {
             if (loginBody == null) { throw new CustomException("请求参数错误"); }
-            loginBody.LoginIP = HttpContextExtension.GetClientUserIp(HttpContext);
-            SysConfig sysConfig = sysConfigService.GetSysConfigByKey("sys.account.captchaOnOff");
-            if (sysConfig?.ConfigValue != "off" && !SecurityCodeHelper.Validate(loginBody.Uuid, loginBody.Code))
+            //SysConfig sysConfig = sysConfigService.GetSysConfigByKey("sys.account.captchaOnOff");
+            //if (sysConfig?.ConfigValue != "off" && !SecurityCodeHelper.Validate(loginBody.Uuid, loginBody.Code))
+            //{
+            //    return ToResponse(ResultCode.CAPTCHA_ERROR, "验证码错误");
+            //}
+
+            if (!SecurityCodeHelper.Validate(loginBody.Uuid, loginBody.Code))
             {
                 return ToResponse(ResultCode.CAPTCHA_ERROR, "验证码错误");
             }
 
             sysLoginService.CheckLockUser(loginBody.Username);
-            string location = HttpContextExtension.GetIpInfo(loginBody.LoginIP);
-            var user = sysLoginService.Login(loginBody, new SysLogininfor() { LoginLocation = location });
+            var user = sysLoginService.Login(loginBody, new SysLogininfor());
 
             List<SysRole> roles = roleService.SelectUserRoleListByUserId(user.UserId);
-            //权限集合 eg *:*:*,system:user:list
-            List<string> permissions = permissionService.GetMenuPermission(user);
 
             TokenModel loginUser = new(user.Adapt<TokenModel>(), roles.Adapt<List<Roles>>());
-            CacheService.SetUserPerms(GlobalConstant.UserPermKEY + user.UserId, permissions);
             return SUCCESS(JwtUtil.GenerateJwtToken(JwtUtil.AddClaims(loginUser)));
         }
 
@@ -101,7 +95,6 @@ namespace GD.WMS.WebApi.Controllers.System
             var userid = HttpContext.GetUId();
             var name = HttpContext.GetName();
 
-            CacheService.RemoveUserPerms(GlobalConstant.UserPermKEY + userid);
             return SUCCESS(new { name, id = userid });
         }
 
@@ -116,14 +109,9 @@ namespace GD.WMS.WebApi.Controllers.System
             long userid = HttpContext.GetUId();
             var user = sysUserService.SelectUserById(userid);
 
-            //前端校验按钮权限使用
-            //角色集合 eg: admin,yunying,common
-            List<string> roles = permissionService.GetRolePermission(user);
-            //权限集合 eg *:*:*,system:user:list
-            List<string> permissions = permissionService.GetMenuPermission(user);
             user.WelcomeContent = GlobalConstant.WelcomeMessages[new Random().Next(0, GlobalConstant.WelcomeMessages.Length)];
 
-            return SUCCESS(new { user, roles, permissions });
+            return SUCCESS(new { user });
         }
 
         /// <summary>
@@ -159,8 +147,9 @@ namespace GD.WMS.WebApi.Controllers.System
         {
             string uuid = Guid.NewGuid().ToString().Replace("-", "");
 
-            SysConfig sysConfig = sysConfigService.GetSysConfigByKey("sys.account.captchaOnOff");
-            var captchaOff = sysConfig?.ConfigValue ?? "0";
+            //SysConfig sysConfig = sysConfigService.GetSysConfigByKey("sys.account.captchaOnOff");
+            //var captchaOff = sysConfig?.ConfigValue ?? "0";
+            var captchaOff = "1";
             var info = SecurityCodeHelper.Generate(uuid, 60);
             var obj = new { captchaOff, uuid, img = info.Base64 };// File(stream, "image/png")
 
@@ -177,13 +166,7 @@ namespace GD.WMS.WebApi.Controllers.System
         [Log(Title = "注册", BusinessType = BusinessType.INSERT)]
         public IActionResult Register([FromBody] RegisterDto dto)
         {
-            SysConfig config = sysConfigService.GetSysConfigByKey("sys.account.register");
-            if (config?.ConfigValue != "true")
-            {
-                return ToResponse(ResultCode.CUSTOM_ERROR, "当前系统没有开启注册功能！");
-            }
-            SysConfig sysConfig = sysConfigService.GetSysConfigByKey("sys.account.captchaOnOff");
-            if (sysConfig?.ConfigValue != "off" && !SecurityCodeHelper.Validate(dto.Uuid, dto.Code))
+            if (!SecurityCodeHelper.Validate(dto.Uuid, dto.Code))
             {
                 return ToResponse(ResultCode.CAPTCHA_ERROR, "验证码错误");
             }

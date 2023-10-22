@@ -17,7 +17,7 @@
 </template>
   
 <script setup>
-//   import { updateUserPwd } from '@/api/system/user'
+import { updateUserPwd } from '@/api/system/profile'
 
 const { proxy } = getCurrentInstance()
 
@@ -50,9 +50,9 @@ const rules = ref({
 function submit() {
     proxy.$refs.pwdRef.validate((valid) => {
         if (valid) {
-            // updateUserPwd(user.oldPassword, user.newPassword).then((response) => {
-            //   proxy.$modal.msgSuccess('修改成功')
-            // })
+            updateUserPwd(user.oldPassword, user.newPassword).then((response) => {
+              proxy.$modal.msgSuccess('修改成功')
+            })
         }
     })
 }

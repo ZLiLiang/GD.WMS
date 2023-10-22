@@ -12,11 +12,26 @@ import '@/assets/iconfont/iconfont' //iconfont
 import 'virtual:svg-icons-register'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import elementIcons from '@/components/SvgIcon/svgicon'
+import { parseTime, resetForm, addDateRange, handleTree, selectDictLabel, download } from '@/utils/ruoyi'
+import './permission' // permission control
+
+// 自定义表格工具组件
+import RightToolbar from '@/components/RightToolbar'
+// 分页组件
+import Pagination from '@/components/Pagination'
+// Dialog组件
+import Dialog from '@/components/Dialog'
 
 const app = createApp(App)
 
+app.config.globalProperties.addDateRange = addDateRange
+app.config.globalProperties.resetForm = resetForm
+
 // 全局组件挂载
+app.component('Pagination', Pagination)
+app.component('RightToolbar', RightToolbar)
 app.component('svg-icon', SvgIcon)
+app.component('zDialog', Dialog)
 
 app.use(pinia)
 app.use(router)

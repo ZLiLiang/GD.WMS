@@ -25,7 +25,6 @@ namespace GD.WMS.WebApi.SqlSugar
             //24个表,建议先使用下面方法初始化表，方便排查问题
             db.CodeFirst.InitTables(typeof(SysUser));
             db.CodeFirst.InitTables(typeof(SysRole));
-            db.CodeFirst.InitTables(typeof(SysConfig));
             db.CodeFirst.InitTables(typeof(SysLogininfor));
             db.CodeFirst.InitTables(typeof(SysOperLog));
             db.CodeFirst.InitTables(typeof(SysMenu));

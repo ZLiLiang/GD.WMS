@@ -17,92 +17,14 @@ import logo from './Logo.vue'
 import sidebarItem from './SidebarItem.vue'
 import useAppStore from '@/store/modules/app'
 import useSettingsStore from '@/store/modules/settings'
+import usePermissionStore from '@/store/modules/permission'
 
 const route = useRoute()
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
-const permissionStore = [
-    {
-        path: "",
-        component: "Index",
-        children: [
-            {
-                component: "",
-                name: "Index",
-                path: "/index",
-                meta: {
-                    icon: "index",
-                    title: "首页"
-                }
-            }
-        ]
-    },
-    {
-        alwaysShow: false,
-        hidden: false,
-        name: "",
-        path: "",
-        meta: null,
-        children: [
-            {
-                alwaysShow: false,
-                hidden: false,
-                name: "dashboard",
-                path: "dashboard",
-                meta: {
-                    icon: "dashboard",
-                    title: "控制台",
-                    isNew: 1,
-                    link: "",
-                    noCache: false
-                },
-            }
-        ]
-    },
-    {
-        alwaysShow: true,
-        hidden: false,
-        name: "system",
-        path: "/system",
-        meta: {
-            icon: "system",
-            title: "系统管理",
-            isNew: 1,
-            link: "",
-            noCache: false
-        },
-        children: [
-            {
-                alwaysShow: false,
-                hidden: false,
-                name: "user",
-                path: "user",
-                meta: {
-                    icon: "user",
-                    title: "用户管理",
-                    isNew: 1,
-                    link: "",
-                    noCache: false
-                },
-            },
-            {
-                alwaysShow: false,
-                hidden: false,
-                name: "role",
-                path: "role",
-                meta: {
-                    icon: "peoples",
-                    title: "角色管理",
-                    isNew: 1,
-                    link: "",
-                    noCache: false
-                },
-            }
-        ]
-    }
-]
+const permissionStore = usePermissionStore()
 
-const sidebarRouters = computed(() => permissionStore)
+const sidebarRouters = computed(() => permissionStore.sidebarRouters)
 const showLogo = computed(() => settingsStore.sidebarLogo)
 const sideTheme = computed(() => settingsStore.sideTheme)
 const theme = computed(() => settingsStore.theme)

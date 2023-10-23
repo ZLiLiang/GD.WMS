@@ -1,3 +1,3 @@
 # GD.WMS
-# 毕业设计
-![avatar](/Document/Picture/毕业设计.png)
+# 姣曚笟璁捐
+![avatar](/Document/Picture/姣曚笟璁捐.png)

@@ -15,8 +15,8 @@
                     <el-form-item label="状态" prop="status">
                         <el-select v-model="queryParams.status" placeholder="用户状态" clearable style="width: 163px">
                             <el-option label="全部" :value="-1" />
-                            <el-option v-for="dict in statusOptions" :key="dict.dictValue" :label="dict.dictLabel"
-                                :value="dict.dictValue" />
+                            <el-option v-for="dict in statusOptions" :key="dict.Value" :label="dict.Label"
+                                :value="dict.Value" />
                         </el-select>
                     </el-form-item>
                     <el-form-item label="创建时间">
@@ -218,7 +218,7 @@ const sexOptions = [{Value:"0",Label:"男"},{Value:"1",Label:"女"}]
 const userList = ref([])
 const open = ref(false)
 const loading = ref(true)
-const showSearch = ref(true)
+const showSearch = ref(false)
 const ids = ref([])
 const single = ref(true)
 const multiple = ref(true)

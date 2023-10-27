@@ -46,8 +46,15 @@ namespace GD.Service.System
         public List<SysMenu> SelectMenuList(MenuQueryDto menu, long userId)
         {
             List<SysMenu> menuList;
-            var userRoles = SysRoleService.SelectUserRoles(userId);
-            menuList = SelectMenuListByRoles(menu, userRoles);
+            if (SysRoleService.IsAdmin(userId))
+            {
+                menuList = SelectMenuList(menu);
+            }
+            else
+            {
+                var userRoles = SysRoleService.SelectUserRoles(userId);
+                menuList = SelectMenuListByRoles(menu, userRoles);
+            }
             return menuList;
         }
 
@@ -72,13 +79,14 @@ namespace GD.Service.System
             var menuExpression = Expressionable.Create<SysMenu>();
             menuExpression.And(c => c.ParentId == menuId);
 
+            if (!SysRoleService.IsAdmin(userId))
+            {
+                var userRoles = SysRoleService.SelectUserRoles(userId);
+                var roleMenus = Context.Queryable<SysRoleMenu>()
+                    .Where(r => userRoles.Contains(r.Role_id)).Select(s => s.Menu_id).ToList();
 
-            var userRoles = SysRoleService.SelectUserRoles(userId);
-            var roleMenus = Context.Queryable<SysRoleMenu>()
-                .Where(r => userRoles.Contains(r.Role_id)).Select(s => s.Menu_id).ToList();
-
-            menuExpression.And(c => roleMenus.Contains(c.MenuId));
-
+                menuExpression.And(c => roleMenus.Contains(c.MenuId));
+            }
             var list = GetList(menuExpression.ToExpression()).OrderBy(f => f.OrderNum).ToList();
             Context.ThenMapper(list, item =>
             {
@@ -168,9 +176,15 @@ namespace GD.Service.System
         public List<SysMenu> SelectMenuTreeByUserId(long userId)
         {
             MenuQueryDto dto = new() { Status = "0", MenuTypeIds = "M,C" };
-
-            List<long> roleIds = SysRoleService.SelectUserRoles(userId);
-            return SelectTreeMenuListByRoles(dto, roleIds);
+            if (SysRoleService.IsAdmin(userId))
+            {
+                return SelectTreeMenuList(dto);
+            }
+            else
+            {
+                List<long> roleIds = SysRoleService.SelectUserRoles(userId);
+                return SelectTreeMenuListByRoles(dto, roleIds);
+            }
         }
 
         /// <summary>
@@ -210,15 +224,14 @@ namespace GD.Service.System
 
             return Context.Queryable<SysMenu>()
                 .InnerJoin<SysMenu>((t1, t2) => t1.MenuId == t2.ParentId)
-                .InnerJoin<SysMenu>((t1, t2, t3) => t2.MenuId == t3.ParentId)
-                .Where((t1, t2, t3) => menuIds.Contains(t1.MenuId))
-                .Select((t1, t2, t3) => new RoleMenuExportDto()
+                .Where((t1, t2) => menuIds.Contains(t1.MenuId))
+                .Select((t1, t2) => new RoleMenuExportDto()
                 {
-                    MenuName = $"{t1.MenuName}->{t2.MenuName}->{t3.MenuName}",
+                    MenuName = $"{t1.MenuName}->{t2.MenuName}",
                     Path = t2.Path,
                     Component = t2.Component,
-                    MenuType = (MenuType)(object)t3.MenuType,
-                    Status = (MenuStatus)(object)t3.Status
+                    MenuType = (MenuType)(object)t2.MenuType,
+                    Status = (MenuStatus)(object)t2.Status
                 }).ToList();
         }
 

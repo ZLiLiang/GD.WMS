@@ -26,6 +26,13 @@ namespace GD.Service.Interface.System
         public List<SysRole> SelectRoleAll();
 
         /// <summary>
+        /// 判断是否是管理员
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public bool IsAdmin(long userid);
+
+        /// <summary>
         /// 根据用户查询
         /// </summary>
         /// <param name="userId"></param>
@@ -54,6 +61,13 @@ namespace GD.Service.Interface.System
         public int UpdateRoleStatus(SysRole roleDto);
 
         /// <summary>
+        /// 校验角色权限是否唯一
+        /// </summary>
+        /// <param name="sysRole">角色信息</param>
+        /// <returns></returns>
+        public string CheckRoleUnique(SysRole sysRole);
+
+        /// <summary>
         /// 新增保存角色信息
         /// </summary>
         /// <param name="sysRole">角色信息</param>
@@ -67,8 +81,14 @@ namespace GD.Service.Interface.System
         /// <returns></returns>
         public int DeleteRoleMenuByRoleId(long roleId);
 
-        #region Service
+        /// <summary>
+        /// 修改数据权限信息
+        /// </summary>
+        /// <param name="sysRoleDto"></param>
+        /// <returns></returns>
+        public bool AuthDataScope(SysRoleDto sysRoleDto);
 
+        #region Service
 
         /// <summary>
         /// 新增角色菜单信息

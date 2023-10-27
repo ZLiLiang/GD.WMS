@@ -8,6 +8,7 @@ using GD.Repository;
 using GD.Service.Interface.System;
 using SqlSugar;
 using System.Collections;
+using System.Data;
 
 namespace GD.Service.System
 {
@@ -64,6 +65,24 @@ namespace GD.Service.System
         }
 
         /// <summary>
+        /// 判断是否是管理员
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public bool IsAdmin(long userid)
+        {
+            List<SysRole> roleList = Context.Queryable<SysUserRole>()
+                .LeftJoin<SysRole>((uR, r) => uR.RoleId == r.RoleId)
+                .Where((uR, r) => uR.UserId == userid)
+                .Select((uR, r) => r)
+                .ToList();
+
+            bool result = roleList.Select(r => r.RoleId.Equals(1)).Any();
+
+            return result;
+        }
+
+        /// <summary>
         /// 根据用户查询
         /// </summary>
         /// <param name="userId"></param>
@@ -101,6 +120,7 @@ namespace GD.Service.System
                 {
                     throw new CustomException($"{role.RoleName}已分配,不能删除");
                 }
+                DeleteRoleMenuByRoleId(item);
             }
             return Delete(roleIds);
         }
@@ -115,6 +135,21 @@ namespace GD.Service.System
             return Update(roleDto, it => new { it.Status }, f => f.RoleId == roleDto.RoleId);
         }
 
+        /// <summary>
+        /// 校验角色权限是否唯一
+        /// </summary>
+        /// <param name="sysRole">角色信息</param>
+        /// <returns></returns>
+        public string CheckRoleUnique(SysRole sysRole)
+        {
+            long roleId = 0 == sysRole.RoleId ? -1L : sysRole.RoleId;
+            SysRole info = GetFirst(it => it.RoleName == sysRole.RoleName);
+            if (info != null && info.RoleId != roleId)
+            {
+                return UserConstants.NOT_UNIQUE;
+            }
+            return UserConstants.UNIQUE;
+        }
 
         /// <summary>
         /// 新增保存角色信息
@@ -137,6 +172,34 @@ namespace GD.Service.System
         public int DeleteRoleMenuByRoleId(long roleId)
         {
             return RoleMenuService.DeleteRoleMenuByRoleId(roleId);
+        }
+
+        /// <summary>
+        /// 修改数据权限信息
+        /// </summary>
+        /// <param name="sysRoleDto"></param>
+        /// <returns></returns>
+        public bool AuthDataScope(SysRoleDto sysRoleDto)
+        {
+            return UseTran2(() =>
+            {
+                //删除角色菜单
+                var oldMenus = SelectUserRoleMenus(sysRoleDto.RoleId);
+                var newMenus = sysRoleDto.MenuIds;
+
+                //并集菜单
+                var arr_c = oldMenus.Intersect(newMenus).ToArray();
+                //获取减量菜单
+                var delMenuIds = oldMenus.Where(c => !arr_c.Contains(c)).ToArray();
+                //获取增量
+                var addMenuIds = newMenus.Where(c => !arr_c.Contains(c)).ToArray();
+
+                RoleMenuService.DeleteRoleMenuByRoleIdMenuIds(sysRoleDto.RoleId, delMenuIds);
+                sysRoleDto.MenuIds = addMenuIds.ToList();
+                sysRoleDto.DelMenuIds = delMenuIds.ToList();
+                InsertRoleMenu(sysRoleDto);
+                Console.WriteLine($"减少了{delMenuIds.Length},增加了{addMenuIds.Length}菜单");
+            });
         }
 
         #region Service

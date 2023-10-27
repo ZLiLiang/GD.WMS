@@ -1,7 +1,6 @@
 ﻿using GD.Infrastructure.App;
 using GD.Infrastructure.Attribute;
 using GD.Infrastructure.CustomException;
-using GD.Infrastructure.Helper;
 using GD.Infrastructure;
 using GD.Model.Dto.System;
 using GD.Model.Enums;
@@ -16,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Lazy.Captcha.Core;
 using GD.Infrastructure.Extensions;
+using GD.WMS.WebApi.Util;
 
 namespace GD.WMS.WebApi.Controllers.System
 {

@@ -7,8 +7,8 @@
             <el-form-item label="状态" prop="status">
                 <el-select v-model="queryParams.status" placeholder="角色状态" clearable>
                     <el-option label="全部" :value="-1" />
-                    <el-option v-for="dict in statusOptions" :key="dict.dictValue" :label="dict.dictLabel"
-                        :value="dict.dictValue" />
+                    <el-option v-for="dict in statusOptions" :key="dict.Value" :label="dict.Label"
+                        :value="dict.Value" />
                 </el-select>
             </el-form-item>
             <el-form-item>
@@ -34,7 +34,7 @@
                         @change="handleStatusChange(scope.row)"></el-switch>
                 </template>
             </el-table-column>
-            <el-table-column label="用户个数" align="center" prop="userNum" width="90"/>
+            <el-table-column label="用户个数" align="center" prop="userNum" width="90" />
             <el-table-column label="创建时间" prop="createTime" width="150" />
             <el-table-column label="备注" align="center" prop="remark" width="150" :show-overflow-tooltip="true" />
             <el-table-column label="操作" align="center" width="200">
@@ -117,8 +117,8 @@
                     <el-col :lg="12">
                         <el-form-item label="状态">
                             <el-radio-group v-model="form.status">
-                                <el-radio v-for="dict in statusOptions" :key="dict.dictValue"
-                                    :label="parseInt(dict.dictValue)">{{ dict.dictLabel }}</el-radio>
+                                <el-radio v-for="dict in statusOptions" :key="dict.Value" :label="parseInt(dict.Value)">{{
+                                    dict.Label }}</el-radio>
                             </el-radio-group>
                         </el-form-item>
                     </el-col>
@@ -140,7 +140,6 @@
 <script setup name="role">
 import { listRole, getRole, delRole, addRole, updateRole, exportRole, dataScope, changeRoleStatus, exportRoleMenu } from '@/api/system/role'
 import { roleMenuTreeselect } from '@/api/system/menu'
-import { treeselect as deptTreeselect, roleDeptTreeselect } from '@/api/system/dept'
 
 const { proxy } = getCurrentInstance()
 
@@ -152,7 +151,7 @@ const single = ref(true)
 // 非多个禁用
 const multiple = ref(true)
 // 显示搜索条件
-const showSearch = ref(true)
+const showSearch = ref(false)
 // 总条数
 const total = ref(0)
 // 角色表格数据
@@ -166,7 +165,7 @@ const menuNodeAll = ref(false)
 // 日期范围
 const dateRange = ref([])
 // 状态数据字典
-const statusOptions = ref([])
+const statusOptions = [{ Value: "0", Label: "正常" }, { Value: "1", Label: "停用" }]
 // 是否显示下拉菜单分配
 const showRoleScope = ref(false)
 // 菜单列表
@@ -235,7 +234,8 @@ function handleStatusChange(row) {
     const text = row.status == '0' ? '启用' : '停用'
 
     proxy
-        .$confirm('确认要"' + text + '""' + row.roleName + '"角色吗?', '警告', {
+        .$modal
+        .confirm('确认要"' + text + '""' + row.roleName + '"角色吗?', '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -265,8 +265,6 @@ function reset() {
     }
     ; (menuExpand.value = false),
         (menuNodeAll.value = false),
-        (deptExpand.value = true),
-        (deptNodeAll.value = false),
         (form.value = {
             roleId: undefined,
             roleName: undefined,
@@ -368,17 +366,10 @@ function handleUpdate(row) {
     reset()
     showRoleScope.value = false
     const roleId = row.roleId || ids.value
-    const roleDeptTreeselect = getRoleDeptTreeselect(row.roleId)
     getRole(roleId).then((response) => {
         form.value = response.data
         open.value = true
         title.value = '修改角色'
-
-        nextTick(() => {
-            roleDeptTreeselect.then((res) => {
-                proxy.$refs.deptRef.setCheckedKeys(res.data.checkedKeys)
-            })
-        })
     })
 }
 
@@ -418,7 +409,6 @@ function submitForm() {
         if (valid) {
             if (form.value.roleId != undefined && form.value.roleId > 0) {
                 form.value.type = 'edit'
-                form.value.deptIds = getDeptAllCheckedKeys()
                 updateRole(form.value).then((response) => {
                     proxy.$modal.msgSuccess('修改成功')
                     open.value = false
@@ -426,7 +416,6 @@ function submitForm() {
                 })
             } else {
                 form.value.type = 'add'
-                form.value.deptIds = getDeptAllCheckedKeys()
                 addRole(form.value).then((response) => {
                     open.value = false
                     if (response.code == 200) {
@@ -459,7 +448,8 @@ function submitDataScope() {
 function handleDelete(row) {
     const roleIds = row.roleId || ids.value
     proxy
-        .$confirm('是否确认删除角色编号为"' + roleIds + '"的数据项?', '警告', {
+        .$modal
+        .confirm('是否确认删除角色编号为"' + roleIds + '"的数据项?', '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -476,7 +466,8 @@ function handleDelete(row) {
 /** 导出按钮操作 */
 function handleExport() {
     proxy
-        .$confirm('是否确认导出所有角色数据项?', '警告', {
+        .$modal
+        .confirm('是否确认导出所有角色数据项?', '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -500,10 +491,8 @@ function handleExportMenu(row) {
             await exportRoleMenu({ roleId: row.roleId })
         })
 }
+
 getList()
-proxy.getDicts('sys_normal_disable').then((response) => {
-    statusOptions.value = response.data
-})
 
 function customNodeClass(data, node) {
     if (data.menuType == 'C') {

@@ -1,4 +1,4 @@
-﻿using GD.Infrastructure.Helper;
+﻿using GD.WMS.WebApi.Util;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;

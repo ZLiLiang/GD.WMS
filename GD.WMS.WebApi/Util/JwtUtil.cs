@@ -1,4 +1,5 @@
-﻿using GD.Infrastructure.Extensions;
+﻿using GD.Infrastructure;
+using GD.Infrastructure.Extensions;
 using GD.Model;
 using GD.WMS.WebApi.Extensions;
 using Microsoft.IdentityModel.Tokens;
@@ -7,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace GD.Infrastructure.Helper
+namespace GD.WMS.WebApi.Util
 {
     public class JwtUtil
     {

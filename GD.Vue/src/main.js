@@ -6,6 +6,7 @@ import plugins from './plugins' // plugins
 import App from '@/App.vue'
 import router from '@/router/index'
 import pinia from '@/store/index'
+import vxetb from './vxe-tb'
 
 // svg图标
 import '@/assets/iconfont/iconfont' //iconfont
@@ -35,6 +36,7 @@ app.component('zDialog', Dialog)
 
 app.use(pinia)
 app.use(router)
+app.use(vxetb)
 app.use(elementIcons)
 app.use(plugins)
 app.mount('#app')

@@ -24,14 +24,18 @@
     "pinia-plugin-persistedstate": "^3.2.0",
     "vue": "^3.3.4",
     "vue-cropper": "^1.1.1",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vxe-table": "^4.5.13",
+    "xe-utils": "^3.5.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "consola": "^3.2.3",
     "sass": "^1.69.3",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.5",
+    "vite-plugin-style-import": "^2.0.0",
     "vite-plugin-svg-icons": "^2.0.1"
   }
 }

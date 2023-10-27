@@ -15,11 +15,9 @@ namespace GD.Model.Dto.System
         /// </summary>
         public List<long> MenuIds { get; set; } = new List<long>();
         public string RoleName { get; set; }
-        public string RoleKey { get; set; }
         public int RoleSort { get; set; }
         public int Status { get; set; }
         public int DataScope { get; set; }
-        public int[] DeptIds { get; set; }
         /// <summary>
         /// 减少菜单集合
         /// </summary>

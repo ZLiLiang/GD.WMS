@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-        <el-form :model="queryParams" ref="queryForm" v-show="showSearch" :inline="true">
+        <el-form :model="queryParams" ref="queryRef" v-show="showSearch" :inline="true">
             <el-form-item label="公司名称" prop="companyName">
                 <el-input v-model="queryParams.companyName" placeholder="请输入公司名称" clearable style="width: 163px" />
             </el-form-item>
@@ -58,7 +58,7 @@
 
         <!-- 新增公司信息对话框 -->
         <el-dialog :title="title" v-model="open" width="600px" append-to-body>
-            <el-form :model="form" :rules="rules" ref="userRef" label-width="80px">
+            <el-form :model="form" :rules="rules" ref="companyRef" label-width="80px">
                 <el-form-item label="公司名称" prop="companyName">
                     <el-input v-model="form.companyName" placeholder="请输入公司名称" />
                 </el-form-item>
@@ -170,7 +170,7 @@ function reset() {
         manager: undefined,
         contactTel: undefined
     }
-    proxy.resetForm('userRef')
+    proxy.resetForm('companyRef')
 }
 
 /** 查询公司列表 */
@@ -205,7 +205,7 @@ function handleExport() {
 
 /** 提交按钮 */
 function submitForm() {
-    proxy.$refs['userRef'].validate((valid) => {
+    proxy.$refs['companyRef'].validate((valid) => {
         console.log(valid);
         if (valid) {
             if (form.value.companyId != undefined) {
@@ -266,7 +266,7 @@ function handleQuery() {
 /** 重置按钮操作 */
 function resetQuery() {
     dateRange.value = []
-    proxy.resetForm('queryForm')
+    proxy.resetForm('queryRef')
     handleQuery()
 }
 

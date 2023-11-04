@@ -1,12 +1,13 @@
 ﻿using GD.Infrastructure.Cache;
 using GD.Model.Enums;
-using GD.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using GD.Infrastructure.Extensions;
 using GD.WMS.WebApi.Util;
+using GD.Model.Constant;
+using GD.Model.System;
 
 namespace GD.WMS.WebApi.Filters
 {

@@ -1,5 +1,4 @@
-﻿using GD.Model.System;
-using SqlSugar;
+﻿using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace GD.Model.Generate
     /// </summary>
     [SugarTable("gen_table_column", "代码生成表字段")]
     [Tenant("0")]
-    public class GenTableColumn : SysBase
+    public class GenTableColumn : Base
     {
         /// <summary>
         /// 列id

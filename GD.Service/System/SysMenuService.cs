@@ -1,7 +1,7 @@
 ﻿using GD.Common;
 using GD.Infrastructure.Attribute;
 using GD.Infrastructure.Extensions;
-using GD.Model;
+using GD.Model.Constant;
 using GD.Model.Dto.System;
 using GD.Model.Enums;
 using GD.Model.Generate;

@@ -1,7 +1,6 @@
-﻿using GD.Model.Constant;
-using GD.Model.Enums;
+﻿using GD.Model.Enums;
 
-namespace GD.Model
+namespace GD.Model.Constant
 {
     public class ApiResult : Dictionary<string, object>
     {

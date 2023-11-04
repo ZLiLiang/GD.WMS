@@ -1,5 +1,5 @@
 ﻿using GD.Infrastructure.Extensions;
-using GD.Model;
+using GD.Model.Page;
 using Mapster;
 using SqlSugar;
 using SqlSugar.IOC;

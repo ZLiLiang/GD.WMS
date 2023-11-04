@@ -30,5 +30,6 @@ namespace GD.Model.Dto.System
         /// 唯一标识
         /// </summary>
         public string Uuid { get; set; } = "";
+        public string LoginIP { get; set; }
     }
 }

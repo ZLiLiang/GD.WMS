@@ -1,7 +1,6 @@
 ﻿using GD.Infrastructure.Attribute;
 using GD.Infrastructure.CustomException;
 using GD.Model.Enums;
-using GD.Model;
 using IPTools.Core;
 using Microsoft.AspNetCore.Http.Features;
 using NLog;
@@ -11,6 +10,7 @@ using LogLevel = NLog.LogLevel;
 using textJson = System.Text.Json;
 using GD.Model.System;
 using GD.Infrastructure.Extensions;
+using GD.Model.Constant;
 
 namespace GD.WMS.WebApi.Middleware
 {

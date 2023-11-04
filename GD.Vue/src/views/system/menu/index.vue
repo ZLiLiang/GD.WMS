@@ -301,7 +301,7 @@ const state = reactive({
     sys_normal_disable: [{ Value: "0", Label: "正常" }, { Value: "1", Label: "停用" }]
 })
 
-const tableHeight = ref(document.documentElement.scrollHeight - 245 + 'px')
+const tableHeight = ref(document.documentElement.scrollHeight - 150 + 'px')
 const { queryParams, form, rules, sys_show_hide, sys_normal_disable } = toRefs(state)
 
 /** 查询菜单列表 */

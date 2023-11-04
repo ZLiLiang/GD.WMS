@@ -3,10 +3,10 @@ using GD.Infrastructure.Attribute;
 using GD.Infrastructure.Extensions;
 using GD.Model.Dto.System;
 using GD.Model.Enums;
-using GD.Model;
 using GD.Service.Interface.System;
 using GD.WMS.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
+using GD.Model.Constant;
 
 namespace GD.WMS.WebApi.Controllers.Monitor
 {

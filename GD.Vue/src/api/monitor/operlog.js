@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import { downFile } from '@/utils/request'
 
 // 查询操作日志列表
 export function list(query) {
@@ -26,10 +27,6 @@ export function cleanOperlog() {
 }
 
 // 导出操作日志
-export function exportOperlog(query) {
-    return request({
-        url: '/monitor/operlog/export',
-        method: 'get',
-        params: query
-    })
+export async function exportOperlog(query) {
+    await downFile('/monitor/operlog/export', { ...query })
 }

@@ -1,6 +1,6 @@
 ﻿using GD.Infrastructure.CustomException;
 using GD.Infrastructure.Extensions;
-using GD.Model;
+using GD.Model.Constant;
 using GD.Model.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;

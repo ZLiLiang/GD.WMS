@@ -1,7 +1,6 @@
 ﻿using GD.Infrastructure.Attribute;
 using GD.Model.Enums;
 using GD.Model.System;
-using GD.Model;
 using GD.Service.Interface.System;
 using IPTools.Core;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -9,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using GD.Infrastructure.Extensions;
+using GD.Model.Constant;
 
 namespace GD.WMS.WebApi.Filters
 {

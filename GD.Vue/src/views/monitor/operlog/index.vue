@@ -195,7 +195,7 @@ const state = reactive({
     form: {},
     queryParams: {
         pageNum: 1,
-        pageSize: 10,
+        pageSize: 5,
         title: undefined,
         operName: undefined,
         businessType: undefined,
@@ -288,10 +288,7 @@ function getList() {
         }
     })
 }
-// 操作日志状态字典翻译
-function statusFormat(row, column) {
-    return proxy.selectDictLabel(statusOptions.value, row.status)
-}
+
 /** 搜索按钮操作 */
 function handleQuery() {
     queryParams.value.pageNum = 1
@@ -341,7 +338,8 @@ function handleView(row) {
 function handleDelete(row) {
     const operIds = row.operId || ids.value
     proxy
-        .$confirm('是否确认删除日志编号为"' + operIds + '"的数据项?', '警告', {
+        .$modal
+        .confirm('是否确认删除日志编号为"' + operIds + '"的数据项?', '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -357,7 +355,8 @@ function handleDelete(row) {
 /** 清空按钮操作 */
 function handleClean() {
     proxy
-        .$confirm('是否确认清空所有操作日志数据项?', '警告', {
+        .$modal
+        .confirm('是否确认清空所有操作日志数据项?', '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -373,13 +372,14 @@ function handleClean() {
 /** 导出按钮操作 */
 function handleExport() {
     proxy
-        .$confirm('是否确认导出所有操作日志?', '警告', {
+        .$modal
+        .confirm('是否确认导出所有操作日志?', '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
         })
         .then(async () => {
-            await proxy.downFile('/monitor/OperLog/export', { ...queryParams.value })
+            await exportOperlog({ ...queryParams })
         })
 }
 handleQuery()

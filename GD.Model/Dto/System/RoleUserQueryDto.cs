@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GD.Model.Page;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GD.Model.Dto.System
 {

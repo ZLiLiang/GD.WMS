@@ -1,6 +1,7 @@
 ﻿using GD.Infrastructure;
 using GD.Infrastructure.Extensions;
 using GD.Model;
+using GD.Model.System;
 using GD.WMS.WebApi.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;

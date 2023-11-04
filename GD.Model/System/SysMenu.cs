@@ -1,4 +1,5 @@
-﻿using SqlSugar;
+﻿using GD.Model.Constant;
+using SqlSugar;
 
 namespace GD.Model.System
 {
@@ -6,8 +7,8 @@ namespace GD.Model.System
     /// Sys_menu表
     /// </summary>
     [SugarTable("sys_menu", "系统菜单表")]
-    [Tenant("0")]
-    public class SysMenu : SysBase
+    [Tenant(DBConfigId.System)]
+    public class SysMenu : Base
     {
         /// <summary>
         /// 菜单ID

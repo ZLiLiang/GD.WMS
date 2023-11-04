@@ -1,4 +1,5 @@
-﻿using SqlSugar;
+﻿using GD.Model.Constant;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace GD.Model.System
     /// 角色表 sys_role
     /// </summary>
     [SugarTable("sys_role", "角色表")]
-    [Tenant("0")]
-    public class SysRole : SysBase
+    [Tenant(DBConfigId.System)]
+    public class SysRole : Base
     {
         /// <summary>
         /// 角色ID

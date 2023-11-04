@@ -1,4 +1,4 @@
-﻿using GD.Model;
+﻿using GD.Model.Page;
 using SqlSugar;
 using System.Data;
 using System.Linq.Expressions;

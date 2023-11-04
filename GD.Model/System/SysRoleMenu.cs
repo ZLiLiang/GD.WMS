@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GD.Model.Constant;
+using Newtonsoft.Json;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace GD.Model.System
     /// 角色菜单
     /// </summary>
     [SugarTable("sys_role_menu", "角色菜单")]
-    [Tenant("0")]
-    public class SysRoleMenu : SysBase
+    [Tenant(DBConfigId.System)]
+    public class SysRoleMenu : Base
     {
         [JsonProperty("roleId")]
         [SugarColumn(IsPrimaryKey = true, ExtendedAttribute = 0)]

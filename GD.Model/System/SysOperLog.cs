@@ -1,4 +1,5 @@
-﻿using MiniExcelLibs.Attributes;
+﻿using GD.Model.Constant;
+using MiniExcelLibs.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace GD.Model.System
 {
     [SugarTable("sys_oper_log", "操作日志表")]
-    [Tenant("0")]
+    [Tenant(DBConfigId.System)]
     public class SysOperLog
     {
         /// <summary>

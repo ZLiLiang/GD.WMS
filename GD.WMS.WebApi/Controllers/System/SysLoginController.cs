@@ -1,28 +1,26 @@
-﻿using GD.Infrastructure.App;
+﻿using GD.Infrastructure;
 using GD.Infrastructure.Attribute;
 using GD.Infrastructure.CustomException;
-using GD.Infrastructure;
+using GD.Infrastructure.Extensions;
+using GD.Model;
 using GD.Model.Dto.System;
 using GD.Model.Enums;
 using GD.Model.System;
-using GD.Model;
 using GD.Service.Interface.System;
-using GD.Service.System;
 using GD.WMS.WebApi.Filters;
+using GD.WMS.WebApi.Util;
+using Lazy.Captcha.Core;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Lazy.Captcha.Core;
-using GD.Infrastructure.Extensions;
-using GD.WMS.WebApi.Util;
 
 namespace GD.WMS.WebApi.Controllers.System
 {
     /// <summary>
     /// 登录
     /// </summary>
-    //[ApiExplorerSettings(GroupName = "sys")]
+    [ApiExplorerSettings(GroupName = "sys")]
     public class SysLoginController : BaseController
     {
         //static readonly NLog.Logger logger = NLog.LogManager.GetLogger("LoginController");
@@ -59,6 +57,7 @@ namespace GD.WMS.WebApi.Controllers.System
         public IActionResult Login([FromBody] LoginBodyDto loginBody)
         {
             if (loginBody == null) { throw new CustomException("请求参数错误"); }
+            loginBody.LoginIP = HttpContextExtension.GetClientUserIp(HttpContext);
             //SysConfig sysConfig = sysConfigService.GetSysConfigByKey("sys.account.captchaOnOff");
             //if (sysConfig?.ConfigValue != "off" && !SecurityCodeHelper.Validate(loginBody.Uuid, loginBody.Code))
             //{
@@ -71,7 +70,8 @@ namespace GD.WMS.WebApi.Controllers.System
             }
 
             sysLoginService.CheckLockUser(loginBody.Username);
-            var user = sysLoginService.Login(loginBody, new SysLogininfor());
+            string location = HttpContextExtension.GetIpInfo(loginBody.LoginIP);
+            var user = sysLoginService.Login(loginBody, new SysLogininfor() { LoginLocation = location });
 
             List<SysRole> roles = roleService.SelectUserRoleListByUserId(user.UserId);
 

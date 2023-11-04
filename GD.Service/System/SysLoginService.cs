@@ -2,7 +2,6 @@
 using GD.Infrastructure.CustomException;
 using GD.Infrastructure.Extensions;
 using GD.Infrastructure.Helper;
-using GD.Model;
 using GD.Model.Dto.System;
 using GD.Model.Enums;
 using GD.Model.System;
@@ -11,6 +10,7 @@ using GD.Repository;
 using Microsoft.AspNetCore.Http;
 using SqlSugar;
 using UAParser;
+using GD.Model.Page;
 
 namespace GD.Service.System
 {
@@ -45,6 +45,7 @@ namespace GD.Service.System
             logininfor.UserName = loginBody.Username;
             logininfor.Status = "1";
             logininfor.LoginTime = DateTime.Now;
+            logininfor.Ipaddr = loginBody.LoginIP;
 
             ClientInfo clientInfo = httpContextAccessor.HttpContext.GetClientInfo();
             logininfor.Browser = clientInfo.ToString();
@@ -78,13 +79,11 @@ namespace GD.Service.System
         /// <returns></returns>
         public PagedInfo<SysLogininfor> GetLoginLog(SysLogininfor logininfoDto, PagerInfo pager)
         {
-            //logininfoDto.BeginTime = DateTimeHelper.GetBeginTime(logininfoDto.BeginTime, -1);
-            //logininfoDto.EndTime = DateTimeHelper.GetBeginTime(logininfoDto.EndTime, 1);
-
             var exp = Expressionable.Create<SysLogininfor>();
 
             exp.AndIF(logininfoDto.BeginTime == null, it => it.LoginTime >= DateTime.Now.ToShortDateString().ParseToDateTime());
             exp.AndIF(logininfoDto.BeginTime != null, it => it.LoginTime >= logininfoDto.BeginTime && it.LoginTime <= logininfoDto.EndTime);
+            exp.AndIF(logininfoDto.Ipaddr.IfNotEmpty(), f => f.Ipaddr == logininfoDto.Ipaddr);
             exp.AndIF(logininfoDto.UserName.IfNotEmpty(), f => f.UserName.Contains(logininfoDto.UserName));
             exp.AndIF(logininfoDto.Status.IfNotEmpty(), f => f.Status == logininfoDto.Status);
             var query = Queryable().Where(exp.ToExpression())

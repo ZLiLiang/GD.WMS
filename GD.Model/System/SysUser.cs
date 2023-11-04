@@ -1,4 +1,5 @@
-﻿using MiniExcelLibs.Attributes;
+﻿using GD.Model.Constant;
+using MiniExcelLibs.Attributes;
 using Newtonsoft.Json;
 using SqlSugar;
 using System;
@@ -13,8 +14,8 @@ namespace GD.Model.System
     /// 用户表
     /// </summary>
     [SugarTable("sys_user", "用户表")]
-    [Tenant("0")]
-    public class SysUser : SysBase
+    [Tenant(DBConfigId.System)]
+    public class SysUser : Base
     {
         /// <summary>
         /// 用户id
@@ -66,6 +67,12 @@ namespace GD.Model.System
         /// </summary>
         [SugarColumn(DefaultValue = "0")]
         public int DelFlag { get; set; }
+
+        /// <summary>
+        /// 最后登录IP
+        /// </summary>
+        [SugarColumn(IsOnlyIgnoreInsert = true)]
+        public string LoginIP { get; set; }
 
         /// <summary>
         /// 最后登录时间

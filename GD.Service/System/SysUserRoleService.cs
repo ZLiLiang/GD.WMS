@@ -1,6 +1,5 @@
 ﻿using GD.Infrastructure.Attribute;
 using GD.Model.System;
-using GD.Model;
 using GD.Repository;
 using SqlSugar;
 using System;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using GD.Infrastructure.Extensions;
 using GD.Service.Interface.System;
 using GD.Model.Dto.System;
+using GD.Model.Page;
 
 namespace GD.Service.System
 {

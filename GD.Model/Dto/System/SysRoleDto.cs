@@ -1,5 +1,4 @@
-﻿using GD.Model.System;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GD.Model.Dto.System
 {
-    public class SysRoleDto : SysBase
+    public class SysRoleDto : Base
     {
         public long RoleId { get; set; }
         /// <summary>

@@ -2,9 +2,9 @@
 using Newtonsoft.Json;
 using SqlSugar;
 
-namespace GD.Model.System
+namespace GD.Model
 {
-    public class SysBase
+    public class Base
     {
         /// <summary>
         /// 创建人
@@ -39,6 +39,7 @@ namespace GD.Model.System
         [JsonProperty(propertyName: "UpdateTime")]
         [ExcelIgnore]
         public DateTime? Update_time { get; set; }
+
         [SugarColumn(Length = 500)]
         public string Remark { get; set; }
     }

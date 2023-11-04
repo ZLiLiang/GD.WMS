@@ -1,4 +1,4 @@
-﻿namespace GD.Model
+﻿namespace GD.Model.Constant
 {
     public class UserConstants
     {

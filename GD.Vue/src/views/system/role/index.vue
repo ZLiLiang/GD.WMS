@@ -501,6 +501,7 @@ function customNodeClass(data, node) {
     return null
 }
 </script>
+
 <style scoped>
 /* tree border */
 .tree-border {

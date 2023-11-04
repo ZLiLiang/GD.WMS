@@ -4,12 +4,12 @@ using GD.Infrastructure.Extensions;
 using GD.Model.Dto.System;
 using GD.Model.Enums;
 using GD.Model.System;
-using GD.Model;
 using GD.Service.Interface.System;
 using GD.WMS.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Mapster;
 using GD.WMS.WebApi.Extensions;
+using GD.Model.Constant;
 
 namespace GD.WMS.WebApi.Controllers.System
 {
@@ -18,7 +18,7 @@ namespace GD.WMS.WebApi.Controllers.System
     /// </summary>
     [Verify]
     [Route("system/profile")]
-    //[ApiExplorerSettings(GroupName = "sys")]
+    [ApiExplorerSettings(GroupName = "sys")]
     public class SysProfileController : BaseController
     {
         private readonly ISysUserService UserService;

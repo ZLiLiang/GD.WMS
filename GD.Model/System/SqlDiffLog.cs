@@ -1,7 +1,9 @@
-﻿namespace GD.Model.System
+﻿using GD.Model.Constant;
+
+namespace GD.Model.System
 {
+    [Tenant(DBConfigId.System)]
     [SugarTable("SqlDiffLog", "数据差异日志")]
-    [Tenant("0")]
     public class SqlDiffLog
     {
         /// <summary>

@@ -4,11 +4,12 @@ using GD.Infrastructure.Extensions;
 using GD.Model.Dto.System;
 using GD.Model.Enums;
 using GD.Model.System;
-using GD.Model;
 using GD.Service.Interface.System;
 using GD.WMS.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Mapster;
+using GD.Model.Constant;
+using GD.Model.Page;
 
 namespace GD.WMS.WebApi.Controllers.System
 {
@@ -17,7 +18,7 @@ namespace GD.WMS.WebApi.Controllers.System
     /// </summary>
     [Verify]
     [Route("system/role")]
-    //[ApiExplorerSettings(GroupName = "sys")]
+    [ApiExplorerSettings(GroupName = "sys")]
     public class SysRoleController : BaseController
     {
         private readonly ISysRoleService sysRoleService;

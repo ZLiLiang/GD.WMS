@@ -1,9 +1,9 @@
-﻿using GD.Model.System;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GD.Model.Page;
 
 namespace GD.Model.Dto.System
 {
@@ -33,7 +33,7 @@ namespace GD.Model.Dto.System
         public DateTime? EndTime { get; set; }
     }
 
-    public class SysOperLogDto : SysBase
+    public class SysOperLogDto : Base
     {
         /// <summary>
         /// 页码

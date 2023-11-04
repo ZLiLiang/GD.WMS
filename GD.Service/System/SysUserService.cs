@@ -3,7 +3,6 @@ using GD.Infrastructure;
 using GD.Infrastructure.Attribute;
 using GD.Infrastructure.CustomException;
 using GD.Infrastructure.Extensions;
-using GD.Model;
 using GD.Model.Dto.System;
 using GD.Model.System;
 using GD.Service.Interface.System;
@@ -11,6 +10,8 @@ using GD.Repository;
 using IPTools.Core;
 using SqlSugar;
 using System.Collections;
+using GD.Model.Constant;
+using GD.Model.Page;
 
 namespace GD.Service.System
 {
@@ -303,7 +304,7 @@ namespace GD.Service.System
         /// <returns></returns>
         public void UpdateLoginInfo(LoginBodyDto user, long userId)
         {
-            Update(new SysUser() { LoginDate = DateTime.Now, UserId = userId }, it => new { it.LoginDate });
+            Update(new SysUser() { LoginIP = user.LoginIP, LoginDate = DateTime.Now, UserId = userId }, it => new { it.LoginIP, it.LoginDate });
         }
     }
 }

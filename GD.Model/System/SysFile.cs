@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GD.Model.Constant;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GD.Model.System
 {
-    [Tenant("0")]
+    [Tenant(DBConfigId.System)]
     [SugarTable("sys_file", "文件存储表")]
     public class SysFile
     {

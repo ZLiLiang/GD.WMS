@@ -1,11 +1,11 @@
 ﻿using GD.Model.Dto.System;
 using GD.Model.System;
-using GD.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GD.Model.Page;
 
 namespace GD.Service.Interface.System
 {

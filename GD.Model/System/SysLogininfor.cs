@@ -1,9 +1,4 @@
-﻿using SqlSugar;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GD.Model.Constant;
 
 namespace GD.Model.System
 {
@@ -11,7 +6,7 @@ namespace GD.Model.System
     /// sys_logininfor 表
     /// </summary>
     [SugarTable("sys_logininfor", "登录日志表")]
-    [Tenant("0")]
+    [Tenant(DBConfigId.System)]
     public class SysLogininfor
     {
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
@@ -27,6 +22,16 @@ namespace GD.Model.System
         /// </summary>
         [SugarColumn(Length = 1, DefaultValue = "0")]
         public string Status { get; set; }
+
+        /// <summary>
+        /// 登录IP地址
+        /// </summary>
+        public string Ipaddr { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 登录地点
+        /// </summary>
+        public string LoginLocation { get; set; } = string.Empty;
 
         /// <summary>
         /// 浏览器类型

@@ -57,7 +57,7 @@
             v-model:limit="queryParams.pageSize" @pagination="getList" />
 
         <!-- 新增公司信息对话框 -->
-        <el-dialog :title="title" v-model="open" width="600px" append-to-body>
+        <el-dialog :title="title" v-model="open" width="600px">
             <el-form :model="form" :rules="rules" ref="companyRef" label-width="80px">
                 <el-form-item label="公司名称" prop="companyName">
                     <el-input v-model="form.companyName" placeholder="请输入公司名称" />
@@ -206,7 +206,6 @@ function handleExport() {
 /** 提交按钮 */
 function submitForm() {
     proxy.$refs['companyRef'].validate((valid) => {
-        console.log(valid);
         if (valid) {
             if (form.value.companyId != undefined) {
                 editCompanyInfo(form.value.companyId, form.value).then(res => {

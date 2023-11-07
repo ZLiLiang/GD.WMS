@@ -47,19 +47,20 @@ namespace GD.WMS.WebApi.SqlSugar
             //db.CodeFirst.InitTables(entityes);
 
             //24个表,建议先使用下面方法初始化表，方便排查问题
-            childDb0.CodeFirst.InitTables(typeof(SysUser));
-            childDb0.CodeFirst.InitTables(typeof(SysRole));
-            childDb0.CodeFirst.InitTables(typeof(SysLogininfor));
-            childDb0.CodeFirst.InitTables(typeof(SysOperLog));
-            childDb0.CodeFirst.InitTables(typeof(SysMenu));
-            childDb0.CodeFirst.InitTables(typeof(SysRoleMenu));
-            childDb0.CodeFirst.InitTables(typeof(SysUserRole));
-            childDb0.CodeFirst.InitTables(typeof(GenTable));
-            childDb0.CodeFirst.InitTables(typeof(GenTableColumn));
-            childDb0.CodeFirst.InitTables(typeof(SqlDiffLog));
+            //childDb0.CodeFirst.InitTables(typeof(SysUser));
+            //childDb0.CodeFirst.InitTables(typeof(SysRole));
+            //childDb0.CodeFirst.InitTables(typeof(SysLogininfor));
+            //childDb0.CodeFirst.InitTables(typeof(SysOperLog));
+            //childDb0.CodeFirst.InitTables(typeof(SysMenu));
+            //childDb0.CodeFirst.InitTables(typeof(SysRoleMenu));
+            //childDb0.CodeFirst.InitTables(typeof(SysUserRole));
+            //childDb0.CodeFirst.InitTables(typeof(GenTable));
+            //childDb0.CodeFirst.InitTables(typeof(GenTableColumn));
+            //childDb0.CodeFirst.InitTables(typeof(SqlDiffLog));
 
 
-            childDb1.CodeFirst.InitTables(typeof(Company));
+            //childDb1.CodeFirst.InitTables(typeof(Company));
+            //childDb1.CodeFirst.InitTables(typeof(Category));
         }
 
     }

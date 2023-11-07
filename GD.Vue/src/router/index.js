@@ -14,6 +14,11 @@ export const constantRoutes = [
             }
         ]
     },
+    // {
+    //     path: '/login_v2',
+    //     component: () => import('@/views/login_v2'),
+    //     hidden: true
+    // },
     {
         path: '/login',
         component: () => import('@/views/login'),

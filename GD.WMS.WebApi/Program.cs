@@ -1,6 +1,5 @@
 using GD.Infrastructure;
 using GD.Infrastructure.App;
-using GD.Infrastructure.Cache;
 using GD.Infrastructure.Converter;
 using GD.Model;
 using GD.WMS.WebApi.Extensions;

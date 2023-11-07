@@ -86,7 +86,7 @@
 </template>
 
 <script setup>
-import { getAll, getCompanyInfo, addCompanyInfo, editCompanyInfo, exportCompany, deleteById } from "@/api/WarehouseManagement/company";
+import { getAll, getCompanyInfo, addCompanyInfo, editCompanyInfo, exportCompany, deleteById } from "@/api/warehousManagement/company";
 
 // 总条数
 const total = ref(0)

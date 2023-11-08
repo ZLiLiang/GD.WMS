@@ -2,7 +2,7 @@
     <div class="app-container">
         <!-- 搜索表单 -->
         <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch">
-            <el-form-item label="上级商品类别" prop="manager">
+            <el-form-item label="上级商品类别" prop="parentId">
                 <el-cascader class="w100" :options="categoryQueryOptions" style="width: 160px"
                     :props="{ checkStrictly: true, value: 'categoryId', label: 'categoryName', emitPath: false }"
                     placeholder="请选择上级菜单" clearable v-model="queryParams.parentId">

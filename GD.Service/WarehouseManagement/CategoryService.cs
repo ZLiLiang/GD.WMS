@@ -1,4 +1,5 @@
 ﻿using GD.Infrastructure.Attribute;
+using GD.Infrastructure.Extensions;
 using GD.Model.Dto.WarehouseManagement;
 using GD.Model.Page;
 using GD.Model.WarehouseManagement;
@@ -58,7 +59,6 @@ namespace GD.Service.WarehouseManagement
         public PagedInfo<Category> GetAllCategory(CategoryQueryDto categoryQueryDto)
         {
             var expression = Expressionable.Create<Category>()
-                .AndIF(!string.IsNullOrEmpty(categoryQueryDto.CategoryName), exp => exp.CategoryName.Contains(categoryQueryDto.CategoryName))
                 .AndIF(!string.IsNullOrEmpty(categoryQueryDto.CreateBy), exp => exp.Create_by.Contains(categoryQueryDto.CreateBy))
                 .AndIF(categoryQueryDto.ParentId != 0, exp => exp.ParentId == categoryQueryDto.ParentId)
                 .AndIF(categoryQueryDto.BeginTime != DateTime.MinValue && categoryQueryDto.BeginTime != null, exp => exp.Create_time >= categoryQueryDto.BeginTime)
@@ -68,14 +68,50 @@ namespace GD.Service.WarehouseManagement
                 .Where(expression.ToExpression())
                 .ToList();
 
-            var buildResult = BuildCategoryTree(queryResult);
+            var rootId = queryResult
+                    .Where(category =>
+                    {
+                        if (string.IsNullOrEmpty(categoryQueryDto.CategoryName))
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            //return category.CategoryName.Contains(categoryQueryDto.CategoryName);
+                            return category.CategoryName.FuzzyMatch(categoryQueryDto.CategoryName);
+                        }
+                    })
+                    .FirstOrDefault()?
+                    .CategoryId;
+
+
+            var buildResult = BuildCategoryTree(queryResult, rootId);
+
+            if (!string.IsNullOrEmpty(categoryQueryDto.CategoryName)&&rootId==null)
+            {
+                buildResult = null;
+            }
+
+
             int pageSize = categoryQueryDto.PageSize,
                 pageNum = categoryQueryDto.PageNum,
-                totalNum = buildResult.Count;
-            var pagedResult = buildResult
+                totalNum = buildResult?.Count??0;
+            var pagedResult = buildResult?
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
+
+            //var queryResult = Queryable()
+            //    .Where(expression.ToExpression())
+            //    .ToTree(it => it.ChildCategories, it => it.ParentId, categoryQueryDto.ParentId, it => it.CategoryId);
+
+            //int pageSize = categoryQueryDto.PageSize,
+            //    pageNum = categoryQueryDto.PageNum,
+            //    totalNum = queryResult.Count;
+            //var pagedResult = queryResult
+            //    .Skip((pageNum - 1) * pageSize)
+            //    .Take(pageSize)
+            //    .ToList();
 
             return new PagedInfo<Category>
             {
@@ -123,11 +159,11 @@ namespace GD.Service.WarehouseManagement
         /// </summary>
         /// <param name="categories"></param>
         /// <returns></returns>
-        private List<Category> BuildCategoryTree(List<Category> categories)
+        private List<Category> BuildCategoryTree(List<Category> categories, long? rootId = null)
         {
-            var rootId = categories.Min(category => category.ParentId);
+            var categoryId = rootId != null ? rootId : categories.Min(category => category.ParentId);
             var rootCategories = categories
-                .Where(category => category.ParentId == rootId)
+                .Where(category => category.ParentId == categoryId)
                 .ToList();
 
             foreach (var item in rootCategories)

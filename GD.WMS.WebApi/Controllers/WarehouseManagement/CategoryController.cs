@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GD.WMS.WebApi.Controllers.WarehouseManagement
 {
-    //[Verify]
+    [Verify]
     [Route("/warehousemanagement/category")]
-    //[ApiExplorerSettings(GroupName = "sys")]
+    [ApiExplorerSettings(GroupName = "wm")]
     public class CategoryController : BaseController
     {
         private ICategoryService categoryService;

@@ -16,7 +16,7 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
     /// </summary>
     [Verify]
     [Route("/warehousemanagement/company")]
-    [ApiExplorerSettings(GroupName = "sys")]
+    [ApiExplorerSettings(GroupName = "wm")]
     public class CompanyController : BaseController
     {
         private readonly ICompanyService companyService;

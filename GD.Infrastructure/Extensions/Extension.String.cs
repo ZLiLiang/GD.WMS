@@ -230,5 +230,48 @@ namespace GD.Infrastructure.Extensions
 
             return result;
         }
+
+        /// <summary>
+        /// 中文模糊匹配
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public static bool FuzzyMatch(this string source, string query)
+        {
+            if (source == query)
+                return true;
+
+            var sourceChars = source.Normalize(NormalizationForm.FormC).ToCharArray();
+            var queryChars = query.Normalize(NormalizationForm.FormC).ToCharArray();
+
+            return SearchMatch(sourceChars, queryChars) >= 0;
+        }
+
+        /// <summary>
+        /// 匹配算法
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        private static int SearchMatch(char[] source, char[] query)
+        {
+            for (int i = 0; i < source.Length - query.Length + 1; i++)
+            {
+                var match = true;
+                for (int j = 0; j < query.Length; j++)
+                {
+                    if (source[i + j] != query[j])
+                    {
+                        match = false;
+                        break;
+                    }
+                }
+
+                if (match) return i;
+            }
+
+            return -1;
+        }
     }
 }

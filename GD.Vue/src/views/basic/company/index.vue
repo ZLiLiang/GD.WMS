@@ -2,16 +2,16 @@
     <div class="app-container">
         <el-form :model="queryParams" ref="queryRef" v-show="showSearch" :inline="true">
             <el-form-item label="公司名称" prop="companyName">
-                <el-input v-model="queryParams.companyName" placeholder="请输入公司名称" clearable style="width: 163px" />
+                <el-input v-model="queryParams.companyName" placeholder="请输入公司名称" clearable style="width: 160px" />
             </el-form-item>
             <el-form-item label="负责人" prop="manager">
-                <el-input v-model="queryParams.manager" placeholder="请输入负责人" clearable style="width: 163px" />
+                <el-input v-model="queryParams.manager" placeholder="请输入负责人" clearable style="width: 160px" />
             </el-form-item>
             <el-form-item label="联系方式" prop="contactTel">
-                <el-input v-model="queryParams.contactTel" placeholder="请输入联系方式" clearable style="width: 163px" />
+                <el-input v-model="queryParams.contactTel" placeholder="请输入联系方式" clearable style="width: 160px" />
             </el-form-item>
             <el-form-item label="创建时间">
-                <el-date-picker v-model="dateRange" style="width: 175px" type="daterange" range-separator="-"
+                <el-date-picker v-model="dateRange" style="width: 300px" type="daterange" range-separator="-"
                     start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
             </el-form-item>
             <el-form-item>

@@ -2,7 +2,7 @@
     <div class="app-container">
         <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch">
             <el-form-item label="上级菜单" prop="parentId">
-                <el-cascader class="w100" :options="menuQueryOptions"
+                <el-cascader class="w100" :options="menuQueryOptions" style="width: 200px"
                     :props="{ checkStrictly: true, value: 'menuId', label: 'menuName', emitPath: false }"
                     placeholder="请选择上级菜单" clearable v-model="queryParams.parentId">
                     <template #default="{ node, data }">
@@ -12,16 +12,16 @@
                 </el-cascader>
             </el-form-item>
             <el-form-item label="菜单名称" prop="menuName">
-                <el-input v-model="queryParams.menuName" placeholder="请输入菜单名称" clearable @keyup.enter="handleQuery" />
+                <el-input v-model="queryParams.menuName" placeholder="请输入菜单名称" clearable style="width: 200px" @keyup.enter="handleQuery" />
             </el-form-item>
             <el-form-item label="菜单状态" prop="status">
-                <el-select v-model="queryParams.status" placeholder="菜单状态" clearable>
+                <el-select v-model="queryParams.status" placeholder="菜单状态" clearable style="width: 200px">
                     <el-option v-for="dict in sys_normal_disable" :key="dict.Value" :label="dict.Label"
                         :value="dict.Value" />
                 </el-select>
             </el-form-item>
             <el-form-item label="是否显示" prop="visible">
-                <el-select v-model="queryParams.visible" placeholder="显示状态" clearable>
+                <el-select v-model="queryParams.visible" placeholder="显示状态" clearable style="width: 200px">
                     <el-option v-for="dict in sys_show_hide" :key="dict.Value" :label="dict.Label" :value="dict.Value" />
                 </el-select>
             </el-form-item>

@@ -1,21 +1,22 @@
 <template>
     <div class="app-container">
-        <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
+        <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch">
             <el-form-item label="登录地址" prop="ipaddr">
-                <el-input v-model="queryParams.ipaddr" placeholder="请输入登录地址" clearable @keyup.enter="handleQuery" />
+                <el-input v-model="queryParams.ipaddr" placeholder="请输入登录地址" clearable style="width: 160px"
+                    @keyup.enter="handleQuery" />
             </el-form-item>
             <el-form-item label="用户名称" prop="userName">
-                <el-input v-model="queryParams.userName" placeholder="请输入用户名称" clearable @keyup.enter="handleQuery" />
+                <el-input v-model="queryParams.userName" placeholder="请输入用户名称" clearable style="width: 160px"
+                    @keyup.enter="handleQuery" />
             </el-form-item>
             <el-form-item label="状态" prop="status">
-                <el-select v-model="queryParams.status" placeholder="登录状态" clearable>
-                    <el-option v-for="dict in statusOptions" :key="dict.Value" :label="dict.Label"
-                        :value="dict.Value" />
+                <el-select v-model="queryParams.status" placeholder="登录状态" clearable style="width: 160px">
+                    <el-option v-for="dict in statusOptions" :key="dict.Value" :label="dict.Label" :value="dict.Value" />
                 </el-select>
             </el-form-item>
             <el-form-item label="登录时间">
-                <el-date-picker v-model="dateRange" type="daterange" range-separator="-" start-placeholder="开始日期"
-                    end-placeholder="结束日期"></el-date-picker>
+                <el-date-picker v-model="dateRange" style="width: 300px" type="daterange" range-separator="-"
+                    start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" icon="search" @click="handleQuery">搜索</el-button>
@@ -51,8 +52,7 @@
             <el-table-column label="操作系统" align="center" prop="os" />
             <el-table-column label="操作状态" align="center" prop="status">
                 <template #default="{ row }">
-                    <el-tag type="success"
-                        v-if="row.status === '0'">成功</el-tag>
+                    <el-tag type="success" v-if="row.status === '0'">成功</el-tag>
                     <el-tag type="danger" v-else>失败</el-tag>
                 </template>
             </el-table-column>
@@ -181,7 +181,7 @@ function handleClean() {
         })
 }
 /** 导出按钮操作 */
- function handleExport() {
+function handleExport() {
     proxy
         .$modal
         .confirm('是否确认导出所有操作日志数据项?', '警告', {

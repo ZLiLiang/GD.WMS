@@ -3,24 +3,24 @@
         <el-row :gutter="20">
             <!--用户数据-->
             <el-col :xm="24">
-                <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="68px">
+                <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch">
                     <el-form-item label="用户名称" prop="userName">
-                        <el-input v-model="queryParams.userName" placeholder="请输入用户名称" clearable style="width: 163px"
+                        <el-input v-model="queryParams.userName" placeholder="请输入用户名称" clearable style="width: 160px"
                             @keyup.enter="handleQuery" />
                     </el-form-item>
                     <el-form-item label="手机号码" prop="phonenumber">
-                        <el-input v-model="queryParams.phonenumber" placeholder="请输入手机号码" clearable style="width: 163px"
+                        <el-input v-model="queryParams.phonenumber" placeholder="请输入手机号码" clearable style="width: 160px"
                             @keyup.enter="handleQuery" />
                     </el-form-item>
                     <el-form-item label="状态" prop="status">
-                        <el-select v-model="queryParams.status" placeholder="用户状态" clearable style="width: 163px">
+                        <el-select v-model="queryParams.status" placeholder="用户状态" clearable style="width: 160px">
                             <el-option label="全部" :value="-1" />
                             <el-option v-for="dict in statusOptions" :key="dict.Value" :label="dict.Label"
                                 :value="dict.Value" />
                         </el-select>
                     </el-form-item>
                     <el-form-item label="创建时间">
-                        <el-date-picker v-model="dateRange" style="width: 175px" type="daterange" range-separator="-"
+                        <el-date-picker v-model="dateRange" style="width: 300px" type="daterange" range-separator="-"
                             start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
                     </el-form-item>
                     <el-form-item>

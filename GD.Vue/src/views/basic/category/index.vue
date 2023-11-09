@@ -13,13 +13,13 @@
                 </el-cascader>
             </el-form-item>
             <el-form-item label="商品类别" prop="categoryName">
-                <el-input v-model="queryParams.categoryName" placeholder="请输入商品类别" clearable style="width: 155px" />
+                <el-input v-model="queryParams.categoryName" placeholder="请输入商品类别" clearable style="width: 160px" />
             </el-form-item>
             <el-form-item label="创建人" prop="createBy">
-                <el-input v-model="queryParams.creator" placeholder="请输入创建人" clearable style="width: 155px" />
+                <el-input v-model="queryParams.creator" placeholder="请输入创建人" clearable style="width: 160px" />
             </el-form-item>
             <el-form-item label="创建时间">
-                <el-date-picker v-model="dateRange" style="width: 175px" type="daterange" range-separator="-"
+                <el-date-picker v-model="dateRange" style="width: 300px" type="daterange" range-separator="-"
                     start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
             </el-form-item>
             <el-form-item>
@@ -216,7 +216,6 @@ function submitForm() {
     proxy.$refs['categoryRef'].validate((valid) => {
         if (valid) {
             if (form.value.categoryId != undefined) {
-                console.log(form.value);
                 editCategoryInfo(form.value.categoryId, form.value).then(res => {
                     proxy.$modal.msgSuccess('修改成功')
                     open.value = false

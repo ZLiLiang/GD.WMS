@@ -62,7 +62,11 @@ namespace GD.Service.Interface.WarehouseManagement
         /// <returns></returns>
         public bool IsExistChild(long categoryId);
 
-
-        //public bool IsOtherUse()
+        /// <summary>
+        /// 查询是否被其他表引用
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        public bool IsOtherUse(long categoryId);
     }
 }

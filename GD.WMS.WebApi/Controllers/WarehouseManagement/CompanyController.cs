@@ -74,7 +74,7 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
         }
 
         [HttpGet("export")]
-        [Log(Title = "公司信息", BusinessType = BusinessType.EXPORT)]
+        [Log(Title = "公司导出", BusinessType = BusinessType.EXPORT)]
         public IActionResult CompanyExport()
         {
             var companys = companyService.GetAllCompany();

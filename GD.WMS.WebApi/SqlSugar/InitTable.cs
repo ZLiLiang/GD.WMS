@@ -61,6 +61,7 @@ namespace GD.WMS.WebApi.SqlSugar
 
             //childDb1.CodeFirst.InitTables(typeof(Company));
             //childDb1.CodeFirst.InitTables(typeof(Category));
+            //childDb1.CodeFirst.InitTables(typeof(Supplier));
         }
 
     }

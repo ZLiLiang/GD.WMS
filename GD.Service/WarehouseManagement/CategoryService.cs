@@ -3,7 +3,6 @@ using GD.Infrastructure.Extensions;
 using GD.Model.Dto.WarehouseManagement;
 using GD.Model.Page;
 using GD.Model.WarehouseManagement;
-using GD.Repository;
 using GD.Service.Interface.WarehouseManagement;
 using SqlSugar;
 
@@ -151,6 +150,11 @@ namespace GD.Service.WarehouseManagement
             return Queryable()
                 .Where(category => category.ParentId == categoryId)
                 .Any();
+        }
+
+        public bool IsOtherUse(long categoryId)
+        {
+            throw new NotImplementedException();
         }
 
 

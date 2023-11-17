@@ -86,7 +86,7 @@ namespace GD.Service.WarehouseManagement
 
             var buildResult = BuildCategoryTree(queryResult, rootId);
 
-            if (!string.IsNullOrEmpty(categoryQueryDto.CategoryName)&&rootId==null)
+            if (!string.IsNullOrEmpty(categoryQueryDto.CategoryName) && rootId == null)
             {
                 buildResult = null;
             }
@@ -94,7 +94,7 @@ namespace GD.Service.WarehouseManagement
 
             int pageSize = categoryQueryDto.PageSize,
                 pageNum = categoryQueryDto.PageNum,
-                totalNum = buildResult?.Count??0;
+                totalNum = buildResult?.Count ?? 0;
             var pagedResult = buildResult?
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
@@ -154,7 +154,9 @@ namespace GD.Service.WarehouseManagement
 
         public bool IsOtherUse(long categoryId)
         {
-            throw new NotImplementedException();
+            return Context.Queryable<CommoditySPU>()
+                .Where(it => it.CategoryId == categoryId)
+                .ToList().Count > 0;
         }
 
 

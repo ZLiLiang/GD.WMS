@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Barcode: typeof import('./components/QrBarCode/barcode.vue')['default']
     Breadcrumb: typeof import('./components/Breadcrumb/index.vue')['default']
     Dialog: typeof import('./components/Dialog/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
@@ -18,6 +19,7 @@ declare module 'vue' {
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCascader: typeof import('element-plus/es')['ElCascader']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
+    ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -58,6 +60,9 @@ declare module 'vue' {
     Hamburger: typeof import('./components/Hamburger/index.vue')['default']
     IconSelect: typeof import('./components/IconSelect/index.vue')['default']
     Pagination: typeof import('./components/Pagination/index.vue')['default']
+    QrBarCode: typeof import('./components/QrBarCode/index.vue')['default']
+    Qrcode: typeof import('./components/QrBarCode/qrcode.vue')['default']
+    QrCode: typeof import('./components/QrCode/index.vue')['default']
     RightToolbar: typeof import('./components/RightToolbar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

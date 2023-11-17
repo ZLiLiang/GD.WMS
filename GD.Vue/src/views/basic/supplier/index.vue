@@ -123,6 +123,7 @@
 <script setup>
 import { getToken } from "@/utils/auth";
 import { getAll, getSupplierInfo, addSupplierInfo, editSupplierInfo, deleteById, exportSupplier, exportTemplate } from "@/api/warehousManagement/supplier";
+
 // 总条数
 const total = ref(0);
 // 展示搜索界面

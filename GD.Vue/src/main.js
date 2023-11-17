@@ -22,6 +22,8 @@ import RightToolbar from '@/components/RightToolbar'
 import Pagination from '@/components/Pagination'
 // Dialog组件
 import Dialog from '@/components/Dialog'
+// 二维码组件
+import QrBarCode from '@/components/QrBarCode'
 
 const app = createApp(App)
 
@@ -33,6 +35,7 @@ app.component('Pagination', Pagination)
 app.component('RightToolbar', RightToolbar)
 app.component('svg-icon', SvgIcon)
 app.component('zDialog', Dialog)
+app.component('zQrBarDialog', QrBarCode)
 
 app.use(pinia)
 app.use(router)

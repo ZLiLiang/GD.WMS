@@ -48,7 +48,7 @@ namespace GD.WMS.WebApi.Filters
                 //Console.WriteLine($"jwt到期剩余：{ts.TotalMinutes}分,{ts.TotalSeconds}秒");
 
                 var CK = "token_" + loginUser.UserId;
-                if (!CacheHelper.Exists(CK) && ts.TotalMinutes < 5)
+                if (!CacheHelper.Exists(CK) && ts.TotalHours < 1)
                 {
                     var newToken = JwtUtil.GenerateJwtToken(JwtUtil.AddClaims(loginUser));
 

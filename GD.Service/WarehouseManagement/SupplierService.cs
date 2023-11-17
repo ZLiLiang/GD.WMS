@@ -102,7 +102,9 @@ namespace GD.Service.WarehouseManagement
 
         public bool IsOtherUse(long supplierId)
         {
-            throw new NotImplementedException();
+            return Context.Queryable<CommoditySPU>()
+                .Where(it => it.SupplierId == supplierId)
+                .ToList().Count > 0;
         }
     }
 }

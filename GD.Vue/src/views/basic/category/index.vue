@@ -189,6 +189,7 @@ function handleUpdate(row) {
     getTreeselect()
     const cateogryId = row.categoryId
     getCategoryInfo(cateogryId).then((response) => {
+        console.log(response.data);
         form.value = response.data
         open.value = true
         title.value = '修改角色'

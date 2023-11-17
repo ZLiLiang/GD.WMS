@@ -76,6 +76,10 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
             {
                 return ToResponse(ResultCode.CUSTOM_ERROR, "存在子菜单,不允许删除");
             }
+            if (categoryService.IsOtherUse(id))
+            {
+                return ToResponse(ResultCode.CUSTOM_ERROR, "该类别存在商品，不允许删除");
+            }
             var result = categoryService.DeleteByCategoryId(id);
 
             return SUCCESS(result);

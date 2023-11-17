@@ -17,9 +17,9 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
     /// <summary>
     /// 供应商信息
     /// </summary>
-    //[Verify]
+    [Verify]
     [Route("/warehousemanagement/supplier")]
-    //[ApiExplorerSettings(GroupName = "wm")]
+    [ApiExplorerSettings(GroupName = "wm")]
     public class SupplierController : BaseController
     {
         private ISupplierService supplierService;
@@ -79,7 +79,7 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
         /// <returns></returns>
         [HttpPost("edit/{id}")]
         [Log(Title = "供应商信息", BusinessType = BusinessType.UPDATE)]
-        public IActionResult Edit(int id, [FromQuery] SupplierDto supplierDto)
+        public IActionResult Edit(long id, [FromQuery] SupplierDto supplierDto)
         {
             var supplier = supplierDto.Adapt<Supplier>();
             supplier.SupplierId = id;
@@ -98,9 +98,17 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
         [Log(Title = "供应商信息", BusinessType = BusinessType.DELETE)]
         public IActionResult Delete(long id)
         {
-            var result = supplierService.DeleteBySupplierId(id);
+            var condition = supplierService.IsOtherUse(id);
+            if (condition)
+            {
+                return ToResponse(ResultCode.CUSTOM_ERROR, "该供应商存在商品错误");
+            }
+            else
+            {
+                var result = supplierService.DeleteBySupplierId(id);
 
-            return SUCCESS(result);
+                return SUCCESS(result);
+            }
         }
 
         /// <summary>

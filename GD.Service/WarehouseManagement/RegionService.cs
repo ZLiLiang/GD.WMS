@@ -45,7 +45,9 @@ namespace GD.Service.WarehouseManagement
             var expression = Expressionable.Create<Region>()
                 .AndIF(!string.IsNullOrEmpty(regionQueryDto.WarehouseName), region => region.WarehouseName.Contains(regionQueryDto.WarehouseName))
                 .AndIF(!string.IsNullOrEmpty(regionQueryDto.RegionName), region => region.RegionName.Contains(regionQueryDto.RegionName))
-                .AndIF(regionQueryDto.RegionProperty != null, region => region.RegionProperty == regionQueryDto.RegionProperty);
+                .AndIF(regionQueryDto.RegionProperty != null, region => region.RegionProperty == regionQueryDto.RegionProperty)
+                .AndIF(regionQueryDto.BeginTime != DateTime.MinValue && regionQueryDto.BeginTime != null, exp => exp.Create_time >= regionQueryDto.BeginTime)
+                .AndIF(regionQueryDto.EndTime != DateTime.MaxValue && regionQueryDto.EndTime != null, exp => exp.Create_time <= regionQueryDto.EndTime);
 
             return Queryable()
                 .Where(expression.ToExpression())
@@ -63,6 +65,13 @@ namespace GD.Service.WarehouseManagement
             return Queryable()
                 .Where(it => it.RegionId == regionId)
                 .First();
+        }
+
+        public List<Region> GetRegionsByWarehouseId(long warehouseId)
+        {
+            return Queryable()
+                .Where(it => it.WarehouseId == warehouseId)
+                .ToList();
         }
 
         public bool IsOtherUse(long regionId)

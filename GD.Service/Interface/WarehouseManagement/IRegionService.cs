@@ -58,5 +58,12 @@ namespace GD.Service.Interface.WarehouseManagement
         /// <param name="regionId"></param>
         /// <returns></returns>
         bool IsOtherUse(long regionId);
+
+        /// <summary>
+        /// 根据仓库id获取库区信息
+        /// </summary>
+        /// <param name="warehouseId"></param>
+        /// <returns></returns>
+        List<Region> GetRegionsByWarehouseId(long warehouseId);
     }
 }

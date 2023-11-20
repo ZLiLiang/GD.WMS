@@ -5,7 +5,6 @@ using GD.Model.Dto.WarehouseManagement;
 using GD.Model.Enums;
 using GD.Model.WarehouseManagement;
 using GD.Service.Interface.WarehouseManagement;
-using GD.Service.WarehouseManagement;
 using GD.WMS.WebApi.Filters;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +14,9 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
     /// <summary>
     /// 商品信息
     /// </summary>
-    //[Verify]
+    [Verify]
     [Route("/warehousemanagement/commodity")]
-    //[ApiExplorerSettings(GroupName = "wm")]
+    [ApiExplorerSettings(GroupName = "wm")]
     public class CommodityController : BaseController
     {
         private ICommodityService commodityService;

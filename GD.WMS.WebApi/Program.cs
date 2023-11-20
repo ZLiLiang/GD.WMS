@@ -92,7 +92,7 @@ app.UseRouting();
 app.UseCors("Policy");
 
 app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -5,6 +5,8 @@ using GD.Model.Dto.WarehouseManagement;
 using GD.Model.Enums;
 using GD.Model.WarehouseManagement;
 using GD.Service.Interface.WarehouseManagement;
+using GD.Service.WarehouseManagement;
+using GD.WMS.WebApi.Filters;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using MiniExcelLibs;
@@ -14,9 +16,9 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
     /// <summary>
     /// 仓库信息
     /// </summary>
-    //[Verify]
+    [Verify]
     [Route("/warehousemanagement/warehouse")]
-    //[ApiExplorerSettings(GroupName = "wm")]
+    [ApiExplorerSettings(GroupName = "wm")]
     public class WarehouseController : BaseController
     {
         private IWarehouseService warehouseService;
@@ -95,6 +97,10 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
         [Log(Title = "删除仓库信息", BusinessType = BusinessType.DELETE)]
         public IActionResult Delete(long id)
         {
+            if (warehouseService.IsOtherUse(id))
+            {
+                return ToResponse(ResultCode.CUSTOM_ERROR, "该类别存在库区，不允许删除");
+            }
             var result = warehouseService.DeleteWarehouse(id);
 
             return SUCCESS(result);

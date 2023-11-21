@@ -2,12 +2,12 @@
     <el-dialog title="预览" v-model="isOpen" width="900px" :show-close="false" :draggable="true"
         :close-on-click-modal="false">
         <div class="qr-bar-code" id='printCode'>
-            <div v-for="item in props.codeValues" class="qr-bar-code-box">
+            <div v-for="item in codeValues" class="qr-bar-code-box">
                 <div style="height: 60%;  text-align: center;">
                     <qrcode :value="JSON.stringify(item)" v-if="isShow" />
-                    <barcode :value="item.skucode" v-else />
+                    <barcode :value="item" v-else />
                 </div>
-                <div style="height: 40%; text-align: center;">
+                <div style="height: 40%; text-align: center;" v-if="isShow">
                     <slot :item="item"></slot>
                 </div>
             </div>
@@ -29,7 +29,11 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
-    codeValues: {
+    qrCodeValues: {
+        type: Array,
+        default: []
+    },
+    barCodeValues: {
         type: Array,
         default: []
     },
@@ -41,13 +45,42 @@ const props = defineProps({
 
 const emit = defineEmits(["update:visible"]);
 
-const isShow = computed(() => props.codeMode === 'qrcode');
 const isOpen = ref(false)
+const isShow = ref(true)
+const codeValues = ref(props.qrCodeValues)
 
 watch(
     () => props.visible,
     (val) => {
         isOpen.value = val
+    },
+    { deep: true, immediate: true }
+)
+
+watch(
+    () => props.codeMode,
+    (val) => {
+        if (val === "qrcode") {
+            isShow.value = true
+        }
+        else {
+            isShow.value = false
+        }
+    },
+    { deep: true, immediate: true }
+)
+
+watch(
+    () => props.qrCodeValues,
+    (val) => {
+        codeValues.value = val
+    },
+    { deep: true, immediate: true }
+)
+watch(
+    () => props.barCodeValues,
+    (val) => {
+        codeValues.value = val
     },
     { deep: true, immediate: true }
 )
@@ -76,6 +109,7 @@ function codePrint() {
     //style:传入自定义样式的字符串，使用在要打印的html页面 也就是纸上的样子。
     //ignoreElements：传入要打印的div中的子元素id，使其不打印。非常好用
 }
+
 </script>
 
 <style  lang="scss" scoped>

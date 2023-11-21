@@ -335,7 +335,8 @@
             </template>
         </el-dialog>
 
-        <zQrBarDialog v-model:visible="codeOpen" :codeValues="codeData" :codeMode="codeMode">
+        <zQrBarDialog v-model:visible="codeOpen" :qrCodeValues="qrcodeData" :barCodeValues="barcodeData"
+            :codeMode="codeMode">
             <template #default="scope">
                 <span style="display: block;">商品名称: {{ scope.item.spuname }}</span>
                 <span style="display: block;">商品编码: {{ scope.item.spucode }}</span>
@@ -366,6 +367,8 @@ const weightUnit = ["mg", "g", "kg"]
 const volumeUnit = ["cm³", "dm³", "m³"]
 // 二维码或条形码数据
 const codeData = ref([])
+const qrcodeData = ref([])
+const barcodeData = ref([])
 const codeOpen = ref(false)
 const codeMode = ref("")
 // 时间范围
@@ -496,6 +499,8 @@ function handleExport() {
  * 生成二维码按钮操作
  */
 function handleQrCode() {
+    qrcodeData.value = []
+    qrcodeData.value = [...codeData.value]
     codeOpen.value = true
     codeMode.value = "qrcode"
 }
@@ -504,6 +509,8 @@ function handleQrCode() {
  * 生成条形码按钮操作
  */
 function handleBarCode() {
+    barcodeData.value = []
+    barcodeData.value = codeData.value.map(item=>item.skucode)
     codeOpen.value = true
     codeMode.value = "barcode"
 }

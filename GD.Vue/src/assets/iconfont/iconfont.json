@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6987469",
+      "name": "region",
+      "font_class": "region",
+      "unicode": "eabe",
+      "unicode_decimal": 60094
+    },
+    {
+      "icon_id": "12002470",
+      "name": "location",
+      "font_class": "location",
+      "unicode": "ea32",
+      "unicode_decimal": 59954
+    },
+    {
       "icon_id": "1026713",
       "name": "password",
       "font_class": "password",

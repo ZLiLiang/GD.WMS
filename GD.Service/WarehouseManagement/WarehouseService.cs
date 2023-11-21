@@ -40,6 +40,18 @@ namespace GD.Service.WarehouseManagement
             warehouse.Update_by = userName;
             warehouse.Update_time = DateTime.Now;
 
+            Context
+                .Updateable<Location>()
+                .SetColumns(it => it.WarehouseName == warehouse.WarehouseName)
+                .Where(it => it.WarehouseId == warehouse.WarehouseId)
+                .ExecuteCommand();
+
+            Context
+                .Updateable<Region>()
+                .SetColumns(it => it.WarehouseName == warehouse.WarehouseName)
+                .Where(it => it.WarehouseId == warehouse.WarehouseId)
+                .ExecuteCommand();
+
             return Update(warehouse);
         }
 

@@ -205,7 +205,7 @@ function resetQuery() {
 function handleAdd() {
     reset()
     open.value = true
-    title.value = "新增库位信息"
+    title.value = "新增库区信息"
 }
 
 /**
@@ -214,7 +214,7 @@ function handleAdd() {
 function handleExport() {
     proxy
         .$modal
-        .confirm('是否确认导出所有库位信息数据项?', '警告', {
+        .confirm('是否确认导出所有库区信息数据项?', '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -265,7 +265,7 @@ function handleUpdate(row) {
     getInfo(regionId).then(response => {
         form.value = response.data
         open.value = true
-        title.value = '修改库位信息'
+        title.value = '修改库区信息'
     })
     open.value = true
 }

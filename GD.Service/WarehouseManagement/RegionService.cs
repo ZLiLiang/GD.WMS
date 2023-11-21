@@ -37,6 +37,12 @@ namespace GD.Service.WarehouseManagement
                 .First(it => it.WarehouseId == region.WarehouseId)
                 .WarehouseName;
 
+            Context
+                .Updateable<Location>()
+                .SetColumns(it => it.RegionName == region.RegionName)
+                .Where(it => it.RegionId == region.RegionId)
+                .ExecuteCommand();
+
             return Update(region);
         }
 

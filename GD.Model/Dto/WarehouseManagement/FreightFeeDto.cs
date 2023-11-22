@@ -39,6 +39,8 @@ namespace GD.Model.Dto.WarehouseManagement
 
     public class FreightFeeExcelDto
     {
+        private int _isValid;
+
         [ExcelColumn(Name = "承运商")]
         public string Carrier { get; set; } = string.Empty;
 
@@ -64,6 +66,14 @@ namespace GD.Model.Dto.WarehouseManagement
         public DateTime Create_time { get; set; }
 
         [ExcelColumn(Name = "是否有效")]
-        public int IsValid { get; set; }
+        public string IsValid
+        {
+            set => _isValid = int.Parse(value);
+            get => _isValid switch
+            {
+                0 => "否",
+                1 => "是"
+            };
+        }
     }
 }

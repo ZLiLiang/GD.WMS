@@ -56,7 +56,7 @@
             v-model:limit="queryParams.pageSize" @pagination="getList" />
 
         <!-- 对话框 -->
-        <el-dialog :title="title" v-model="open" width="400px" :show-close="false" draggable="true">
+        <el-dialog :title="title" v-model="open" width="400px" :show-close="false" :draggable="true">
             <el-form :model="form" :rules="rules" ref="ownerRef" label-width="80px">
                 <el-form-item label="货主名称" prop="ownerName">
                     <el-input v-model="form.ownerName" placeholder="请输入货主名称" />

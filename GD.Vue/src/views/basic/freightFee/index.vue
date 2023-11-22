@@ -69,7 +69,7 @@
             v-model:limit="queryParams.pageSize" @pagination="getList" />
 
         <!-- 对话框 -->
-        <el-dialog :title="title" v-model="open" width="500px" :show-close="false" draggable="true">
+        <el-dialog :title="title" v-model="open" width="500px" :show-close="false" :draggable="true">
             <el-form :model="form" :rules="rules" ref="freightFeeRef" label-width="80px">
                 <el-form-item label="承运商" prop="carrier">
                     <el-input v-model="form.carrier" placeholder="请输入承运商" />

@@ -14,9 +14,9 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
     /// <summary>
     /// 库位控制器
     /// </summary>
-    //[Verify]
+    [Verify]
     [Route("/warehousemanagement/location")]
-    //[ApiExplorerSettings(GroupName = "wm")]
+    [ApiExplorerSettings(GroupName = "wm")]
     public class LocationController : BaseController
     {
         private IWarehouseService warehouseService;

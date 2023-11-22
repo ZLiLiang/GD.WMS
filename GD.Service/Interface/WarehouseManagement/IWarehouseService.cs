@@ -52,7 +52,7 @@ namespace GD.Service.Interface.WarehouseManagement
         long DeleteWarehouse(long warehouseId);
 
         /// <summary>
-        /// 导入供应商信息
+        /// 导入仓库信息
         /// </summary>
         /// <returns></returns>
         (string, object) ImportWarehouses(List<Warehouse> warehouse);

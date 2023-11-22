@@ -42,9 +42,9 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
         }
 
         /// <summary>
-        /// 格局id获取仓库信息
+        /// 根据id获取仓库信息
         /// </summary>
-        /// <param name="warehouseId"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetWarehouseInfo(long id)
@@ -73,7 +73,7 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
         /// <summary>
         /// 编辑仓库信息
         /// </summary>
-        /// <param name="warehouseId"></param>
+        /// <param name="id"></param>
         /// <param name="warehouseDto"></param>
         /// <returns></returns>
         [HttpPost("edit/{id}")]
@@ -91,7 +91,7 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
         /// <summary>
         /// 删除仓库信息
         /// </summary>
-        /// <param name="warehouseId"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         [Log(Title = "删除仓库信息", BusinessType = BusinessType.DELETE)]

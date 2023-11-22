@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import { praseStrZero } from '@/utils/ruoyi'
 import { downFile } from '@/utils/request'
 
-const baseUrl = '/warehousemanagement/owner'
+const baseUrl = '/warehousemanagement/freightFee'
 
 /**
  * 分页查询所有数据
@@ -18,8 +18,8 @@ export function getAllInfo(query) {
 }
 
 /**
- * 通过id查询单个货主信息
- * @param {货主ID} id 
+ * 通过id查询单个运费信息
+ * @param {运费ID} id 
  * @returns 封装请求
  */
 export function getInfo(id) {
@@ -31,8 +31,8 @@ export function getInfo(id) {
 }
 
 /**
- * 新增货主
- * @param {货主实体} entity 
+ * 新增运费
+ * @param {运费实体} entity 
  * @returns 封装请求
  */
 export function addInfo(entity) {
@@ -45,9 +45,9 @@ export function addInfo(entity) {
 }
 
 /**
- * 根据货主id修改货主信息
- * @param {货主ID} id 
- * @param {货主实体} entity 
+ * 根据运费id修改运费信息
+ * @param {运费ID} id 
+ * @param {运费实体} entity 
  * @returns 封装请求
  */
 export function editInfo(id, entity) {
@@ -60,8 +60,8 @@ export function editInfo(id, entity) {
 }
 
 /**
- * 根据id删除货主信息
- * @param {货主ID} id 
+ * 根据id删除运费信息
+ * @param {运费ID} id 
  * @returns 封装请求
  */
 export function deleteInfo(id) {
@@ -73,7 +73,7 @@ export function deleteInfo(id) {
 }
 
 /**
- * 导出货主信息
+ * 导出运费信息
  */
 export async function exportAllInfo() {
     let url = `${baseUrl}/export`
@@ -81,7 +81,7 @@ export async function exportAllInfo() {
 }
 
 /**
- * 导出货主模板
+ * 导出运费模板
  */
 export async function exportTemplate() {
     let url = `${baseUrl}/exportTemplate`

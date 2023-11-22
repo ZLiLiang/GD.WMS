@@ -16,9 +16,9 @@ namespace GD.WMS.WebApi.Controllers.WarehouseManagement
     /// <summary>
     /// 运费设置
     /// </summary>
-    //[Verify]
+    [Verify]
     [Route("/warehousemanagement/freightFee")]
-    //[ApiExplorerSettings(GroupName = "wm")]
+    [ApiExplorerSettings(GroupName = "wm")]
     public class FreightFeeController : BaseController
     {
         private IFreightFeeService freightFeeService;

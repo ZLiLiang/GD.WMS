@@ -122,7 +122,7 @@
 
 <script setup>
 import { getToken } from "@/utils/auth";
-import { getAll, getSupplierInfo, addSupplierInfo, editSupplierInfo, deleteById, exportSupplier, exportTemplate } from "@/api/warehousManagement/supplier";
+import { getAll, getSupplierInfo, addSupplierInfo, editSupplierInfo, deleteById, exportSupplier, exportTemplate } from "@/api/basic/supplier";
 
 // 总条数
 const total = ref(0);

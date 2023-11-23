@@ -175,7 +175,7 @@
 </template>
 
 <script setup>
-import { getAllInfo, getRegionOptions, getWarehouseOptions, addInfo, editInfo, exportAllInfo, getInfo, deleteInfo } from '@/api/warehousManagement/location'
+import { getAllInfo, getRegionOptions, getWarehouseOptions, addInfo, editInfo, exportAllInfo, getInfo, deleteInfo } from '@/api/basic/location'
 
 // 总条数
 const total = ref(0)

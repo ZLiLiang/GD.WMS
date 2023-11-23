@@ -102,7 +102,7 @@
 </template>
 
 <script setup>
-import { getAllInfo, getOptions, addInfo, editInfo, deleteInfo, getInfo, exportAllInfo } from '@/api/warehousManagement/region';
+import { getAllInfo, getOptions, addInfo, editInfo, deleteInfo, getInfo, exportAllInfo } from '@/api/basic/region';
 
 // 总条数
 const total = ref(0)

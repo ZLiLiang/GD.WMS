@@ -1,11 +1,5 @@
-﻿using GD.Model;
-using GD.Model.Constant;
-using GD.Model.Generate;
-using GD.Model.System;
-using GD.Model.WarehouseManagement;
-using SqlSugar;
+﻿using GD.Model.Constant;
 using SqlSugar.IOC;
-using System.Reflection;
 
 namespace GD.WMS.WebApi.SqlSugar
 {

@@ -348,7 +348,7 @@
 </template>
 
 <script setup>
-import { getAll, getCommodityInfo, deleteById, addCommodityInfo, editCommodityInfo, getCategoryOptions, getSupplierOptions, exportCommodity, deleteSKUById } from "@/api/warehousManagement/commodity";
+import { getAll, getCommodityInfo, deleteById, addCommodityInfo, editCommodityInfo, getCategoryOptions, getSupplierOptions, exportCommodity, deleteSKUById } from "@/api/basic/commodity";
 // 总条数
 const total = ref(0);
 // 展示搜索界面

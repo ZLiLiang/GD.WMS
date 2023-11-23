@@ -130,7 +130,7 @@
 
 <script setup>
 import { getToken } from "@/utils/auth";
-import { addInfo, deleteInfo, editInfo, exportAllInfo, getAllInfo, getInfo, exportTemplate } from '@/api/warehousManagement/warehouse';
+import { addInfo, deleteInfo, editInfo, exportAllInfo, getAllInfo, getInfo, exportTemplate } from '@/api/basic/warehouse';
 
 // 总条数
 const total = ref(0)

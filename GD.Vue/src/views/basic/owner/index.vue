@@ -109,7 +109,7 @@
 
 <script setup>
 import { getToken } from "@/utils/auth";
-import { getAllInfo, addInfo, editInfo, getInfo, deleteInfo, exportAllInfo, exportTemplate } from "@/api/warehousManagement/owner"
+import { getAllInfo, addInfo, editInfo, getInfo, deleteInfo, exportAllInfo, exportTemplate } from "@/api/basic/owner"
 
 // 总条数
 const total = ref(0)

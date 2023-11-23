@@ -128,7 +128,7 @@
 
 <script setup>
 import { getToken } from "@/utils/auth";
-import { getAllInfo, addInfo, editInfo, getInfo, deleteInfo, exportAllInfo, exportTemplate } from "@/api/warehousManagement/freightFee"
+import { getAllInfo, addInfo, editInfo, getInfo, deleteInfo, exportAllInfo, exportTemplate } from "@/api/basic/freightFee"
 
 // 总条数
 const total = ref(0)
@@ -155,7 +155,7 @@ const upload = reactive({
     // 设置上传的请求头部
     headers: { Authorization: "Bearer " + getToken() },
     // 上传的地址
-    url: import.meta.env.VITE_APP_BASE_API + "/warehousemanagement/freightFee/importData",
+    url: import.meta.env.VITE_APP_BASE_API + "/basic/freightFee/importData",
 });
 // 数据
 const data = reactive({

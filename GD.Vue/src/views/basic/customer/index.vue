@@ -115,7 +115,7 @@
 
 <script setup>
 import { getToken } from "@/utils/auth";
-import { getAllInfo, getInfo, addInfo, editInfo, exportAllInfo, exportTemplate, deleteInfo } from "@/api/warehousManagement/customer"
+import { getAllInfo, getInfo, addInfo, editInfo, exportAllInfo, exportTemplate, deleteInfo } from "@/api/basic/customer"
 
 // 总条数
 const total = ref(0)
@@ -142,7 +142,7 @@ const upload = reactive({
     // 设置上传的请求头部
     headers: { Authorization: "Bearer " + getToken() },
     // 上传的地址
-    url: import.meta.env.VITE_APP_BASE_API + "/warehousemanagement/customer/importData",
+    url: import.meta.env.VITE_APP_BASE_API + "/basic/customer/importData",
 });
 // 数据
 const data = reactive({

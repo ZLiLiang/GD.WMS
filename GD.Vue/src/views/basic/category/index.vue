@@ -87,7 +87,7 @@
 </template>
 
 <script setup>
-import { getAll, getCategoryInfo, addCategoryInfo, editCategoryInfo, deleteById, exportCategory, getAllTree } from "@/api/warehousManagement/category";
+import { getAll, getCategoryInfo, addCategoryInfo, editCategoryInfo, deleteById, exportCategory, getAllTree } from "@/api/basic/category";
 
 // 总条数
 const total = ref(0)

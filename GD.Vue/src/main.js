@@ -24,6 +24,8 @@ import Pagination from '@/components/Pagination'
 import Dialog from '@/components/Dialog'
 // 二维码组件
 import QrBarCode from '@/components/QrBarCode'
+// 商品选择框
+import SkuSelect from '@/components/SkuSelect'
 
 const app = createApp(App)
 
@@ -36,6 +38,7 @@ app.component('RightToolbar', RightToolbar)
 app.component('svg-icon', SvgIcon)
 app.component('zDialog', Dialog)
 app.component('zQrBarDialog', QrBarCode)
+app.component('zSkuSelectDialog', SkuSelect)
 
 app.use(pinia)
 app.use(router)

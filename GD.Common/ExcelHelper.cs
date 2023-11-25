@@ -29,7 +29,7 @@ namespace GD.Common
         /// <param name="sheetName"></param>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static (string, string) ExportExcelMini<T>(List<T> list, string sheetName, string fileName)
+        public static (string, string) ExportExcelMini<T>(List<T> list, string sheetName, string fileName, IConfiguration config = null)
         {
             IWebHostEnvironment webHostEnvironment = (IWebHostEnvironment)App.ServiceProvider.GetService(typeof(IWebHostEnvironment));
             string sFileName = $"{fileName}{DateTime.Now:MM-dd-HHmmss}.xlsx";
@@ -37,7 +37,7 @@ namespace GD.Common
 
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
-            MiniExcel.SaveAs(fullPath, list, sheetName: sheetName);
+            MiniExcel.SaveAs(fullPath, list, sheetName: sheetName, configuration: config);
             return (sFileName, fullPath);
         }
 
@@ -97,7 +97,7 @@ namespace GD.Common
                     foreach (var innerValue in innerProperties)
                     {
                         var key = innerValue.GetCustomAttribute<ExcelColumnAttribute>().Name;
-                        var value= innerValue.GetValue(innerItem);
+                        var value = innerValue.GetValue(innerItem);
                         resultValue.Add(key, value);
                     }
                     result.Add(resultValue);

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4312225 */
-  src: url('iconfont.woff2?t=1700568255748') format('woff2'),
-       url('iconfont.woff?t=1700568255748') format('woff'),
-       url('iconfont.ttf?t=1700568255748') format('truetype');
+  src: url('iconfont.woff2?t=1700897122863') format('woff2'),
+       url('iconfont.woff?t=1700897122863') format('woff'),
+       url('iconfont.ttf?t=1700897122863') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-notice:before {
+  content: "\e62e";
+}
+
+.icon-inventory:before {
+  content: "\e661";
 }
 
 .icon-region:before {
@@ -53,7 +61,7 @@
   content: "\eac9";
 }
 
-.icon-freight:before {
+.icon-freightFee:before {
   content: "\eb9f";
 }
 

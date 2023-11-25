@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "12820168",
+      "name": "notice",
+      "font_class": "notice",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "20857408",
+      "name": "inventory",
+      "font_class": "inventory",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
       "icon_id": "6987469",
       "name": "region",
       "font_class": "region",
@@ -77,8 +91,8 @@
     },
     {
       "icon_id": "5387958",
-      "name": "freight",
-      "font_class": "freight",
+      "name": "freightFee",
+      "font_class": "freightFee",
       "unicode": "eb9f",
       "unicode_decimal": 60319
     },

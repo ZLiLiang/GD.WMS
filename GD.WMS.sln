@@ -5,17 +5,17 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GD.WMS.WebApi", "GD.WMS.WebApi\GD.WMS.WebApi.csproj", "{CE3A6F56-EB6A-4BE2-BF65-359D4F965A9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD.Model", "GD.Model\GD.Model.csproj", "{EBA1419F-DF14-414B-942F-9173FB3A094B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GD.Model", "GD.Model\GD.Model.csproj", "{EBA1419F-DF14-414B-942F-9173FB3A094B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD.Service", "GD.Service\GD.Service.csproj", "{BD78ED48-A48A-428F-BDB4-C303A36E9A31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GD.Service", "GD.Service\GD.Service.csproj", "{BD78ED48-A48A-428F-BDB4-C303A36E9A31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD.Repository", "GD.Repository\GD.Repository.csproj", "{C9EA0E45-BC0B-4539-B937-4DDCF84997BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GD.Repository", "GD.Repository\GD.Repository.csproj", "{C9EA0E45-BC0B-4539-B937-4DDCF84997BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD.Infrastructure", "GD.Infrastructure\GD.Infrastructure.csproj", "{6CAD20CF-672C-4C6C-B97D-D4A2D58C0360}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GD.Infrastructure", "GD.Infrastructure\GD.Infrastructure.csproj", "{6CAD20CF-672C-4C6C-B97D-D4A2D58C0360}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD.Common", "GD.Common\GD.Common.csproj", "{7ACCC271-1747-44EE-B388-27EE9BA42947}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GD.Common", "GD.Common\GD.Common.csproj", "{7ACCC271-1747-44EE-B388-27EE9BA42947}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD.CodeGenerator", "GD.CodeGenerator\GD.CodeGenerator.csproj", "{52823218-100C-45D7-8350-0582AA87DA43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GD.CodeGenerator", "GD.CodeGenerator\GD.CodeGenerator.csproj", "{52823218-100C-45D7-8350-0582AA87DA43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

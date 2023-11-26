@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "29280126",
+      "name": "arrive",
+      "font_class": "arrive",
+      "unicode": "e6cf",
+      "unicode_decimal": 59087
+    },
+    {
+      "icon_id": "29280140",
+      "name": "unload",
+      "font_class": "unload",
+      "unicode": "e6d0",
+      "unicode_decimal": 59088
+    },
+    {
+      "icon_id": "10331064",
+      "name": "sort",
+      "font_class": "sort",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
+    },
+    {
+      "icon_id": "10564301",
+      "name": "actual",
+      "font_class": "actual",
+      "unicode": "e70e",
+      "unicode_decimal": 59150
+    },
+    {
+      "icon_id": "10975296",
+      "name": "detail",
+      "font_class": "detail",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
       "icon_id": "12820168",
       "name": "notice",
       "font_class": "notice",

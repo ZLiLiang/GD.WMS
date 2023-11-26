@@ -220,20 +220,14 @@ namespace GD.WMS.WebApi.Controllers.Receive
         }
 
         /// <summary>
-        /// 取消上架
+        /// 取消分拣
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPut("cancelactual/{id:long}")]
-        [Log(Title = "取消上架", BusinessType = BusinessType.UPDATE)]
-        public IActionResult CancelActual(long id)
+        [HttpPut("cancelSort/{id:long}")]
+        [Log(Title = "取消分拣", BusinessType = BusinessType.UPDATE)]
+        public IActionResult CancelSort(long id)
         {
-            var actualQty = asnService.Get(id).ActualQty;
-            if (actualQty == 0)
-            {
-                return ToResponse(ResultCode.CUSTOM_ERROR, "上架数量不为0");
-            }
-
             var username = HttpContext.GetName();
             var result = asnService.Operate(id, AsnStatus.Sort, username);
 

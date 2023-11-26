@@ -499,6 +499,10 @@ function handleExport() {
  * 生成二维码按钮操作
  */
 function handleQrCode() {
+    if (codeData.value.length===0) {
+        proxy.$modal.msgError("请选中数据！")
+        return
+    }
     qrcodeData.value = []
     qrcodeData.value = [...codeData.value]
     codeOpen.value = true
@@ -509,6 +513,10 @@ function handleQrCode() {
  * 生成条形码按钮操作
  */
 function handleBarCode() {
+    if (codeData.value.length===0) {
+        proxy.$modal.msgError("请选中数据！")
+        return
+    }
     barcodeData.value = []
     barcodeData.value = codeData.value.map(item=>item.skucode)
     codeOpen.value = true

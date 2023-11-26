@@ -27,7 +27,7 @@
         </el-row>
 
         <!-- 表格 -->
-        <el-table v-loading="loading" :data="arriveList" highlight-current-row>
+        <el-table v-loading="loading" :data="unloadList" highlight-current-row>
             <el-table-column label="到货通知书编号" prop="asnNo" />
             <el-table-column label="商品编码" prop="spuCode" />
             <el-table-column label="商品名称" prop="spuName" />
@@ -47,6 +47,7 @@
                 <template #default="scope">
                     <div>
                         <el-button text icon="check" title="确认" @click.stop="handleUpdate(scope.row)" />
+                        <el-button text icon="delete" title="删除" @click.stop="handleDelete(scope.row)" />
                     </div>
                 </template>
             </el-table-column>
@@ -60,7 +61,7 @@
 </template>
 
 <script setup>
-import { getAllInfo, confirmArrive, exportAllInfo } from '@/api/receive/arrive'
+import { getAllInfo, unload, cancelArrive, exportAllInfo } from '@/api/receive/unload'
 
 // 总条数
 const total = ref(0)
@@ -69,7 +70,7 @@ const showSearch = ref(false)
 // 加载...
 const loading = ref(true)
 // 供应商列表
-const arriveList = ref([])
+const unloadList = ref([])
 // 时间范围
 const dateRange = ref([])
 // 数据
@@ -79,7 +80,7 @@ const data = reactive({
         pageSize: 10,
         supplierName: undefined,
         skuName: undefined,
-        asnStatus: 0
+        asnStatus: 1
     }
 })
 // 列显隐信息
@@ -103,7 +104,7 @@ function getList() {
     let params = proxy.addDateRange(queryParams.value, dateRange.value)
     getAllInfo(params).then(res => {
         loading.value = false
-        arriveList.value = res.data.result
+        unloadList.value = res.data.result
         total.value = res.data.totalNum
     })
 }
@@ -130,7 +131,7 @@ function resetQuery() {
  */
 function handleExport() {
     proxy.$modal
-        .confirm('是否确认导出所有待到货数据项?', '警告', {
+        .confirm('是否确认导出所有待卸货数据项?', '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
@@ -146,13 +147,32 @@ function handleExport() {
  */
 function handleUpdate(row) {
     proxy.$modal
-        .confirm('是否确认到货?', '警告', {
+        .confirm('是否确认卸货?', '警告', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             type: 'warning'
         })
         .then(() => {
-            confirmArrive(row.asnId).then(() => {
+            unload(row.asnId).then(() => {
+                proxy.$modal.msgSuccess("确认成功！")
+                getList()
+            })
+        })
+}
+
+/**
+ * 删除按钮操作
+ * @param {行数据} row 
+ */
+function handleDelete(row) {
+    proxy.$modal
+        .confirm('是否取消到货?', '警告', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+        })
+        .then(() => {
+            cancelArrive(row.asnId).then(() => {
                 proxy.$modal.msgSuccess("确认成功！")
                 getList()
             })

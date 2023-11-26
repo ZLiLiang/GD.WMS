@@ -26,11 +26,19 @@
             <el-col :span="1.5">
                 <el-button type="warning" plain icon="download" @click="handleExport">导出</el-button>
             </el-col>
+            <el-col :span="1.5">
+                <el-button color="#626aef" plain @click="handleQrCode">
+                    <el-icon>
+                        <SvgIcon name="qrcode" />
+                    </el-icon>
+                    <span> 二维码 </span>
+                </el-button>
+            </el-col>
             <right-toolbar v-model:showSearch="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
         </el-row>
 
         <!-- 表格 -->
-        <el-table v-loading="loading" :data="asnNoticeList" highlight-current-row>
+        <el-table v-loading="loading" :data="asnNoticeList" highlight-current-row @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55" align="center" />
             <el-table-column label="到货通知书编号" prop="asnNo" />
             <el-table-column label="商品编码" prop="spuCode" />
@@ -102,6 +110,13 @@
         </el-dialog>
 
         <z-SkuSelectDialog v-model:visible="skuSelectOpen" @dialogData="dialogData" />
+
+        <z-QrBarDialog v-model:visible="codeOpen" :qrCodeValues="qrcodeData">
+            <template #default="scope">
+                <span style="display: block;">规格名称: {{ scope.item.skuname }}</span>
+                <span style="display: block;">规格编码: {{ scope.item.skucode }}</span>
+            </template>
+        </z-QrBarDialog>
     </div>
 </template>
 
@@ -126,6 +141,9 @@ const open = ref(false)
 const skuSelectOpen = ref(false)
 // 对话框标题
 const title = ref('')
+// 二维码数据
+const qrcodeData = ref([])
+const codeOpen = ref(false)
 // 时间范围
 const dateRange = ref([])
 // 数据
@@ -244,6 +262,17 @@ function handleExport() {
 }
 
 /**
+ * 生成二维码按钮操作
+ */
+function handleQrCode() {
+    if (qrcodeData.value.length === 0) {
+        proxy.$modal.msgError("请选中数据！")
+        return
+    }
+    codeOpen.value = true
+}
+
+/**
  * 提交按钮
  */
 function submitForm() {
@@ -279,6 +308,21 @@ function inputClick() {
 function cancel() {
     open.value = false
     reset()
+}
+
+/**
+ * 选中数据操作
+ * @param {选中的数据} selection 
+ */
+function handleSelectionChange(selection) {
+    qrcodeData.value = []
+    selection.forEach(element => {
+        qrcodeData.value.push({
+            skucode: element.skuCode,
+            skuname: element.skuName,
+        })
+    })
+    console.log(qrcodeData.value);
 }
 
 /**

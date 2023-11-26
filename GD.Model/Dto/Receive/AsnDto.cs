@@ -10,6 +10,9 @@ namespace GD.Model.Dto.Receive
 {
     public class AsnDto
     {
+        public string AsnNo { get; set; } = string.Empty;
+
+        public int AsnStatus { get; set; } = 0;
         /// <summary>
         /// 供应商Id
         /// </summary>
@@ -54,6 +57,31 @@ namespace GD.Model.Dto.Receive
         /// 到货通知书数据
         /// </summary>
         public int AsnQty { get; set; } = 0;
+
+        /// <summary>
+        /// 上架数量
+        /// </summary>
+        public int ActualQty { get; set; } = 0;
+
+        /// <summary>
+        /// 分拣数量
+        /// </summary>
+        public int SortedQty { get; set; } = 0;
+
+        /// <summary>
+        /// 短少数量
+        /// </summary>
+        public int ShortageQty { get; set; } = 0;
+
+        /// <summary>
+        /// 超量数量
+        /// </summary>
+        public int MoreQty { get; set; } = 0;
+
+        /// <summary>
+        /// 破损数量
+        /// </summary>
+        public int DamageQty { get; set; } = 0;
     }
 
     public class AsnQueryDto : PagerInfo

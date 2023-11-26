@@ -15,7 +15,7 @@ namespace GD.Service.Inventory
         public PagedInfo<CommoditySkuSelect> GetCommoditySkuSelect(CommoditySkuSelectQueryDto commoditySkuSelectQueryDto)
         {
             return Queryable()
-                .LeftJoin<CommoditySPU>((sku,spu)=>sku.CommoditySPUId==spu.CommoditySPUId)
+                .LeftJoin<CommoditySPU>((sku, spu) => sku.CommoditySPUId == spu.CommoditySPUId)
                 .WhereIF(!string.IsNullOrEmpty(commoditySkuSelectQueryDto.SpuName), (sku, spu) => spu.CommoditySPUName.Contains(commoditySkuSelectQueryDto.SpuName))
                 .WhereIF(!string.IsNullOrEmpty(commoditySkuSelectQueryDto.SpuName), (sku, spu) => sku.CommoditySKUCode.Contains(commoditySkuSelectQueryDto.SkuCode))
                 .Select((sku, spu) => new CommoditySkuSelect
@@ -31,7 +31,7 @@ namespace GD.Service.Inventory
                     Brand = spu.Brand,
                     Unit = sku.Unit
                 })
-                        .ToPage(commoditySkuSelectQueryDto);
+                .ToPage(commoditySkuSelectQueryDto);
         }
     }
 }

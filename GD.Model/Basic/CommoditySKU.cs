@@ -59,7 +59,7 @@ namespace GD.Model.Basic
         /// <summary>
         /// 体积
         /// </summary>
-        public decimal? Volume { get; set; }
+        public decimal Volume { get; set; }
 
         /// <summary>
         /// 成本

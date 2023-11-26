@@ -58,16 +58,19 @@ namespace GD.Model.Receive
         /// <summary>
         /// 长度单位（0=毫米、1=厘米、2=分米、3=米）
         /// </summary>
+        [SugarColumn(IsOnlyIgnoreUpdate = true)]
         public int LengthUnit { get; set; } = 0;
 
         /// <summary>
         /// 体积单位（0=立方厘米、1=立方分米、2=立方米）
         /// </summary>
+        [SugarColumn(IsOnlyIgnoreUpdate = true)]
         public int VolumeUnit { get; set; } = 0;
 
         /// <summary>
         /// 重量单位（0=毫克、1=克、2=千克）
         /// </summary>
+        [SugarColumn(IsOnlyIgnoreUpdate = true)]
         public int WeightUnit { get; set; } = 0;
 
         /// <summary>
@@ -103,11 +106,13 @@ namespace GD.Model.Receive
         /// <summary>
         /// 重量
         /// </summary>
+        [SugarColumn(IsOnlyIgnoreUpdate = true)]
         public decimal Weight { get; set; } = 0;
 
         /// <summary>
         /// 体积
         /// </summary>
+        [SugarColumn(IsOnlyIgnoreUpdate = true)]
         public decimal Volume { get; set; } = 0;
 
         /// <summary>

@@ -1,6 +1,5 @@
 ﻿using GD.Infrastructure.Attribute;
 using GD.Model.Basic;
-using GD.Model.Dto.Basic;
 using GD.Model.Dto.Receive;
 using GD.Model.Enums;
 using GD.Model.Page;
@@ -26,7 +25,25 @@ namespace GD.Service.Receive
                 .Queryable<Owner>()
                 .First(it => it.OwnerId == asn.OwnerId)
                 .OwnerName;
-
+            var data = Context
+                .Queryable<CommoditySKU>()
+                .LeftJoin<CommoditySPU>((sku, spu) => sku.CommoditySPUId == spu.CommoditySPUId)
+                .Where(sku => sku.CommoditySKUId == asn.SkuId)
+                .Select((sku, spu) => new
+                {
+                    spu.LengthUnit,
+                    spu.WeightUnit,
+                    spu.VolumeUnit,
+                    sku.Weight,
+                    sku.Volume
+                })
+                .First();
+            asn.LengthUnit = data.LengthUnit;
+            asn.WeightUnit = data.WeightUnit;
+            asn.VolumeUnit = data.VolumeUnit;
+            asn.Weight = data.Weight;
+            asn.Volume = data.Volume;
+                
             string code = "";
             string date = DateTime.Now.ToString("yyyy" + "MM" + "dd");
             var asnNo = Queryable()

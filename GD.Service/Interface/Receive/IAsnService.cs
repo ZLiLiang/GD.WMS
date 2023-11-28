@@ -65,5 +65,12 @@ namespace GD.Service.Interface.Receive
         /// <returns></returns>
         int Operate(long asnId, AsnStatus asnStatus, string userName);
 
+        /// <summary>
+        /// 上架数量
+        /// </summary>
+        /// <param name="asnPutAwayDto"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        bool PutAway(AsnPutAwayDto asnPutAwayDto, string userName);
     }
 }

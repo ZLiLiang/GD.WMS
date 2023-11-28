@@ -84,6 +84,12 @@ namespace GD.Model.Dto.Receive
         public int DamageQty { get; set; } = 0;
     }
 
+    public class AsnPutAwayDto
+    {
+        public long AsnId { get; set; } = 0;
+        public long LocationId { get; set; } = 0;
+        public int putAwayQty { get; set; } = 0;
+    }
     public class AsnQueryDto : PagerInfo
     {
         /// <summary>

@@ -2,6 +2,7 @@
 using GD.Model.Basic;
 using GD.Model.Dto.Receive;
 using GD.Model.Enums;
+using GD.Model.Inventory.DBEntity;
 using GD.Model.Page;
 using GD.Model.Receive;
 using GD.Repository;
@@ -43,7 +44,7 @@ namespace GD.Service.Receive
             asn.VolumeUnit = data.VolumeUnit;
             asn.Weight = data.Weight;
             asn.Volume = data.Volume;
-                
+
             string code = "";
             string date = DateTime.Now.ToString("yyyy" + "MM" + "dd");
             var asnNo = Queryable()
@@ -121,6 +122,53 @@ namespace GD.Service.Receive
                 .SetColumns(asn => new Asn { AsnStatus = (int)asnStatus, Update_by = userName, Update_time = DateTime.Now })
                 .Where(asn => asn.AsnId == asnId)
                 .ExecuteCommand();
+        }
+
+        public bool PutAway(AsnPutAwayDto asnPutAwayDto, string userName)
+        {
+            var result = UseTran(() =>
+            {
+                var asn = Context
+                .Queryable<Asn>()
+                .First(it => it.AsnId == asnPutAwayDto.AsnId);
+                Context.Tracking(asn);
+                var location = Context
+                .Queryable<Location>()
+                .First(it => it.LocationId == asnPutAwayDto.LocationId);
+                asn.ActualQty = asnPutAwayDto.putAwayQty;
+                Context
+                .Updateable(asn)
+                .ExecuteCommand();
+                var result = Context
+                 .Queryable<Stock>()
+                 .First(it => it.SkuId == asn.SkuId && it.LocationId == location.LocationId);
+                if (result == null)
+                {
+                    Context
+                    .Insertable(new Stock
+                    {
+                        SkuId = asn.SkuId,
+                        LocationId = location.LocationId,
+                        OwnerId = asn.OwnerId,
+                        Qty = asnPutAwayDto.putAwayQty,
+                        Create_by = userName,
+                        Create_time = DateTime.Now
+                    })
+                    .ExecuteCommand();
+                }
+                else
+                {
+                    Context.Tracking(result);
+                    result.Qty = asnPutAwayDto.putAwayQty;
+                    result.Update_by = userName;
+                    result.Update_time = DateTime.Now;
+                    Context
+                    .Updateable(result)
+                    .ExecuteCommand();
+                }
+            });
+
+            return result.IsSuccess == true;
         }
     }
 }

@@ -75,11 +75,13 @@
                 <el-button type="primary" @click="submitForm">提交</el-button>
             </template>
         </el-dialog>
+
+        <z-LocationSelectDialog v-model:visible="locationSelectOpen" @dialogData="dialogData" />
     </div>
 </template>
 
 <script setup>
-import { getAllInfo, cancelSort, exportAllInfo } from '@/api/receive/actual'
+import { getAllInfo, cancelSort, exportAllInfo, putAway } from '@/api/receive/actual'
 
 // 总条数
 const total = ref(0)
@@ -91,12 +93,16 @@ const loading = ref(true)
 const actualList = ref([])
 // 展示对话框
 const open = ref(false)
+// 商品选择框
+const locationSelectOpen = ref(false)
 // 时间范围
 const dateRange = ref([])
 // 数据
 const data = reactive({
     form: {
+        asnId: undefined,
         locationId: undefined,
+        putawayQty: undefined,
         putawayQty: undefined
     },
     queryParams: {
@@ -108,7 +114,7 @@ const data = reactive({
     },
     rules: {
         locationId: [{ required: true, message: '库位编码不能为空', trigger: 'blur' }],
-        putawayQty: [{ required: true,message: '上架数量不能为空且为数字', trigger: 'blur', pattern: /^[0-9]+$/ }]
+        putawayQty: [{ required: true, message: '上架数量不能为空且为数字', trigger: 'blur', pattern: /^[0-9]+$/ }]
     }
 })
 // 列显隐信息
@@ -183,6 +189,7 @@ function handleExport() {
  */
 function handleUpdate(row) {
     open.value = true
+    form.value.asnId = row.asnId
 }
 
 /**
@@ -208,7 +215,7 @@ function handleDelete(row) {
  * 输入点击选择库位
  */
 function inputClick() {
-    // todo
+    locationSelectOpen.value = true
 }
 
 /**
@@ -225,9 +232,30 @@ function cancel() {
 function submitForm() {
     proxy.$refs['asnNoticeRef'].validate((valid) => {
         if (valid && form.value.asnId != undefined) {
-
+            putAway(form.value).then(res => {
+                if (res.data === true) {
+                    proxy.$modal.msgSuccess('上架成功')
+                } else {
+                    proxy.$modal.msgError('上架失败')
+                }
+                open.value = false
+                getList()
+                reset();
+            })
         }
     })
+}
+
+/**
+ * 商品选择框返回数据函数
+ * @param {数据} val 
+ */
+function dialogData(val) {
+    for (let key in form.value) {
+        if (key === 'locationId' || key === 'locationName') {
+            form.value[key] = val[key]
+        }
+    }
 }
 
 getList()

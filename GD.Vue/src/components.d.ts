@@ -59,6 +59,7 @@ declare module 'vue' {
     ElUpload: typeof import('element-plus/es')['ElUpload']
     Hamburger: typeof import('./components/Hamburger/index.vue')['default']
     IconSelect: typeof import('./components/IconSelect/index.vue')['default']
+    LocationSelect: typeof import('./components/LocationSelect/index.vue')['default']
     Pagination: typeof import('./components/Pagination/index.vue')['default']
     QrBarCode: typeof import('./components/QrBarCode/index.vue')['default']
     Qrcode: typeof import('./components/QrBarCode/qrcode.vue')['default']

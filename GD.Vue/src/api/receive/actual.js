@@ -18,18 +18,17 @@ export function getAllInfo(query) {
 }
 
 /**
- * 根据asn信息id修改asn信息
- * @param {asn信息ID} id 
- * @param {asn信息实体} entity 
- * @returns 封装请求
+ * 上架操作
+ * @param {上架实体} entity 
+ * @returns 
  */
-export function editInfo(id, entity) {
-    // let url = `${baseUrl}/edit/${praseStrZero(id)}`
-    // return request({
-    //     url: url,
-    //     method: 'post',
-    //     data: entity
-    // })
+export function putAway(entity) {
+    let url = `${baseUrl}/putAway`
+    return request({
+        url: url,
+        method: 'put',
+        data: entity
+    })
 }
 
 /**

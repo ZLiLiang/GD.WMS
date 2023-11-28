@@ -235,6 +235,27 @@ namespace GD.WMS.WebApi.Controllers.Receive
         }
 
         /// <summary>
+        /// 上架操作
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut("putAway")]
+        [Log(Title = "上架操作", BusinessType = BusinessType.UPDATE)]
+        public IActionResult PutAway([FromBody] AsnPutAwayDto putAwayDto)
+        {
+            var username = HttpContext.GetName();
+            var result = asnService.PutAway(putAwayDto, username);
+
+            if (result == true)
+            {
+                return SUCCESS(result);
+            }
+            else
+            {
+                return ToResponse(ResultCode.FAIL);
+            }
+        }
+
+        /// <summary>
         /// 导出到货通知
         /// </summary>
         /// <returns></returns>

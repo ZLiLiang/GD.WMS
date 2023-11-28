@@ -1,5 +1,6 @@
 ﻿using GD.Model.Basic;
 using GD.Model.Constant;
+using GD.Model.Inventory.DBEntity;
 using GD.Model.Receive;
 using SqlSugar.IOC;
 
@@ -67,6 +68,7 @@ namespace GD.WMS.WebApi.SqlSugar
             //childDb1.CodeFirst.InitTables(typeof(FreightFee));
             //childDb1.CodeFirst.InitTables(typeof(Customer));
             //childDb1.CodeFirst.InitTables(typeof(Asn));
+            //childDb1.CodeFirst.InitTables(typeof(Stock));
         }
 
     }

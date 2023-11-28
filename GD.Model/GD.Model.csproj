@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Dto\Operation\" />
     <Folder Include="Operation\" />
+    <Folder Include="Vm\Operation\" />
   </ItemGroup>
 
 </Project>

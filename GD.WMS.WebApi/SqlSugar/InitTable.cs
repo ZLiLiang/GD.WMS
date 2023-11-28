@@ -1,7 +1,4 @@
-﻿using GD.Model.Basic;
-using GD.Model.Constant;
-using GD.Model.Inventory.DBEntity;
-using GD.Model.Receive;
+﻿using GD.Model.Constant;
 using SqlSugar.IOC;
 
 namespace GD.WMS.WebApi.SqlSugar

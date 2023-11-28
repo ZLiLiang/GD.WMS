@@ -1,6 +1,6 @@
 ﻿using GD.Model.Constant;
 
-namespace GD.Model.Inventory.DBEntity
+namespace GD.Model.Inventory
 {
     /// <summary>
     /// 库存表

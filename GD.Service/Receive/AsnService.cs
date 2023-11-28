@@ -2,7 +2,7 @@
 using GD.Model.Basic;
 using GD.Model.Dto.Receive;
 using GD.Model.Enums;
-using GD.Model.Inventory.DBEntity;
+using GD.Model.Inventory;
 using GD.Model.Page;
 using GD.Model.Receive;
 using GD.Repository;

@@ -1,8 +1,8 @@
 ﻿using GD.Infrastructure.Attribute;
 using GD.Model.Basic;
 using GD.Model.Dto.Inventory;
-using GD.Model.Inventory;
 using GD.Model.Page;
+using GD.Model.Vm.Inventory;
 using GD.Repository;
 using GD.Service.Interface.Inventory;
 using SqlSugar;

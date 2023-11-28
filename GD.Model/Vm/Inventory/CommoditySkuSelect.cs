@@ -1,4 +1,4 @@
-﻿namespace GD.Model.Inventory
+﻿namespace GD.Model.Vm.Inventory
 {
     public class CommoditySkuSelect
     {

@@ -1,7 +1,7 @@
 ﻿using GD.Model.Basic;
 using GD.Model.Dto.Inventory;
-using GD.Model.Inventory;
 using GD.Model.Page;
+using GD.Model.Vm.Inventory;
 
 namespace GD.Service.Interface.Inventory
 {

@@ -84,8 +84,7 @@ const columns = ref([
     { key: 0, label: `创建人`, visible: false, prop: 'createBy' },
     { key: 1, label: `创建时间`, visible: false, prop: 'createTime' },
     { key: 2, label: `操作人`, visible: false, prop: 'updateBy' },
-    { key: 3, label: `操作时间`, visible: false, prop: 'updateTime' },
-    { key: 4, label: `操作`, visible: true, prop: 'operate' }
+    { key: 3, label: `操作时间`, visible: false, prop: 'updateTime' }
 ])
 // 搜索参数
 const { queryParams } = toRefs(data)

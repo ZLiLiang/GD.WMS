@@ -4,7 +4,6 @@
 </template>
   
 <script setup>
-import { ref, onMounted, defineProps } from 'vue'
 import QRCode from 'qrcode'
 const props = defineProps({
   value: {

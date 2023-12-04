@@ -251,7 +251,7 @@ function submitForm() {
  * @param {数据} val 
  */
 function dialogData(val) {
-    for (let key in form.value) {
+    for (let key in val) {
         if (key === 'locationId' || key === 'locationName') {
             form.value[key] = val[key]
         }

@@ -6,7 +6,6 @@
 </template>
   
 <script setup>
-import { ref, onMounted, defineProps } from 'vue'
 import JsBarcode from 'jsbarcode'
 const props = defineProps({
     value: [String, Number],

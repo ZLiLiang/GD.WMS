@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "704920",
+      "name": "process",
+      "font_class": "process",
+      "unicode": "eb43",
+      "unicode_decimal": 60227
+    },
+    {
+      "icon_id": "5879114",
+      "name": "combination",
+      "font_class": "combination",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "21854142",
+      "name": "move",
+      "font_class": "move",
+      "unicode": "e708",
+      "unicode_decimal": 59144
+    },
+    {
+      "icon_id": "22994332",
+      "name": "adjust",
+      "font_class": "adjust",
+      "unicode": "ea12",
+      "unicode_decimal": 59922
+    },
+    {
+      "icon_id": "26182318",
+      "name": "taking",
+      "font_class": "taking",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "29702822",
+      "name": "operation",
+      "font_class": "operation",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "587093",
+      "name": "separate",
+      "font_class": "separate",
+      "unicode": "e7ed",
+      "unicode_decimal": 59373
+    },
+    {
+      "icon_id": "677567",
+      "name": "freeze",
+      "font_class": "freeze",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
       "icon_id": "29280126",
       "name": "arrive",
       "font_class": "arrive",

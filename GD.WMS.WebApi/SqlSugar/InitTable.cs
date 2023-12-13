@@ -1,4 +1,7 @@
 ﻿using GD.Model.Constant;
+using GD.Model.Delivery;
+using GD.Model.Inventory;
+using GD.Model.Operation;
 using SqlSugar.IOC;
 
 namespace GD.WMS.WebApi.SqlSugar
@@ -66,6 +69,14 @@ namespace GD.WMS.WebApi.SqlSugar
             //childDb1.CodeFirst.InitTables(typeof(Customer));
             //childDb1.CodeFirst.InitTables(typeof(Asn));
             //childDb1.CodeFirst.InitTables(typeof(Stock));
+            //childDb1.CodeFirst.InitTables(typeof(Dispatch));
+            //childDb1.CodeFirst.InitTables(typeof(Dispatchpick));
+            //childDb1.CodeFirst.InitTables(typeof(Adjust));
+            //childDb1.CodeFirst.InitTables(typeof(Freeze));
+            //childDb1.CodeFirst.InitTables(typeof(Move));
+            //childDb1.CodeFirst.InitTables(typeof(Process));
+            //childDb1.CodeFirst.InitTables(typeof(ProcessDetail));
+            //childDb1.CodeFirst.InitTables(typeof(Taking));
         }
 
     }

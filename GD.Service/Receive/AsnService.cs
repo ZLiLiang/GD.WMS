@@ -128,24 +128,31 @@ namespace GD.Service.Receive
         {
             var result = UseTran(() =>
             {
-                var asn = Context
-                .Queryable<Asn>()
+                var asn = Context.Queryable<Asn>()
                 .First(it => it.AsnId == asnPutAwayDto.AsnId);
+
                 Context.Tracking(asn);
-                var location = Context
-                .Queryable<Location>()
+                var location = Context.Queryable<Location>()
                 .First(it => it.LocationId == asnPutAwayDto.LocationId);
+
+                if (asnPutAwayDto.putAwayQty > asn.SortedQty)
+                {
+                    throw new Exception("上架数量超出分拣数量");
+                }
                 asn.ActualQty = asnPutAwayDto.putAwayQty;
-                Context
-                .Updateable(asn)
+                if (asn.ActualQty == asn.SortedQty)
+                {
+                    asn.AsnStatus = 4;
+                }
+                Context.Updateable(asn)
                 .ExecuteCommand();
-                var result = Context
-                 .Queryable<Stock>()
+
+                var result = Context.Queryable<Stock>()
                  .First(it => it.SkuId == asn.SkuId && it.LocationId == location.LocationId);
+
                 if (result == null)
                 {
-                    Context
-                    .Insertable(new Stock
+                    Context.Insertable(new Stock
                     {
                         SkuId = asn.SkuId,
                         LocationId = location.LocationId,

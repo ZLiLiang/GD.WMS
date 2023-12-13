@@ -25,9 +25,22 @@ namespace GD.WMS.WebApi.Controllers.Inventory
         /// <param name="commoditySkuSelectQueryDto"></param>
         /// <returns></returns>
         [HttpGet("skuselect")]
-        public IActionResult GetSkuSelect([FromQuery] CommoditySkuSelectQueryDto commoditySkuSelectQueryDto)
+        public IActionResult GetSkuSelect([FromQuery] SkuSelectQueryDto commoditySkuSelectQueryDto)
         {
             var result = stockService.GetCommoditySkuSelect(commoditySkuSelectQueryDto);
+
+            return SUCCESS(result);
+        }
+
+        /// <summary>
+        /// 获取库存选择列表
+        /// </summary>
+        /// <param name="stockSelectDto"></param>
+        /// <returns></returns>
+        [HttpGet("stockselect")]
+        public IActionResult GetStockSelect([FromQuery] StockSelectDto stockSelectDto)
+        {
+            var result = stockService.GetStockSelect(stockSelectDto);
 
             return SUCCESS(result);
         }

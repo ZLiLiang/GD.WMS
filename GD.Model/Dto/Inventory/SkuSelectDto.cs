@@ -2,7 +2,7 @@
 
 namespace GD.Model.Dto.Inventory
 {
-    public class CommoditySkuSelectQueryDto : PagerInfo
+    public class SkuSelectQueryDto : PagerInfo
     {
         public string SpuName { get; set; } = string.Empty;
 

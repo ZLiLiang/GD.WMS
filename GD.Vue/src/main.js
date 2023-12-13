@@ -26,8 +26,10 @@ import Dialog from '@/components/Dialog'
 import QrBarCode from '@/components/QrBarCode'
 // 商品选择框
 import SkuSelect from '@/components/SkuSelect'
+// 库位选择框
+import LocationSelect from '@/components/LocationSelect'
 // 库存选择框
-import locationSelect from '@/components/LocationSelect'
+import StockSelect from '@/components/StockSelect'
 
 const app = createApp(App)
 
@@ -41,7 +43,8 @@ app.component('svg-icon', SvgIcon)
 app.component('zDialog', Dialog)
 app.component('zQrBarDialog', QrBarCode)
 app.component('zSkuSelectDialog', SkuSelect)
-app.component('zLocationSelectDialog', locationSelect)
+app.component('zLocationSelectDialog', LocationSelect)
+app.component('zStockSelectDialog', StockSelect)
 
 app.use(pinia)
 app.use(router)

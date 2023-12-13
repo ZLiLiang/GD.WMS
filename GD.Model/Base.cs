@@ -38,7 +38,7 @@ namespace GD.Model
         [SugarColumn(IsOnlyIgnoreInsert = true, IsNullable = true)]
         [JsonProperty(propertyName: "UpdateTime")]
         [ExcelIgnore]
-        public DateTime? Update_time { get; set; }
+        public DateTime? Update_time { get; set; } = DateTime.Now;
 
         [SugarColumn(Length = 500)]
         public string Remark { get; set; }

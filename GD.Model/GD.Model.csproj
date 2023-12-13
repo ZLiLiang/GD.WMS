@@ -12,10 +12,4 @@
     <PackageReference Include="SqlSugarCoreNoDrive" Version="5.1.4.110" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dto\Operation\" />
-    <Folder Include="Operation\" />
-    <Folder Include="Vm\Operation\" />
-  </ItemGroup>
-
 </Project>

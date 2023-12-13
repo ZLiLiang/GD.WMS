@@ -25,6 +25,7 @@ declare module 'vue' {
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
@@ -69,6 +70,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Screenfull: typeof import('./components/Screenfull/index.vue')['default']
     SkuSelect: typeof import('./components/SkuSelect/index.vue')['default']
+    StockSelect: typeof import('./components/StockSelect/index.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon/index.vue')['default']
   }
   export interface ComponentCustomProperties {

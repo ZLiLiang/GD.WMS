@@ -17,3 +17,17 @@ export function getSkuSelect(query) {
         params: query
     })
 }
+
+/**
+ * 分页查询所有库存选择数据
+ * @param {查询参数} query 
+ * @returns 封装请求
+ */
+export function getStockSelect(query) {
+    let url = `${baseUrl}/stockselect`
+    return request({
+        url: url,
+        method: 'get',
+        params: query
+    })
+}

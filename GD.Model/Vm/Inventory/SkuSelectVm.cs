@@ -1,6 +1,6 @@
 ﻿namespace GD.Model.Vm.Inventory
 {
-    public class CommoditySkuSelect
+    public class SkuSelectVm
     {
         /// <summary>
         /// 规格Id

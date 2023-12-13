@@ -6,6 +6,7 @@ using GD.Model.Enums;
 using GD.Model.Receive;
 using GD.Service.Interface.Basic;
 using GD.Service.Interface.Receive;
+using GD.WMS.WebApi.Filters;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using MiniExcelLibs.Attributes;
@@ -16,9 +17,9 @@ namespace GD.WMS.WebApi.Controllers.Receive
     /// <summary>
     /// asn控制器
     /// </summary>
-    //[Verify]
+    [Verify]
     [Route("/receive/asn")]
-    //[ApiExplorerSettings(GroupName = "receive")]
+    [ApiExplorerSettings(GroupName = "receive")]
     public class AsnController : BaseController
     {
         private IAsnService asnService;
@@ -251,7 +252,7 @@ namespace GD.WMS.WebApi.Controllers.Receive
             }
             else
             {
-                return ToResponse(ResultCode.FAIL);
+                return ToResponse(ResultCode.FAIL,"上架数量超出分拣数量");
             }
         }
 

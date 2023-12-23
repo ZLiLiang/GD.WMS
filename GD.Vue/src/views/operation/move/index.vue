@@ -124,7 +124,7 @@ const total = ref(0)
 const showSearch = ref(false)
 // 加载...
 const loading = ref(true)
-// 供应商列表
+// 仓库移动列表
 const moveList = ref([])
 // 展示对话框
 const open = ref(false)

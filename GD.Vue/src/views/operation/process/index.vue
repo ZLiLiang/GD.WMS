@@ -50,7 +50,7 @@
             </el-table-column>
             <el-table-column label="是否已调整" prop="processStatus">
                 <template #default="scope">
-                    <el-tag type="danger" v-if="scope.row.processStatus == 0">否</el-tag>
+                    <el-tag type="danger" v-if="scope.row.adjustStatus == 0">否</el-tag>
                     <el-tag type="success" v-else>是</el-tag>
                 </template>
             </el-table-column>
@@ -222,7 +222,6 @@
 </template>
 
 <script setup>
-import { Search } from '@element-plus/icons-vue'
 import { getAllInfo, getInfo, addInfo, deleteInfo, confirmProcess, confirmAdjustment, exportAllInfo } from '@/api/operation/process'
 
 // 总条数

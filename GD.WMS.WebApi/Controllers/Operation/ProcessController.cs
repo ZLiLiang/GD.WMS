@@ -2,11 +2,9 @@
 using GD.Infrastructure.Attribute;
 using GD.Infrastructure.Extensions;
 using GD.Model.Dto.Operation;
-using GD.Model.Dto.Receive;
 using GD.Model.Enums;
 using GD.Service.Interface.Operation;
 using GD.WMS.WebApi.Filters;
-using IP2Region.Ex.Models;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,9 +13,9 @@ namespace GD.WMS.WebApi.Controllers.Operation
     /// <summary>
     /// 仓库加工控制器
     /// </summary>
-    //[Verify]
+    [Verify]
     [Route("/operation/process")]
-    //[ApiExplorerSettings(GroupName = "Operation")]
+    [ApiExplorerSettings(GroupName = "Operation")]
     public class ProcessController : BaseController
     {
         private IProcessService processService;

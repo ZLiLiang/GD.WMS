@@ -275,11 +275,13 @@ function handleExport() {
 function submitForm() {
     proxy.$refs['moveRef'].validate((valid) => {
         if (valid) {
-            addInfo(form.value).then(res => {
-                proxy.$modal.msgSuccess('新增成功')
-                open.value = false
-                getList()
-            })
+            if (form.value.skuId !== undefined && form.value.origLocationId !== undefined && form.value.destLocationId !== undefined) {
+                addInfo(form.value).then(res => {
+                    proxy.$modal.msgSuccess('新增成功')
+                    open.value = false
+                    getList()
+                })
+            }
         }
     })
 }

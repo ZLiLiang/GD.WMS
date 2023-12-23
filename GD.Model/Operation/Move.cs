@@ -5,7 +5,7 @@ namespace GD.Model.Operation
     /// <summary>
     /// 仓内移动表
     /// </summary>
-    [SugarTable("wm_freeze", "仓内移动表")]
+    [SugarTable("wm_move", "仓内移动表")]
     [Tenant(DBConfigId.WarehouseManagement)]
     public class Move : Base
     {
@@ -35,7 +35,7 @@ namespace GD.Model.Operation
         /// <summary>
         /// 来源库位id
         /// </summary>
-        public long OriginLocationId { get; set; } = 0;
+        public long OrigLocationId { get; set; } = 0;
 
         /// <summary>
         /// 目标库位id
@@ -60,6 +60,7 @@ namespace GD.Model.Operation
         /// <summary>
         /// 处理时间
         /// </summary>
-        public DateTime HandlerTime { get; set; }
+        [SugarColumn(IsOnlyIgnoreInsert = true, IsNullable = true)]
+        public DateTime HandlerTime { get; set; } = DateTime.Now;
     }
 }

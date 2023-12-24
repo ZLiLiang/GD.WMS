@@ -5,6 +5,7 @@ using GD.Model.Dto.Operation;
 using GD.Model.Enums;
 using GD.Model.Vm.Operation;
 using GD.Service.Interface.Operation;
+using GD.WMS.WebApi.Filters;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +14,9 @@ namespace GD.WMS.WebApi.Controllers.Operation
     /// <summary>
     /// 仓库移动控制器
     /// </summary>
-    //[Verify]
+    [Verify]
     [Route("/operation/freeze")]
-    //[ApiExplorerSettings(GroupName = "Operation")]
+    [ApiExplorerSettings(GroupName = "Operation")]
     public class FreezeController : BaseController
     {
         private IFreezeService freezeService;

@@ -22,8 +22,8 @@ namespace GD.Model.Operation
 
         /// <summary>
         /// 作业类型
-        /// 0:拆分加工
-        /// 1:组合加工
+        /// 0:冻结
+        /// 1:解冻
         /// </summary>
         public int JobType { get; set; } = 0;
 

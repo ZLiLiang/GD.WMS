@@ -77,7 +77,8 @@ const queryParams = ref({
     warehouseName: undefined,
     locationCode: undefined,
     spuName: undefined,
-    skuCode: undefined
+    skuCode: undefined,
+    sqlTitle: undefined
 })
 
 const props = defineProps({
@@ -85,6 +86,10 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    sqlTitle: {
+        type: String,
+        default: ""
+    }
 })
 
 const emits = defineEmits(["update:visible", "dialogData"]);
@@ -94,6 +99,8 @@ const open = computed({
         emits("update:visible", val)
     }
 })
+
+queryParams.value.sqlTitle = computed(() => props.sqlTitle)
 
 watch(
     () => props.visible,

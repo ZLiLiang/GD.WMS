@@ -22,6 +22,10 @@ namespace GD.Model.Operation
 
         /// <summary>
         /// 作业类型
+        /// 0：拆分,
+        /// 1：组合,
+        /// 2：盘点,
+        /// 3：移动,
         /// </summary>
         public int JobType { get; set; } = 0;
 

@@ -135,11 +135,11 @@ namespace GD.Service.Receive
                 var location = Context.Queryable<Location>()
                 .First(it => it.LocationId == asnPutAwayDto.LocationId);
 
-                if (asnPutAwayDto.putAwayQty > asn.SortedQty)
+                if (asn.ActualQty + asnPutAwayDto.putAwayQty > asn.SortedQty)
                 {
                     throw new Exception("上架数量超出分拣数量");
                 }
-                asn.ActualQty = asnPutAwayDto.putAwayQty;
+                asn.ActualQty += asnPutAwayDto.putAwayQty;
                 if (asn.ActualQty == asn.SortedQty)
                 {
                     asn.AsnStatus = 4;

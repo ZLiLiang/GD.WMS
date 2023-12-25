@@ -66,7 +66,7 @@ namespace GD.Service.Operation
                     SourceTableId = it.ProcessDetailId,
                     IsUpate = 1,
                     LocationId = it.LocationId,
-                    JobType = 2,
+                    JobType = process.JobType,
                     OwnerId = it.OwnerId,
                     Qty = it.IsSource == 0 ? -it.Qty : it.Qty,
                     Create_by = userName

@@ -65,6 +65,7 @@ namespace GD.Model.Operation
         /// <summary>
         /// 处理时间
         /// </summary>
+        [SugarColumn(IsOnlyIgnoreInsert = true, IsNullable = true)]
         public DateTime HandlerTime { get; set; }
     }
 }

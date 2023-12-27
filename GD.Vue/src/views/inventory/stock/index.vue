@@ -20,7 +20,7 @@
             <el-col :span="1.5">
                 <el-button type="warning" plain icon="download" @click="handleExport">导出</el-button>
             </el-col>
-            <right-toolbar v-model:showSearch="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+            <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
         </el-row>
 
         <!-- 表格 -->

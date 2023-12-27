@@ -2,7 +2,7 @@
 
 namespace GD.Model.Dto.Inventory
 {
-    public class StockSelectDto : PagerInfo
+    public class StockSelectQueryDto : PagerInfo
     {
         public string WarehouseName { get; set; } = string.Empty;
 

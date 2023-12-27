@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5387400",
+      "name": "inventory",
+      "font_class": "inventory",
+      "unicode": "eac8",
+      "unicode_decimal": 60104
+    },
+    {
+      "icon_id": "13192504",
+      "name": "stock",
+      "font_class": "stock",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "13468936",
+      "name": "locationstock",
+      "font_class": "locationstock",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
       "icon_id": "704920",
       "name": "process",
       "font_class": "process",
@@ -105,8 +126,8 @@
     },
     {
       "icon_id": "20857408",
-      "name": "inventory",
-      "font_class": "inventory",
+      "name": "receive",
+      "font_class": "receive",
       "unicode": "e661",
       "unicode_decimal": 58977
     },

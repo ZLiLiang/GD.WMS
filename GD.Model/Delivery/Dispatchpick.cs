@@ -47,6 +47,8 @@ namespace GD.Model.Delivery
 
         /// <summary>
         /// 是否更新
+        /// 0:否
+        /// 1:是
         /// </summary>
         public int IsUpate { get; set; } = 0;
     }

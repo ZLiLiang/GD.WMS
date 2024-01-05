@@ -4,6 +4,8 @@ namespace GD.Model.Vm.Inventory
 {
     public class StockVm : BaseVm
     {
+        public long StockId { get; set; } = 0;
+
         public string SpuCode { get; set; } = string.Empty;
 
         public string SpuName { get; set; } = string.Empty;

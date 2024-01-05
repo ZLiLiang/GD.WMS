@@ -24,7 +24,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //注入HttpContextAccessor
-//builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 // 跨域配置
 builder.Services.AddCors(builder.Configuration);
 //消除Error unprotecting the session cookie警告
@@ -33,9 +33,9 @@ builder.Services.AddDataProtection()
 //普通验证码
 builder.Services.AddCaptcha(builder.Configuration);
 //IPRatelimit
-//builder.Services.AddIPRate(builder.Configuration);
-//builder.Services.AddSession();
-//builder.Services.AddHttpContextAccessor();
+builder.Services.AddIPRate(builder.Configuration);
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 //绑定整个对象到Model上
 builder.Services.Configure<OptionsSetting>(builder.Configuration);
 
